@@ -1,6 +1,6 @@
 - Alterações:
 
-- Fazer a função de filtro
+ok Fazer a função de filtro
 
 - #importante DataProvider (nova classe):
   ok Incorpora a contagem de linhas e colunas dos dados
@@ -38,5 +38,5 @@ ok #opcional Viewer: opção de mover a janela junto com a seleção com j e k
 - Os comandos done e undo não estão mostrando a saída em tela
 - O Redraw não está fazendo nada
   - Criar um esquema de listener para os retornos do menuitem
-- Quando a listagem tem menos linhas do que a tela a seleção ultrapassa o limite inferior
+ok Quando a listagem tem menos linhas do que a tela a seleção ultrapassa o limite inferior
 
