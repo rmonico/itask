@@ -5,9 +5,9 @@ import shutil
 import subprocess
 import io
 import os
+from flags import __DEV__
 
 taskwarrior_binary = shutil.which('task')
-__DEV__ = True
 
 
 class TaskwarriorWrapper(object):
