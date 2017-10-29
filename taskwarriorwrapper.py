@@ -28,7 +28,7 @@ class TaskwarriorWrapper(object):
 
         process = subprocess.Popen([taskwarrior_binary] + args, env=self._environment, stdout=stdout, stderr=stderr)
 
-        process.wait()
+        process.poll()
 
         return process
 
