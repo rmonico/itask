@@ -33,8 +33,6 @@ class MainMenu(Navigable):
 
         self._make_menu()
 
-        self._make_gui()
-
     def _make_menu(self):
         self.main_menu = Menu(title='Main Menu', back=False)
 
@@ -117,6 +115,8 @@ class MainMenu(Navigable):
         file.close()
 
         self._report_parser.set_header_line(self._data_provider.lines[self._first_usable_line])
+
+        self._make_gui()
 
     def _data_changed(self, origin):
         self._do_data_update()
