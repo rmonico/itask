@@ -6,3 +6,5 @@ cp -v selection.py $BIN/itask;
 cp -v taskwarriorreportparser.py $BIN/itask;
 cp -v taskwarriorwrapper.py $BIN/itask;
 cp -v viewer.py $BIN/itask;
+
+echo "__DEV__ = False" > $BIN/flags.py
