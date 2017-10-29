@@ -219,7 +219,6 @@ class MainMenu(Navigable):
         console.wait()
 
     def task_filter(self):
-        #import ipdb; ipdb.set_trace()
         new_filter = input("Enter new filter [::cancel for cancel, empty for clear]: ")
 
         if new_filter == '::cancel':
