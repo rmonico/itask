@@ -1,0 +1,42 @@
+- Alterações:
+
+- Fazer a função de filtro
+
+- #importante DataProvider (nova classe):
+  ok Incorpora a contagem de linhas e colunas dos dados
+  ok Implementar a funcionalidade de invalidação dos dados
+  ok Implementar métodos para iterar sobre os dados
+
+ok #funcionalidade Mapear linhas em tela para IDs nos dados
+  - Criar classe especializada para isso
+  - Depois é possível que esta classe possa permitir pular linhas quando houverem anotações na tarefa
+  - Task picker
+
+ok #opcional Viewer: opção de mover a janela junto com a seleção com j e k
+
+- #opcional Montar uma janela para mostrar os ids selecionados
+
+- #opcional Funcionalidade de invalidar uma região na tela ao invés de invalidar apenas um viewer
+  - Vai permitir sobrepor viewers mais facilmente
+  - Mudar o console.py para screen e implementar na forma de um objeto
+
+- grep de tarefas?
+  - Pensar melhor nisso, talvez seja trabalho do taskwarrior e não da aplicação....
+
+- #melhoria Fazer listener de alteração do tamanho da janela
+
+- Mudar o ID para um array de strings para facilitar a manipulação, não vejo motivo para manter como stream
+
+- Fazer filtro pelos parâmetros recebidos da linha de comando
+
+
+** Erros
+
+- Quando não há tarefas dá pau na listagem
+- getch não está restaurando corretamente o estado do terminal, está ficando quebrada as quebras de linha
+  - Usar uma biblioteca pronta do pip
+- Os comandos done e undo não estão mostrando a saída em tela
+- O Redraw não está fazendo nada
+  - Criar um esquema de listener para os retornos do menuitem
+- Quando a listagem tem menos linhas do que a tela a seleção ultrapassa o limite inferior
+
