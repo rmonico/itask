@@ -57,7 +57,7 @@ class MainMenu(Navigable):
         self.main_menu.register_listener('after action', self.after_action)
 
     def _make_gui(self):
-        fixed_left = 9
+        fixed_left = self._report_parser.idColumnWidth()
         fixed_top = 2
         menu_height = 1
         footer_height = 2

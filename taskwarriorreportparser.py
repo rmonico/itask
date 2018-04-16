@@ -19,6 +19,10 @@ class TaskwarriorReportParser(object):
         self._id_column_start = match.start()
         self._id_column_end = match.end() - 1
 
+    def idColumnWidth(self):
+        # TODO Put a warning saiyng that ID column must be the first
+        return self._id_column_end - self._id_column_start + 1
+
     def getId(self, line):
         str_id = line[self._id_column_start:self._id_column_end].lstrip()
 
