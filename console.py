@@ -18,6 +18,7 @@ def move_cursor(x, y):
 
 def clear_screen():
     sys.stdout.buffer.write(b'\033[2J\033[1;1H')
+    sys.stdout.flush()
 
 
 def change_cursor_visibility(visible):
@@ -41,12 +42,13 @@ def _find_getch():
 
     def _getch():
         fd = sys.stdin.fileno()
-        old_settings = termios.tcgetattr(fd)
+        old_settings = tty.tcgetattr(fd)
         try:
             tty.setraw(fd)
             ch = sys.stdin.read(1)
         finally:
-            termios.tcsetattr(fd, termios.TCSADRAIN, old_settings)
+            tty.tcsetattr(fd, tty.TCSADRAIN, old_settings)
+
         return ch
 
     return _getch
