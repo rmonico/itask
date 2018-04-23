@@ -108,11 +108,7 @@ class MainMenu(Navigable):
     def _do_data_update(self):
         stream = self._binary_wrapper.load(self.filter)
 
-        file = io.TextIOWrapper(stream)
-
-        self._data_provider.update(file)
-
-        file.close()
+        self._data_provider.update(stream)
 
         if len(self._data_provider.lines) > 0:
             self._report_parser.set_header_line(self._data_provider.lines[self._first_usable_line])

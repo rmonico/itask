@@ -26,9 +26,7 @@ class TaskwarriorWrapper(object):
         stdout = subprocess.PIPE if redirect_stdouterr else None
         stderr = subprocess.PIPE if redirect_stdouterr else None
 
-        process = subprocess.Popen([taskwarrior_binary] + args, env=self._environment, stdout=stdout, stderr=stderr)
-
-        process.poll()
+        process = subprocess.run([taskwarrior_binary] + args, env=self._environment, stdout=stdout, stderr=stderr)
 
         return process
 
@@ -44,12 +42,13 @@ class TaskwarriorWrapper(object):
 
     def load(self, filters):
         default_list_params = ['rc.defaultwidth:', 'rc._forcecolor:off', 'rc.color:off']
+
         if filters:
             process = self._internal_run(default_list_params + [filters], redirect_stdouterr=True)
         else:
             process = self._internal_run(default_list_params, redirect_stdouterr=True)
 
-        return process.stdout
+        return process.stdout.decode('utf-8')
 
     def add(self, parameters):
         self._internal_run(['add'] + parameters)

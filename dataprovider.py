@@ -16,12 +16,12 @@ class DataProvider(object):
         self.lines = None
         self.size = None
 
-    def update(self, file):
+    def update(self, stream):
         self.lines = []
 
         largest_line = 0
 
-        for line in file:
+        for line in stream.split('\n'):
             self.lines.append(line)
 
             if (len(line) > largest_line):
