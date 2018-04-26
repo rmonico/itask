@@ -221,7 +221,7 @@ class MainMenu(Navigable):
         if new_filter == '::cancel':
             return
 
-        self.filter = new_filter
+        self.filter = new_filter.split(" ")
 
         if self.filter:
             self.main_menu.title = 'Main Menu (filter=\'{}\')'.format(self.filter)

@@ -44,7 +44,7 @@ class TaskwarriorWrapper(object):
         default_list_params = ['rc.defaultwidth:', 'rc._forcecolor:off', 'rc.color:off']
 
         if filters:
-            process = self._internal_run(default_list_params + [filters], redirect_stdouterr=True)
+            process = self._internal_run(default_list_params + filters, redirect_stdouterr=True)
         else:
             process = self._internal_run(default_list_params, redirect_stdouterr=True)
 
