@@ -17,7 +17,7 @@ class MainMenu(Navigable):
     def __init__(self):
         super(MainMenu, self).__init__()
 
-        self.filter = None
+        self.filters = None
 
         self._binary_wrapper = TaskwarriorWrapper()
 
@@ -106,7 +106,7 @@ class MainMenu(Navigable):
         self.main_menu.run()
 
     def _do_data_update(self):
-        stream = self._binary_wrapper.load(self.filter)
+        stream = self._binary_wrapper.load(self.filters)
 
         self._data_provider.update(stream)
 
@@ -216,15 +216,15 @@ class MainMenu(Navigable):
         console.wait()
 
     def task_filter(self):
-        new_filter = input("Enter new filter [::cancel for cancel, empty for clear]: ")
+        new_filters = input("Enter new filters [::cancel for cancel, empty for clear]: ")
 
         if new_filter == '::cancel':
             return
 
-        self.filter = new_filter.split(" ")
+        self.filters = new_filters.split(" ")
 
         if self.filter:
-            self.main_menu.title = 'Main Menu (filter=\'{}\')'.format(self.filter)
+            self.main_menu.title = 'Main Menu (filters=\'{}\')'.format(self.filters)
         else:
             self.main_menu.title = 'Main Menu'
 
