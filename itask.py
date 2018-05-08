@@ -44,6 +44,7 @@ class MainMenu(Navigable):
         self.main_menu.items.append(MenuItem(title='Filter', hotkey='f', action=self.task_filter))
         self.main_menu.items.append(MenuItem(title='Delete', hotkey='d', action=self.task_del))
         self.main_menu.items.append(MenuItem(title='Undo', hotkey='u', action=self.task_undo))
+        self.main_menu.items.append(MenuItem(title='Reload', hotkey='R', action=self.task_reload))
         self.main_menu.items.append(MenuItem(title='Sync', hotkey='s', action=self.task_sync))
         #self.main_menu.items.append(MenuItem(title='Unfilter', hotkey='x', action=self._binary_wrapper.clean_filter))
         #self.main_menu.items.append(MenuItem(title='Report', hotkey='r', action=self._binary_wrapper.select_report))
@@ -249,6 +250,14 @@ class MainMenu(Navigable):
 
     def task_undo(self):
         self._binary_wrapper.undo()
+
+        console.wait()
+
+    def task_reload(self):
+        print('Reloading data...')
+
+
+        self._binary_wrapper.invalidate_data()
 
         console.wait()
 
