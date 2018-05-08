@@ -141,7 +141,7 @@ class Menu(object):
                 visible_items.append(' ')
                 visible_items.append(item.title)
 
-        self._itens_string = ''.join(visible_items)
+        self._itens_string = ''.join(visible_items)[2:]
 
     def run(self):
         console.clear_screen()
@@ -154,9 +154,16 @@ class Menu(object):
         while result not in ('quit', 'back'):
             self._notify_listeners('render')
 
-            console.move_cursor(1, self._terminal_size.lines)
+            console.move_cursor(1, self._terminal_size.lines-1)
+            title_string = '[{}]'.format(self.title)[:self._terminal_size.columns - 1]
+            sys.stdout.write(title_string)
 
-            sys.stdout.write('[{}]{}'.format(self.title, self._itens_string))
+            sys.stdout.flush()
+
+            console.move_cursor(1, self._terminal_size.lines)
+            itens_string = '{}'.format(self._itens_string)[:self._terminal_size.columns - 1]
+            sys.stdout.write(itens_string)
+
 
             sys.stdout.flush()
 

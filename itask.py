@@ -224,7 +224,7 @@ class MainMenu(Navigable):
         self.filters = new_filters.split(" ")
 
         if self.filters:
-            self.main_menu.title = 'Main Menu (filters=\'{}\')'.format(self.filters)
+            self.main_menu.title = 'Main Menu (filters=\'{}\')'.format(new_filters)
         else:
             self.main_menu.title = 'Main Menu'
 
