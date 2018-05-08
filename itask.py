@@ -218,12 +218,12 @@ class MainMenu(Navigable):
     def task_filter(self):
         new_filters = input("Enter new filters [::cancel for cancel, empty for clear]: ")
 
-        if new_filter == '::cancel':
+        if new_filters == '::cancel':
             return
 
         self.filters = new_filters.split(" ")
 
-        if self.filter:
+        if self.filters:
             self.main_menu.title = 'Main Menu (filters=\'{}\')'.format(self.filters)
         else:
             self.main_menu.title = 'Main Menu'
