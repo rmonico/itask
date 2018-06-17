@@ -29,9 +29,9 @@ class MainMenu(Navigable):
 
         self._first_usable_line = 1
 
-        self._do_data_update()
-
         self._make_menu()
+
+        self._do_data_update()
 
     def _make_menu(self):
         self.main_menu = Menu(title='Main Menu', back=False)
