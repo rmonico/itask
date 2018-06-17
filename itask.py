@@ -111,7 +111,7 @@ class MainMenu(Navigable):
 
         self._data_provider.update(stream)
 
-        if len(self._data_provider.lines) > 0:
+        if len(self._data_provider.lines) > 1:
             self._report_parser.set_header_line(self._data_provider.lines[self._first_usable_line])
 
         self._make_gui()
