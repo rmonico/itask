@@ -34,7 +34,7 @@ class MainMenu(Navigable):
         self._do_data_update()
 
     def _make_menu(self):
-        self.main_menu = Menu(title='Main Menu', back=False)
+        self.main_menu = Menu(redraw=False, back=False)
 
         self.main_menu.items.append(MenuItem(title='Add', hotkey='a', action=self.task_add))
         self.main_menu.items.append(MenuItem(title='Annotate', hotkey='n', action=self.task_annotate))
