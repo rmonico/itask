@@ -83,7 +83,7 @@ class Navigable(object):
 
 class Menu(object):
 
-    def __init__(self, title, redraw=True, back=True):
+    def __init__(self, title='', redraw=True, back=True):
         self.title = title
 
         self.items = []
