@@ -72,3 +72,6 @@ def change_getch_echo(enabled):
             os.system('stty -echo')
 
     # TODO Implement on Windows...
+
+def set_terminal_title(title):
+    sys.stdout.buffer.write("\x1b]2;{}\x07".format(title).encode("utf-8"))
