@@ -114,6 +114,8 @@ class MainMenu(Navigable):
         if len(self._data_provider.lines) > 1:
             self._report_parser.set_header_line(self._data_provider.lines[self._first_usable_line])
 
+        self._update_menu_title()
+
         self._make_gui()
 
     def _data_changed(self, origin):
@@ -221,15 +223,27 @@ class MainMenu(Navigable):
 
         if new_filters == '::cancel':
             return
-
-        self.filters = new_filters.split(" ")
-
-        if self.filters:
-            self.main_menu.title = 'Main Menu (filters=\'{}\')'.format(new_filters)
+        elif new_filters == '':
+            self.filters = None
         else:
-            self.main_menu.title = 'Main Menu'
+            self.filters = new_filters.split(" ")
+
+        self._update_menu_title()
 
         self._binary_wrapper.invalidate_data()
+
+    def _update_menu_title(self):
+        title='Main Menu'
+
+        if self.filters:
+            title += '; filter=' + ' and '.join(self.filters)
+
+        if len(self._data_provider.lines) > 1:
+            title += '; ' + self._data_provider.lines[-2]
+        else:
+            title += '; no tasks'
+
+        self.main_menu.title = title
 
     def task_del(self):
         menu = Menu("Are you sure you want to remove ids '{}'?".format(str(self._get_selected_ids())), redraw=False, back=False)
