@@ -148,6 +148,7 @@ class MainMenu(Navigable):
         if item and item.interactive:
             console.change_cursor_visibility(True)
             console.change_getch_echo(True)
+            console.clear_screen()
 
     def _quit(self):
         print('Bye!')
