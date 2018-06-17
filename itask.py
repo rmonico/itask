@@ -60,12 +60,12 @@ class MainMenu(Navigable):
     def _make_gui(self):
         fixed_left = self._report_parser.idColumnWidth()
         fixed_top = 2
-        menu_height = 1
+        menu_height = 2
         footer_height = 2
 
-        fixed_region = Region(size={'width': fixed_left, 'height': fixed_top}, position={'left': 0, 'top': self._first_usable_line})
+        left_top_fixed_region = Region(size={'width': fixed_left, 'height': fixed_top}, position={'left': 0, 'top': self._first_usable_line})
 
-        self._fixed_viewer = Viewer(self._data_provider, fixed_region, screen_left=0, screen_top=0)
+        self._left_top_fixed_viewer = Viewer(self._data_provider, left_top_fixed_region, screen_left=0, screen_top=0)
 
         terminal_size = shutil.get_terminal_size()
 
@@ -125,7 +125,7 @@ class MainMenu(Navigable):
         console.change_cursor_visibility(False)
         console.change_getch_echo(False)
 
-        self._fixed_viewer.update()
+        self._left_top_fixed_viewer.update()
         self._header_viewer.update()
         self._left_viewer.update()
         self._data_viewer.update()
@@ -137,7 +137,7 @@ class MainMenu(Navigable):
 
             console.clear_screen()
 
-            self._fixed_viewer.invalidate()
+            self._left_top_fixed_viewer.invalidate()
             self._header_viewer.invalidate()
             self._left_viewer.invalidate()
             self._data_viewer.invalidate()
@@ -255,7 +255,6 @@ class MainMenu(Navigable):
 
     def task_reload(self):
         print('Reloading data...')
-
 
         self._binary_wrapper.invalidate_data()
 
