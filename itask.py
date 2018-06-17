@@ -38,14 +38,14 @@ class MainMenu(Navigable):
 
         self.main_menu.items.append(MenuItem(title='Add', hotkey='a', action=self.task_add))
         self.main_menu.items.append(MenuItem(title='Annotate', hotkey='n', action=self.task_annotate))
-        self.main_menu.items.append(MenuItem(title='Done', hotkey='o', action=self.task_done))
+        self.main_menu.items.append(MenuItem(title='Done', hotkey='O', action=self.task_done))
         self.main_menu.items.append(MenuItem(title='View', hotkey='v', action=self.task_view))
         self.main_menu.items.append(MenuItem(title='Mod', hotkey='m', action=self.task_mod))
         self.main_menu.items.append(MenuItem(title='Filter', hotkey='f', action=self.task_filter))
-        self.main_menu.items.append(MenuItem(title='Delete', hotkey='d', action=self.task_del))
-        self.main_menu.items.append(MenuItem(title='Undo', hotkey='u', action=self.task_undo))
+        self.main_menu.items.append(MenuItem(title='Delete', hotkey='D', action=self.task_del))
+        self.main_menu.items.append(MenuItem(title='Undo', hotkey='U', action=self.task_undo))
         self.main_menu.items.append(MenuItem(title='Reload', hotkey='R', action=self.task_reload))
-        self.main_menu.items.append(MenuItem(title='Sync', hotkey='s', action=self.task_sync))
+        self.main_menu.items.append(MenuItem(title='Sync', hotkey='S', action=self.task_sync))
         #self.main_menu.items.append(MenuItem(title='Unfilter', hotkey='x', action=self._binary_wrapper.clean_filter))
         #self.main_menu.items.append(MenuItem(title='Report', hotkey='r', action=self._binary_wrapper.select_report))
 
