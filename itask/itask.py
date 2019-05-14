@@ -346,7 +346,11 @@ class MainMenu(Navigable):
         self._selection.toggle_active_line_selected()
 
 
-if __name__ == '__main__':
+def main():
     handler = MainMenu()
 
     handler.run()
+
+
+if __name__ == '__main__':
+    main()
