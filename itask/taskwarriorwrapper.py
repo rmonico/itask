@@ -5,7 +5,7 @@ import shutil
 import subprocess
 import io
 import os
-from flags import __DEV__
+from itask.flags import __DEV__
 
 taskwarrior_binary = shutil.which('task')
 

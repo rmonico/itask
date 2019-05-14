@@ -1,1 +1,1 @@
-__DEV__ = True
+__DEV__ = False

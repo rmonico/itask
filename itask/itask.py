@@ -2,13 +2,13 @@
 # -*- coding: utf-8 -*-
 
 import shutil
-from viewer import Viewer, Region
-from selection import Selection
-import console
-from taskwarriorwrapper import TaskwarriorWrapper
-from imenu import Menu, MenuItem, Navigable, BackMenuItem
-from dataprovider import DataProvider
-from taskwarriorreportparser import TaskwarriorReportParser
+from itask.viewer import Viewer, Region
+from itask.selection import Selection
+from itask import console
+from itask.taskwarriorwrapper import TaskwarriorWrapper
+from itask.imenu import Menu, MenuItem, Navigable, BackMenuItem
+from itask.dataprovider import DataProvider
+from itask.taskwarriorreportparser import TaskwarriorReportParser
 import io
 
 

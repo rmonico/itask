@@ -5,7 +5,7 @@ import sys
 import argparse
 import collections
 import re
-import console
+from itask import console
 
 viewer_width_default = 'terminal_columns'
 viewer_height_default = 'terminal_lines'
