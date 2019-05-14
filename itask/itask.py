@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 
 import shutil
+import argparse
 from itask.viewer import Viewer, Region
 from itask.selection import Selection
 from itask import console
@@ -14,12 +15,12 @@ import io
 
 class MainMenu(Navigable):
 
-    def __init__(self):
+    def __init__(self, taskwarrior_wrapper):
         super(MainMenu, self).__init__()
 
         self.filters = None
 
-        self._binary_wrapper = TaskwarriorWrapper()
+        self._binary_wrapper = taskwarrior_wrapper
 
         self._binary_wrapper.register_listener('data changed', self._data_changed)
 
@@ -346,8 +347,18 @@ class MainMenu(Navigable):
         self._selection.toggle_active_line_selected()
 
 
+def parse_command_line():
+    parser = argparse.ArgumentParser()
+
+    parser.add_argument("--task-data", help="Override TASKDATA environment variable")
+
+    return parser.parse_args()
+
+
 def main():
-    handler = MainMenu()
+    args = parse_command_line()
+
+    handler = MainMenu(TaskwarriorWrapper(args.task_data))
 
     handler.run()
 

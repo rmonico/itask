@@ -5,20 +5,19 @@ import shutil
 import subprocess
 import io
 import os
-from itask.flags import __DEV__
 
 taskwarrior_binary = shutil.which('task')
 
 
 class TaskwarriorWrapper(object):
 
-    def __init__(self):
+    def __init__(self, task_data = None):
         # TODO Its possible to improve this with more specific events
         self._listeners = {'data changed': []}
 
-        if __DEV__:
+        if task_data:
             self._environment = os.environ.copy()
-            self._environment['TASKDATA'] = '~/.itask_dev'
+            self._environment['TASKDATA'] = task_data
         else:
             self._environment = None
 
