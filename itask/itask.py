@@ -15,10 +15,10 @@ import io
 
 class MainMenu(Navigable):
 
-    def __init__(self, taskwarrior_wrapper):
+    def __init__(self, initial_filter, taskwarrior_wrapper):
         super(MainMenu, self).__init__()
 
-        self.filters = None
+        self.filters = initial_filter
 
         self._binary_wrapper = taskwarrior_wrapper
 
@@ -352,13 +352,17 @@ def parse_command_line():
 
     parser.add_argument("--task-data", help="Override TASKDATA environment variable")
 
+    parser.add_argument("-f", "--filter", help="Initial filter")
+
     return parser.parse_args()
 
 
 def main():
     args = parse_command_line()
 
-    handler = MainMenu(TaskwarriorWrapper(args.task_data))
+    filter = args.filter.split(" ") if args.filter else None
+
+    handler = MainMenu(filter, TaskwarriorWrapper(args.task_data))
 
     handler.run()
 
