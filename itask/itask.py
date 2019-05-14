@@ -15,7 +15,7 @@ import io
 
 class MainMenu(Navigable):
 
-    def __init__(self, initial_filter, taskwarrior_wrapper):
+    def __init__(self, initial_filter, initial_context, taskwarrior_wrapper):
         super(MainMenu, self).__init__()
 
         self.filters = initial_filter
@@ -23,6 +23,8 @@ class MainMenu(Navigable):
         self._binary_wrapper = taskwarrior_wrapper
 
         self._binary_wrapper.register_listener('data changed', self._data_changed)
+
+        self._binary_wrapper.context(initial_context)
 
         self._data_provider = DataProvider()
 
@@ -354,6 +356,8 @@ def parse_command_line():
 
     parser.add_argument("-f", "--filter", help="Initial filter")
 
+    parser.add_argument("-c", "--context", default="none", help="Initial context")
+
     return parser.parse_args()
 
 
@@ -362,7 +366,7 @@ def main():
 
     filter = args.filter.split(" ") if args.filter else None
 
-    handler = MainMenu(filter, TaskwarriorWrapper(args.task_data))
+    handler = MainMenu(filter, args.context, TaskwarriorWrapper(args.task_data))
 
     handler.run()
 

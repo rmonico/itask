@@ -39,6 +39,9 @@ class TaskwarriorWrapper(object):
         for listener in self._listeners[event]:
             listener(origin=self, *args, **kwargs)
 
+    def context(self, context):
+        self._internal_run(['context', context])
+
     def load(self, filters):
         default_list_params = ['rc.defaultwidth:', 'rc._forcecolor:off', 'rc.color:off']
 
