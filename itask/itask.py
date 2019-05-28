@@ -60,11 +60,8 @@ class MainMenu(Navigable):
         self.main_menu.register_listener('item chosen', self.item_chosen)
         self.main_menu.register_listener('after action', self.after_action)
 
-    def _make_gui(self):
-        fixed_left = self._report_parser.idColumnWidth()
-        fixed_top = 2
+    def _make_gui(self, fixed_left, fixed_top, footer_height):
         menu_height = 2
-        footer_height = 2
 
         left_top_fixed_region = Region(size={'width': fixed_left, 'height': fixed_top}, position={'left': 0, 'top': self._first_usable_line})
 
@@ -91,11 +88,11 @@ class MainMenu(Navigable):
             position={'left': 0, 'top': self._first_usable_line + fixed_top},
             vertical_constraints=data_vertical_constraints)
 
-        self._left_viewer = Viewer(self._data_provider, left_region, self._selection, screen_left=0, screen_top=2)
+        self._left_viewer = Viewer(self._data_provider, left_region, self._selection, screen_left=0, screen_top=fixed_top)
 
         data_region = Region(
             size={'width': data_width, 'height': data_height},
-            position={'left': fixed_left, 'top': 3},
+            position={'left': fixed_left, 'top': self._first_usable_line + fixed_top},
             horizontal_constraints=data_horizontal_constraints,
             vertical_constraints=data_vertical_constraints)
 
@@ -104,7 +101,7 @@ class MainMenu(Navigable):
             data_region,
             self._selection,
             screen_left=fixed_left,
-            screen_top=2)
+            screen_top=fixed_top)
 
     def run(self):
         self.main_menu.run()
@@ -119,7 +116,7 @@ class MainMenu(Navigable):
 
         self._update_menu_title()
 
-        self._make_gui()
+        self._make_gui(fixed_left = self._report_parser.idColumnWidth(), fixed_top = 2, footer_height = 2)
 
     def _data_changed(self, origin):
         self._do_data_update()
