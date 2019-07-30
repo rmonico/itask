@@ -237,6 +237,33 @@ class Viewer(object):
         self._dirty = False
 
 
+class WindowBuilder(object):
+
+    def ignore_lines(self, **kwargs):
+        """
+            on_top: lines to ignore on top
+            on_bottom: lines to ignore on bottom
+        """
+        pass
+
+    def ignore_columns
+
+
+class ViewBuilder(object):
+
+    def screen_position(self, left, top, right=None, ):
+        pass
+
+    def data_window(self, **kwargs):
+        pass
+
+    def horizontal_constraints(self, **kwargs):
+        pass
+
+    def vertical_constraints(self, **kwargs):
+        pass
+
+
 _size_pattern = re.compile(
     '^([0-9]+|' + viewer_width_default + ')x([0-9]+|' + viewer_height_default +
     ')$')

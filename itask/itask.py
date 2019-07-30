@@ -63,6 +63,8 @@ class MainMenu(Navigable):
     def _make_gui(self, fixed_left, fixed_top, footer_height):
         menu_height = 2
 
+        ViewBuilder().screen_position(left=0, top=0, right=fixed_left, bottom=fixed_top).data_window(left=0, top=self._first_usable_line, width=fixed_left, height=fixed_top)
+
         left_top_fixed_region = Region(size={'width': fixed_left, 'height': fixed_top}, position={'left': 0, 'top': self._first_usable_line})
 
         self._left_top_fixed_viewer = Viewer(self._data_provider, left_top_fixed_region, screen_left=0, screen_top=0)
@@ -370,3 +372,24 @@ def main():
 
 if __name__ == '__main__':
     main()
+
+
+
+# Uso do ViewBuilder
+def main():
+    ViewBuilder().screen_position().left(0).top(0).right(30).bottom(30).ok().data_window().left(0).top(
+        0).ok().constraints().horizontal().min(0).max('width').ok().vertical().min(0).max('width').ok().done()
+
+    ViewBuilder().screen_position({'left': 0, 'top': 0, 'right': 30, 'bottom': 30}).data_window(
+        {'left': 0, 'top': 0}).horizontal_constraints({'min': 0, 'max': 'width'}).vertical_constraints({'min': 0, 'max': 'width'}).ok()
+
+    builder = ViewBuilder()
+
+    builder.screen_position(left=0, top=0, right=30, bottom=30)
+    builder.data_window({'left': 0, 'top': 0})
+    builder.horizontal_constraints({'min': 0, 'max': 'width'})
+    builder.vertical_constraints({'min': 0, 'max': 'width'})
+
+    builder.build()
+
+    ViewBuider().screen_position(left=0, top=0, right=30, bottom=30).data_window(left=0, top=0).constraints(left=0, right="width", top=0, bottom="height").build()
