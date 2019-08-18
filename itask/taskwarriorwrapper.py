@@ -38,16 +38,20 @@ class TaskwarriorWrapper(object):
         for listener in self._listeners[event]:
             listener(origin=self, *args, **kwargs)
 
-    def context(self, context):
+    def set_context(self, context):
         self._internal_run(['context', context])
 
-    def load(self, filters):
+    def load(self, filters, context=None):
         default_list_params = ['rc.defaultwidth:', 'rc._forcecolor:off', 'rc.color:off']
 
+        params = default_list_params
+
+        params += ['rc.context:{}'.format(context if context else "none")]
+
         if filters:
-            process = self._internal_run(default_list_params + filters, redirect_stdouterr=True)
-        else:
-            process = self._internal_run(default_list_params, redirect_stdouterr=True)
+            params += filters
+
+        process = self._internal_run(params, redirect_stdouterr=True)
 
         return process.stdout.decode('utf-8')
 
