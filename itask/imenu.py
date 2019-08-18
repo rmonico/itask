@@ -1,9 +1,10 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
-from itask import console
 import shutil
 import sys
+
+from itask import console
 
 
 class MenuItem(object):
@@ -154,7 +155,7 @@ class Menu(object):
         while result not in ('quit', 'back'):
             self._notify_listeners('render')
 
-            console.move_cursor(1, self._terminal_size.lines-1)
+            console.move_cursor(1, self._terminal_size.lines - 1)
             title_string = '[{}]'.format(self.title)[:self._terminal_size.columns - 1]
             sys.stdout.write(title_string)
 
@@ -163,7 +164,6 @@ class Menu(object):
             console.move_cursor(1, self._terminal_size.lines)
             itens_string = '{}'.format(self._itens_string)[:self._terminal_size.columns - 1]
             sys.stdout.write(itens_string)
-
 
             sys.stdout.flush()
 

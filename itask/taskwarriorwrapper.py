@@ -1,17 +1,16 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
+import os
 import shutil
 import subprocess
-import io
-import os
 
 taskwarrior_binary = shutil.which('task')
 
 
 class TaskwarriorWrapper(object):
 
-    def __init__(self, task_data = None):
+    def __init__(self, task_data=None):
         # TODO Its possible to improve this with more specific events
         self._listeners = {'data changed': []}
 

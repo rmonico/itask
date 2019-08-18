@@ -1,10 +1,11 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
-import sys
 import argparse
 import collections
 import re
+import sys
+
 from itask import console
 
 viewer_width_default = 'terminal_columns'
@@ -13,7 +14,8 @@ viewer_height_default = 'terminal_lines'
 
 class Region(object):
 
-    def __init__(self, size, position={'left': 0, 'top': 0}, horizontal_constraints={'left': 0, 'right': 'width'}, vertical_constraints={'top': 0, 'bottom': 'height'}):
+    def __init__(self, size, position={'left': 0, 'top': 0}, horizontal_constraints={'left': 0, 'right': 'width'},
+                 vertical_constraints={'top': 0, 'bottom': 'height'}):
         """
             size: A dictionary with "width" and "height" entries.
             position: A dictionary with "left" and "top" entries.
@@ -133,7 +135,6 @@ class Region(object):
 
 
 class Viewer(object):
-
     """
         For method move('top'/'bottom') work fine vertical_constraints must be set! (idem to move('begin'/'end'))
     """
@@ -196,7 +197,7 @@ class Viewer(object):
                 continue
 
             line = raw_line[
-                self.region.left:self.region.left + self.region.width]
+                   self.region.left:self.region.left + self.region.width]
 
             if line != '' and line[-1] == '\n':
                 line = line[:-1]
@@ -284,10 +285,10 @@ def parse_command_line():
     parser.add_argument("--verbose", action="store_true")
     parser.add_argument("-vs", "--viewer-size", type=_size,
                         default=viewer_width_default + 'x' +
-                        viewer_height_default,
+                                viewer_height_default,
                         help="Viewer's size. Format: <width>x<height>. \"" +
-                        viewer_width_default + "\" and \"" +
-                        viewer_height_default + "\" can be used too.")
+                             viewer_width_default + "\" and \"" +
+                             viewer_height_default + "\" can be used too.")
     parser.add_argument("-fp", "--file-position", type=_position, default='0x0',
                         help="Position of data to be clipped, 0 indexed. Format: <left>x<top>. Default: \"0x0\"")
     parser.add_argument("-sp", "--screen-position", type=_position, default='0x0',
@@ -312,12 +313,14 @@ def parse_command_line():
 def main():
     args = parse_command_line()
 
-    viewer = Viewer(args.file, data_ruler(args.file), args.viewer_size.width, args.viewer_size.height, args.file_position.left,
+    viewer = Viewer(args.file, data_ruler(args.file), args.viewer_size.width, args.viewer_size.height,
+                    args.file_position.left,
                     args.file_position.top, args.screen_position.left, args.screen_position.top)
 
     viewer.update()
 
     args.file.close()
+
 
 if __name__ == '__main__':
     main()

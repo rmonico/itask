@@ -1,16 +1,16 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
-import shutil
 import argparse
-from itask.viewer import Viewer, Region
-from itask.selection import Selection
-from itask import console
-from itask.taskwarriorwrapper import TaskwarriorWrapper
-from itask.imenu import Menu, MenuItem, Navigable, BackMenuItem
+import shutil
 from itask.dataprovider import DataProvider
+from itask.imenu import Menu, MenuItem, Navigable, BackMenuItem
+from itask.selection import Selection
 from itask.taskwarriorreportparser import TaskwarriorReportParser
-import io
+from itask.taskwarriorwrapper import TaskwarriorWrapper
+from itask.viewer import Viewer, Region
+
+from itask import console
 
 
 class MainMenu(Navigable):
@@ -49,8 +49,8 @@ class MainMenu(Navigable):
         self.main_menu.items.append(MenuItem(title='Undo', hotkey='U', action=self.task_undo))
         self.main_menu.items.append(MenuItem(title='Reload', hotkey='R', action=self.task_reload))
         self.main_menu.items.append(MenuItem(title='Sync', hotkey='S', action=self.task_sync))
-        #self.main_menu.items.append(MenuItem(title='Unfilter', hotkey='x', action=self._binary_wrapper.clean_filter))
-        #self.main_menu.items.append(MenuItem(title='Report', hotkey='r', action=self._binary_wrapper.select_report))
+        # self.main_menu.items.append(MenuItem(title='Unfilter', hotkey='x', action=self._binary_wrapper.clean_filter))
+        # self.main_menu.items.append(MenuItem(title='Report', hotkey='r', action=self._binary_wrapper.select_report))
 
         self.main_menu.append_quit(self._quit)
 
@@ -66,7 +66,8 @@ class MainMenu(Navigable):
         menu_height = 2
         footer_height = 2
 
-        left_top_fixed_region = Region(size={'width': fixed_left, 'height': fixed_top}, position={'left': 0, 'top': self._first_usable_line})
+        left_top_fixed_region = Region(size={'width': fixed_left, 'height': fixed_top},
+                                       position={'left': 0, 'top': self._first_usable_line})
 
         self._left_top_fixed_viewer = Viewer(self._data_provider, left_top_fixed_region, screen_left=0, screen_top=0)
 
@@ -82,7 +83,8 @@ class MainMenu(Navigable):
         self._header_viewer = Viewer(self._data_provider, header_region, screen_left=fixed_left, screen_top=0)
 
         data_height = terminal_size.lines - fixed_top - menu_height
-        data_vertical_constraints = {'top': self._first_usable_line + fixed_top, 'bottom': self._data_provider.size.lines - footer_height - 1}
+        data_vertical_constraints = {'top': self._first_usable_line + fixed_top,
+                                     'bottom': self._data_provider.size.lines - footer_height - 1}
 
         self._selection = Selection(self._first_usable_line + fixed_top, constraints=data_vertical_constraints)
 
@@ -254,7 +256,8 @@ class MainMenu(Navigable):
         self.main_menu.title = 'Main Menu{}; {}'.format(filter_string, task_count)
 
     def task_del(self):
-        menu = Menu("Are you sure you want to remove ids '{}'?".format(str(self._get_selected_ids())), redraw=False, back=False)
+        menu = Menu("Are you sure you want to remove ids '{}'?".format(str(self._get_selected_ids())), redraw=False,
+                    back=False)
 
         menu.items.append(BackMenuItem("y", "Yes", action=self._delete_confirmed))
         menu.items.append(BackMenuItem("n", "No"))

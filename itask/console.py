@@ -3,7 +3,6 @@
 
 import sys
 
-
 SEQUENCE_ESCAPES = {
     'blue background': b'\033[48;5;4m',
     'cyan background': b'\033[48;5;12m',
@@ -53,6 +52,7 @@ def _find_getch():
 
     return _getch
 
+
 getch = _find_getch()
 
 
@@ -72,6 +72,7 @@ def change_getch_echo(enabled):
             os.system('stty -echo')
 
     # TODO Implement on Windows...
+
 
 def set_terminal_title(title):
     sys.stdout.buffer.write("\x1b]2;{}\x07".format(title).encode("utf-8"))

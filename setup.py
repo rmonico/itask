@@ -8,7 +8,7 @@ setup(name='iTask',
       author_email='rmonico1@gmail.com',
       license='GPL3',
       packages=['itask'],
-      entry_points = {
+      entry_points={
           'console_scripts': ['itask=itask.itask:main'],
       },
       zip_safe=False)
