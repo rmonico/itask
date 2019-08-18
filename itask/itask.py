@@ -20,11 +20,11 @@ class MainMenu(Navigable):
 
         self.filters = args.filter.split(" ") if args.filter else None
 
+        self.context = args.context
+
         self._binary_wrapper = taskwarrior_wrapper
 
         self._binary_wrapper.register_listener('data changed', self._data_changed)
-
-        self._binary_wrapper.context(initial_context)
 
         self._data_provider = DataProvider()
 
@@ -112,7 +112,7 @@ class MainMenu(Navigable):
         self.main_menu.run()
 
     def _do_data_update(self):
-        stream = self._binary_wrapper.load(self.filters)
+        stream = self._binary_wrapper.load(self.filters, self.context)
 
         self._data_provider.update(stream)
 
