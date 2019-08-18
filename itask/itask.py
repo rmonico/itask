@@ -15,10 +15,10 @@ from itask import console
 
 class MainMenu(Navigable):
 
-    def __init__(self, initial_filter, initial_context, taskwarrior_wrapper):
+    def __init__(self, taskwarrior_wrapper, args):
         super(MainMenu, self).__init__()
 
-        self.filters = initial_filter
+        self.filters = args.filter.split(" ") if args.filter else None
 
         self._binary_wrapper = taskwarrior_wrapper
 
@@ -367,9 +367,7 @@ def parse_command_line():
 def main():
     args = parse_command_line()
 
-    filter = args.filter.split(" ") if args.filter else None
-
-    handler = MainMenu(filter, args.context, TaskwarriorWrapper(args.task_data))
+    handler = MainMenu(TaskwarriorWrapper(args.task_data), args)
 
     handler.run()
 
