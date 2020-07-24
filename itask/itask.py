@@ -368,7 +368,29 @@ def parse_command_line():
     return parser.parse_args()
 
 
+def is_running_in_interactive_terminal():
+    import os
+
+    return os.isatty(1)
+
+
+def recall_it_self_inside_terminal():
+    import os
+    terminal = os.getenv("TERMINAL", "termite")
+
+    import sys
+    arguments = [arg.replace(" ", "\\ ") for arg in sys.argv]
+
+    import subprocess
+    subprocess.run([terminal, "-e", " ".join(arguments)])
+
+
 def main():
+    if not is_running_in_interactive_terminal():
+        recall_it_self_inside_terminal()
+
+        return
+
     args = parse_command_line()
 
     handler = MainMenu(TaskwarriorWrapper(args.task_data), args)
