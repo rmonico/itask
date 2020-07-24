@@ -363,7 +363,7 @@ def parse_command_line():
 
     parser.add_argument("-f", "--filter", help="Initial filter")
 
-    parser.add_argument("-c", "--context", default="none", help="Initial context")
+    parser.add_argument("-c", "--context", help="Initial context")
 
     return parser.parse_args()
 
