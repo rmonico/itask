@@ -18,6 +18,8 @@ class MainMenu(Navigable):
     def __init__(self, taskwarrior_wrapper, args):
         super(MainMenu, self).__init__()
 
+        self.report = args.report
+
         self.filters = args.filter.split(" ") if args.filter else None
 
         self.context = args.context
@@ -112,7 +114,7 @@ class MainMenu(Navigable):
         self.main_menu.run()
 
     def _do_data_update(self):
-        stream = self._binary_wrapper.load(self.filters, self.context)
+        stream = self._binary_wrapper.load(self.report, self.filters, self.context)
 
         self._data_provider.update(stream)
 
@@ -356,6 +358,8 @@ def parse_command_line():
     parser = argparse.ArgumentParser()
 
     parser.add_argument("--task-data", help="Override TASKDATA environment variable")
+
+    parser.add_argument("-r", "--report", help="Initial report")
 
     parser.add_argument("-f", "--filter", help="Initial filter")
 

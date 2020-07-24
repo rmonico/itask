@@ -41,12 +41,15 @@ class TaskwarriorWrapper(object):
     def set_context(self, context):
         self._internal_run(['context', context])
 
-    def load(self, filters, context=None):
+    def load(self, report, filters, context=None):
         default_list_params = ['rc.defaultwidth:', 'rc._forcecolor:off', 'rc.color:off']
 
         params = default_list_params
 
         params += ['rc.context:{}'.format(context if context else "none")]
+
+        if report:
+            params += [ report ]
 
         if filters:
             params += filters
