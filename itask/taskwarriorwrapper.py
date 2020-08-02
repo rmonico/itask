@@ -41,6 +41,19 @@ class TaskwarriorWrapper(object):
     def set_context(self, context):
         self._internal_run(['context', context])
 
+    def get_context(self):
+        process = self._internal_run(['context', 'list'], redirect_stdouterr = True)
+
+        stdout = process.stdout.decode().split('\n')
+
+        for line in stdout:
+            fields = line.split(' ')
+
+            if fields[-1] == 'yes':
+                return fields[0]
+
+            return None
+
     def load(self, report, filters, context=None):
         params = ['rc.defaultwidth:', 'rc._forcecolor:off', 'rc.color:off']
 
