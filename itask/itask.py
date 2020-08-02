@@ -63,7 +63,10 @@ class MainMenu(Navigable):
         self.main_menu.register_listener('after action', self.after_action)
 
     def _make_gui(self):
-        fixed_left = self._report_parser.idColumnWidth()
+        if self._has_data():
+            fixed_left = self._report_parser.idColumnWidth()
+        else:
+            fixed_left = 0
         fixed_top = 2
         menu_height = 2
         footer_height = 2
@@ -118,12 +121,15 @@ class MainMenu(Navigable):
 
         self._data_provider.update(stream)
 
-        if len(self._data_provider.lines) > 1:
+        if self._has_data():
             self._report_parser.set_header_line(self._data_provider.lines[self._first_usable_line])
 
         self._update_menu_title()
 
         self._make_gui()
+
+    def _has_data(self):
+        return len(self._data_provider.lines) > 1
 
     def _data_changed(self, origin):
         self._do_data_update()
