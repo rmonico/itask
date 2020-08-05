@@ -4,6 +4,11 @@ workon() {
     workon itask
 }
 
+run() {
+    cd $PROJECT_FOLDER
+    python -m itask.itask
+}
+
 compile() {
     if [ -z "$VIRTUAL_ENV" ]; then
       echo "Virtualenv not active"
