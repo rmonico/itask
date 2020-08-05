@@ -240,28 +240,25 @@ class MainMenu(Navigable):
         elif new_filters == '::clear':
             self.filters = None
         else:
-            self.filters = new_filters.split(" ")
+            self.filters = new_filters
 
         self._update_menu_title()
 
         self._binary_wrapper.invalidate_data()
 
     def _update_menu_title(self):
-        if self.filters:
-            filters = ' and '.join(self.filters)
-        else:
-            filters = ''
+        report = (self.report + '; ') if self.report else ''
+
+        filters = (self.filters + '; ') if self.filters else ''
 
         if len(self._data_provider.lines) > 1:
             task_count = self._data_provider.lines[-2]
         else:
             task_count = 'no tasks'
 
-        console.set_terminal_title('iTask [{}{}{}]'.format(filters, '' if not filters else '; ', task_count))
+        console.set_terminal_title('iTask: {}{}{}'.format(report, filters, task_count))
 
-        filter_string = '; filter=' + filters if self.filters else ''
-
-        self.main_menu.title = 'Main Menu{}; {}'.format(filter_string, task_count)
+        self.main_menu.title = '{}{}{}'.format(report, filters, task_count)
 
     def task_del(self):
         menu = Menu("Are you sure you want to remove ids '{}'?".format(str(self._get_selected_ids())), redraw=False,
