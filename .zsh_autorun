@@ -1,6 +1,6 @@
 source zsh_autorun_start "$(realpath "$0")" || return 0
 
-_functions=($_functions workon run compile upload)
+_functions=($_functions workon run compile upload clean clean_idea)
 
 workon() {
     source virtualenvwrapper.sh
@@ -43,6 +43,14 @@ upload() {
     twine upload --repository pypi dist/\*
 
     cd "$old_pwd"
+}
+
+clean() {
+  rm -rf build dist iTask.egg-info __pycache
+}
+
+clean_idea() {
+  rm -rf .idea iTask.iml
 }
 
 source zsh_autorun_end "$(realpath "$0")"
