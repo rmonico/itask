@@ -1,3 +1,7 @@
+source zsh_autorun_start "$(realpath "$0")" || return 0
+
+_functions=($_functions workon run compile upload)
+
 workon() {
     source virtualenvwrapper.sh
 
@@ -5,8 +9,12 @@ workon() {
 }
 
 run() {
-    cd $PROJECT_FOLDER
+    pushd
+    cd $base_path
+
     python -m itask.itask
+
+    popd
 }
 
 compile() {
@@ -15,7 +23,12 @@ compile() {
       return 1
     fi
 
+    pushd
+    cd $base_path
+
     python3 setup.py sdist bdist_wheel
+
+    popd
 }
 
 upload() {
@@ -24,6 +37,12 @@ upload() {
       return 1
     fi
 
+    pushd
+    cd $base_path
+
     twine upload --repository pypi dist/\*
+
+    popd
 }
 
+source zsh_autorun_end "$(realpath "$0")"
