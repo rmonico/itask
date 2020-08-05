@@ -52,7 +52,7 @@ class MainMenu(Navigable):
         self.main_menu.items.append(MenuItem(title='Reload', hotkey='R', action=self.task_reload))
         self.main_menu.items.append(MenuItem(title='Sync', hotkey='S', action=self.task_sync))
         # self.main_menu.items.append(MenuItem(title='Unfilter', hotkey='x', action=self._binary_wrapper.clean_filter))
-        # self.main_menu.items.append(MenuItem(title='Report', hotkey='r', action=self._binary_wrapper.select_report))
+        self.main_menu.items.append(MenuItem(title='Report', hotkey='r', action=self.select_report))
 
         self.main_menu.append_quit(self._quit)
 
@@ -233,11 +233,11 @@ class MainMenu(Navigable):
         console.wait()
 
     def task_filter(self):
-        new_filters = input("Enter new filters [::cancel for cancel, empty for clear]: ")
+        new_filters = input("Enter new filters [::clear for clear, empty for cancel]: ")
 
-        if new_filters == '::cancel':
+        if new_filters == '':
             return
-        elif new_filters == '':
+        elif new_filters == '::clear':
             self.filters = None
         else:
             self.filters = new_filters.split(" ")
@@ -358,6 +358,17 @@ class MainMenu(Navigable):
         super(MainMenu, self).toggle_selected()
 
         self._selection.toggle_active_line_selected()
+
+
+    def select_report(self):
+        new_report = input("Enter new report name: [::cancel for cancel]: ")
+
+        if new_report == '::cancel':
+            return
+        else:
+            self.report = new_report
+
+        self._binary_wrapper.invalidate_data()
 
 
 def parse_command_line():
