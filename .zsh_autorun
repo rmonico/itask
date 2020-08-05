@@ -1,8 +1,24 @@
+workon() {
+    source virtualenvwrapper.sh
+
+    workon itask
+}
+
 compile() {
+    if [ -z "$VIRTUAL_ENV" ]; then
+      echo "Virtualenv not active"
+      return 1
+    fi
+
     python3 setup.py sdist bdist_wheel
 }
 
 upload() {
+    if [ -z "$VIRTUAL_ENV" ]; then
+      echo "Virtualenv not active"
+      return 1
+    fi
+
     twine upload --repository pypi dist/\*
 }
 
