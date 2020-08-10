@@ -1,13 +1,18 @@
 source zsh_autorun_start "$(realpath "$0")" || return 0
 
+_description='Project iTask: Interactive taskwarrior frontend'
+
 _functions=($_functions workon run compile upload clean clean_idea)
 
+
+_workon_description="Activate virtualenv for this project"
 workon() {
     source virtualenvwrapper.sh
 
     workon itask
 }
 
+_run_description="Run the project"
 run() {
     local old_pwd="$(pwd)"
     cd $base_path
@@ -17,6 +22,7 @@ run() {
     cd "$old_pwd"
 }
 
+_compile_description="Compile the project (needs virtualenv activated)"
 compile() {
     if [ -z "$VIRTUAL_ENV" ]; then
       echo "Virtualenv not active"
@@ -31,6 +37,7 @@ compile() {
     cd "$old_pwd"
 }
 
+_upload_description="Upload the project to pypi, compile before (needs virtualenv activated)"
 upload() {
     if [ -z "$VIRTUAL_ENV" ]; then
       echo "Virtualenv not active"
@@ -45,10 +52,12 @@ upload() {
     cd "$old_pwd"
 }
 
+_clean_description="Clean project binaries"
 clean() {
   rm -rf build dist iTask.egg-info __pycache
 }
 
+_clean_idea_description="Removes .idea and iTask.iml"
 clean_idea() {
   rm -rf .idea iTask.iml
 }
