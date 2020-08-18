@@ -5,6 +5,7 @@ import shutil
 import sys
 
 from itask import console
+import signal
 
 
 class MenuItem(object):
@@ -132,8 +133,6 @@ class Menu(object):
         self.items.append(MenuItem(hotkey='x', action=navigable.toggle_selected, visible=False, interactive=False))
 
     def _initialize(self):
-        self._terminal_size = shutil.get_terminal_size()
-
         visible_items = []
         for item in self.items:
             if item.visible:
@@ -149,23 +148,15 @@ class Menu(object):
 
         self._initialize()
 
+        signal.signal(signal.SIGWINCH, self._terminal_resized)
+
         key = None
         result = None
 
         while result not in ('quit', 'back'):
             self._notify_listeners('render')
 
-            console.move_cursor(1, self._terminal_size.lines - 1)
-            title_string = '[{}]'.format(self.title)[:self._terminal_size.columns - 1]
-            sys.stdout.write(title_string)
-
-            sys.stdout.flush()
-
-            console.move_cursor(1, self._terminal_size.lines)
-            itens_string = '{}'.format(self._itens_string)[:self._terminal_size.columns - 1]
-            sys.stdout.write(itens_string)
-
-            sys.stdout.flush()
+            self._update_title_and_items()
 
             key = console.getch()
 
@@ -180,3 +171,29 @@ class Menu(object):
                     break
 
             self._notify_listeners('after action', item=item if item_found else None)
+
+    def _update_title_and_items(self):
+        terminal_size = shutil.get_terminal_size()
+
+        console.move_cursor(1, terminal_size.lines - 1)
+        title_string = '[{}]'.format(self.title)[:terminal_size.columns - 1]
+        sys.stdout.write(title_string)
+
+        sys.stdout.flush()
+
+        console.move_cursor(1, terminal_size.lines)
+        itens_string = '{}'.format(self._itens_string)[:terminal_size.columns - 1]
+        sys.stdout.write(itens_string)
+
+        sys.stdout.flush()
+
+    def _terminal_resized(self, signal_number, stack):
+        # TODO Montar um event window_rezised (talvez nem deva ficar aqui) e refatorar o conteúdo dos métodos abaixo para se adequar ao novo evento
+        self._notify_listeners('item chosen', item=MenuItem(''))
+
+        self._notify_listeners('after action', item=None)
+
+        self._notify_listeners('render')
+
+        self._update_title_and_items()
+

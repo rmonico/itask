@@ -13,6 +13,10 @@ from itask.viewer import Viewer, Region
 from itask import console
 
 
+import signal
+
+
+
 class MainMenu(Navigable):
 
     def __init__(self, taskwarrior_wrapper, args):
@@ -61,6 +65,15 @@ class MainMenu(Navigable):
         self.main_menu.register_listener('render', self.render)
         self.main_menu.register_listener('item chosen', self.item_chosen)
         self.main_menu.register_listener('after action', self.after_action)
+
+        signal.signal(signal.SIGWINCH, self._terminal_resized)
+
+    def _terminal_resized(self, signal_number, stack):
+        stack[len(stack)].f_back()
+
+        self._make_menu()
+
+        self._do_data_update()
 
     def _make_gui(self):
         if self._has_data():
