@@ -11,9 +11,12 @@ class TerminalResizeListener(object):
     def __init__(self):
         self._listeners = list()
 
-        signal.signal(signal.SIGWINCH, self._handler)
+        self._previous_handler = signal.signal(signal.SIGWINCH, self._handler)
 
     def _handler(self, signum, stack):
+        if self._previous_handler:
+            self._previous_handler(signum, stack)
+
         for listener in self._listeners:
             listener()
 
