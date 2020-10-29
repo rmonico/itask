@@ -3,43 +3,37 @@
 
 import argparse
 import shutil
+import signal
+import os
+import sys
+import subprocess
 from itask.dataprovider import DataProvider
 from itask.imenu import Menu, MenuItem, Navigable, BackMenuItem
 from itask.selection import Selection
 from itask.taskwarriorreportparser import TaskwarriorReportParser
 from itask.taskwarriorwrapper import TaskwarriorWrapper
 from itask.viewer import Viewer, Region
-
 from itask import console
-
-
-import signal
-
 
 
 class MainMenu(Navigable):
 
     def __init__(self, taskwarrior_wrapper, args):
-        super(MainMenu, self).__init__()
-
+        super().__init__()
         self.report = args.report
-
         self.filters = args.filter.split(" ") if args.filter else None
-
         self.context = args.context
-
         self._binary_wrapper = taskwarrior_wrapper
-
         self._binary_wrapper.register_listener('data changed', self._data_changed)
-
         self._data_provider = DataProvider()
-
         self._report_parser = TaskwarriorReportParser()
-
         self._first_usable_line = 1
-
+        self._left_top_fixed_viewer = None
+        self._header_viewer = None
+        self._selection = None
+        self._left_viewer = None
+        self._data_viewer = None
         self._make_menu()
-
         self._do_data_update()
 
     def _make_menu(self):
@@ -312,60 +306,60 @@ class MainMenu(Navigable):
 
     # Navigation
     def activate_next(self):
-        super(MainMenu, self).activate_next()
+        super().activate_next()
 
         self._selection.move('down', 1)
 
     def activate_previous(self):
-        super(MainMenu, self).activate_previous()
+        super().activate_previous()
 
         self._selection.move('up', 1)
 
     def viewer_down(self):
-        super(MainMenu, self).viewer_down()
+        super().viewer_down()
 
         self._data_viewer.region.move('down', 1)
         self._left_viewer.region.move('down', 1)
 
     def viewer_up(self):
-        super(MainMenu, self).viewer_up()
+        super().viewer_up()
 
         self._data_viewer.region.move('up', 1)
         self._left_viewer.region.move('up', 1)
 
     def activate_first(self):
-        super(MainMenu, self).activate_first()
+        super().activate_first()
         self._data_viewer.region.move('top')
         self._left_viewer.region.move('top')
 
     def activate_last(self):
-        super(MainMenu, self).activate_last()
+        super().activate_last()
         self._data_viewer.region.move('bottom')
         self._left_viewer.region.move('bottom')
 
     def viewer_left(self):
-        super(MainMenu, self).viewer_left()
+        super().viewer_left()
         self._data_viewer.region.move('left', 1)
         self._header_viewer.region.move('left', 1)
 
     def viewer_right(self):
-        super(MainMenu, self).viewer_right()
+        super().viewer_right()
         self._data_viewer.region.move('right', 1)
         self._header_viewer.region.move('right', 1)
 
     def viewer_begin(self):
-        super(MainMenu, self).viewer_begin()
+        super().viewer_begin()
         self._data_viewer.region.move('begin')
         self._header_viewer.region.move('begin')
 
     def viewer_end(self):
-        super(MainMenu, self).viewer_end()
+        super().viewer_end()
         self._data_viewer.region.move('end')
         self._header_viewer.region.move('end')
 
     # Selection
     def toggle_selected(self):
-        super(MainMenu, self).toggle_selected()
+        super().toggle_selected()
 
         self._selection.toggle_active_line_selected()
 
@@ -396,19 +390,14 @@ def parse_command_line():
 
 
 def is_running_in_interactive_terminal():
-    import os
-
     return os.isatty(1)
 
 
 def recall_it_self_inside_terminal():
-    import os
     terminal = os.getenv("TERMINAL", "termite")
 
-    import sys
     arguments = [arg.replace(" ", "\\ ") for arg in sys.argv]
 
-    import subprocess
     subprocess.run([terminal, "-e", " ".join(arguments)])
 
 
