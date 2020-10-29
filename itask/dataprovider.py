@@ -1,16 +1,15 @@
-#!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
-class DataSize(object):
+class DataSize:
 
     def __init__(self, lines, largest_line):
-        super(DataSize, self).__init__()
+        super().__init__()
 
         self.lines = lines
         self.largest_line = largest_line
 
 
-class DataProvider(object):
+class DataProvider:
 
     def __init__(self):
         self.lines = None
@@ -24,7 +23,7 @@ class DataProvider(object):
         for line in stream.split('\n'):
             self.lines.append(line)
 
-            if (len(line) > largest_line):
+            if len(line) > largest_line:
                 largest_line = len(line)
 
         self.size = DataSize(len(self.lines), largest_line)

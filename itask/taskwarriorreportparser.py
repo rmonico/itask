@@ -4,7 +4,7 @@
 import re
 
 
-class TaskwarriorReportParser(object):
+class TaskwarriorReportParser:
 
     def __init__(self):
         self._id_column_start = None

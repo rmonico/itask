@@ -12,7 +12,7 @@ viewer_width_default = 'terminal_columns'
 viewer_height_default = 'terminal_lines'
 
 
-class Region(object):
+class Region:
 
     def __init__(self, size, position={'left': 0, 'top': 0}, horizontal_constraints={'left': 0, 'right': 'width'},
                  vertical_constraints={'top': 0, 'bottom': 'height'}):
@@ -134,7 +134,7 @@ class Region(object):
         return self._position['top'] + self._size['height'] - 1
 
 
-class Viewer(object):
+class Viewer:
     """
         For method move('top'/'bottom') work fine vertical_constraints must be set! (idem to move('begin'/'end'))
     """
@@ -310,17 +310,17 @@ def parse_command_line():
     return args
 
 
-def main():
-    args = parse_command_line()
-
-    viewer = Viewer(args.file, data_ruler(args.file), args.viewer_size.width, args.viewer_size.height,
-                    args.file_position.left,
-                    args.file_position.top, args.screen_position.left, args.screen_position.top)
-
-    viewer.update()
-
-    args.file.close()
-
-
-if __name__ == '__main__':
-    main()
+#def main():
+#    args = parse_command_line()
+#
+#    viewer = Viewer(args.file, data_ruler(args.file), args.viewer_size.width, args.viewer_size.height,
+#                    args.file_position.left,
+#                    args.file_position.top, args.screen_position.left, args.screen_position.top)
+#
+#    viewer.update()
+#
+#    args.file.close()
+#
+#
+#if __name__ == '__main__':
+#    main()

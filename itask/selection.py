@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 
-class Selection(object):
+class Selection:
 
     def __init__(self, active_line, constraints={'top': None, 'bottom': None}):
         self.active_line = active_line

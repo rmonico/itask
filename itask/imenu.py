@@ -3,12 +3,12 @@
 
 import shutil
 import sys
-
-from itask import console
 import signal
 
+from itask import console
 
-class MenuItem(object):
+
+class MenuItem:
 
     def __init__(self, hotkey, title='', action=None, visible=True, interactive=True):
         self.hotkey = hotkey
@@ -20,15 +20,16 @@ class MenuItem(object):
     def run(self):
         if self.action:
             return self.action()
+        return None
 
 
 class QuitMenuItem(MenuItem):
 
     def __init__(self, hotkey='q', title='Quit', action=None):
-        super(QuitMenuItem, self).__init__(title=title, hotkey=hotkey, action=action)
+        super().__init__(title=title, hotkey=hotkey, action=action)
 
     def run(self):
-        result = super(QuitMenuItem, self).run()
+        result = super().run()
 
         return 'quit' if not result else result
 
@@ -36,15 +37,15 @@ class QuitMenuItem(MenuItem):
 class BackMenuItem(MenuItem):
 
     def __init__(self, hotkey='b', title='Back', action=lambda: 'back'):
-        super(BackMenuItem, self).__init__(title=title, hotkey=hotkey, action=action)
+        super().__init__(title=title, hotkey=hotkey, action=action)
 
     def run(self):
-        result = super(BackMenuItem, self).run()
+        result = super().run()
 
         return 'back' if not result else result
 
 
-class Navigable(object):
+class Navigable:
 
     # Vertical
     def activate_next(self):
@@ -83,7 +84,7 @@ class Navigable(object):
         pass
 
 
-class Menu(object):
+class Menu:
 
     def __init__(self, title='', redraw=True, back=True):
         self.title = title
@@ -97,6 +98,7 @@ class Menu(object):
             self.items += [MenuItem(title='Back', hotkey='b')]
 
         self._listeners = {'render': [], 'item chosen': [], 'after action': []}
+        self._itens_string = ''
 
     def register_listener(self, event, listener):
         self._listeners[event].append(listener)
@@ -165,12 +167,13 @@ class Menu(object):
                 if item.hotkey == key:
                     self._notify_listeners('item chosen', item=item)
                     result = item.run()
-
                     item_found = True
-
                     break
+            else:
+                item = None
 
-            self._notify_listeners('after action', item=item if item_found else None)
+            #self._notify_listeners('after action', item=item if item_found else None)
+            self._notify_listeners('after action', item=item)
 
     def _update_title_and_items(self):
         terminal_size = shutil.get_terminal_size()
@@ -196,4 +199,3 @@ class Menu(object):
         self._notify_listeners('render')
 
         self._update_title_and_items()
-

@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
 import sys
@@ -36,7 +35,6 @@ def _find_getch():
         return msvcrt.getch
 
     # POSIX system. Create and return a getch that manipulates the tty.
-    import sys
     import tty
 
     def _getch():

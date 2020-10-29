@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
 import os
@@ -8,7 +7,7 @@ import subprocess
 taskwarrior_binary = shutil.which('task')
 
 
-class TaskwarriorWrapper(object):
+class TaskwarriorWrapper:
 
     def __init__(self, task_data=None):
         # TODO Its possible to improve this with more specific events
