@@ -7,6 +7,7 @@ import re
 import sys
 
 from itask import console
+from itask.selection import CHANGED
 
 viewer_width_default = 'terminal_columns'
 viewer_height_default = 'terminal_lines'
@@ -14,14 +15,20 @@ viewer_height_default = 'terminal_lines'
 
 class Region:
 
-    def __init__(self, size, position={'left': 0, 'top': 0}, horizontal_constraints={'left': 0, 'right': 'width'},
-                 vertical_constraints={'top': 0, 'bottom': 'height'}):
+    def __init__(self, size, position=None, horizontal_constraints=None,
+                 vertical_constraints=None):
         """
             size: A dictionary with "width" and "height" entries.
             position: A dictionary with "left" and "top" entries.
             horizontal_constraints: A dictionary with "top" and "bottom" entries.
             vertical_constraints: A dictionary with "left" and "right" entries.
         """
+        if not position:
+            position = {'left': 0, 'top': 0}
+        if not horizontal_constraints:
+            horizontal_constraints = {'left': 0, 'right': 'width'}
+        if not vertical_constraints:
+            vertical_constraints = {'top': 0, 'bottom': 'height'}
         self._size = size
         self._position = position.copy()
 
@@ -82,36 +89,31 @@ class Region:
     def move(self, direction, cells=1):
         if direction == 'set top':
             diff = cells - self._position['top']
-
             return self._vertical_move(diff)
-        elif direction == 'set bottom':
+        if direction == 'set bottom':
             diff = cells - self._position['top'] - self._size['height'] + 1
-
             return self._vertical_move(diff)
-        elif direction == 'left':
+        if direction == 'left':
             return self._horizontal_move(-1)
-        elif direction == 'right':
+        if direction == 'right':
             return self._horizontal_move(1)
-        elif direction == 'up':
+        if direction == 'up':
             return self._vertical_move(-1)
-        elif direction == 'down':
+        if direction == 'down':
             return self._vertical_move(1)
-        elif direction == 'top':
+        if direction == 'top':
             cells_to_top = self._top_constraints['min'] - self._position['top']
-
             return self._vertical_move(cells_to_top)
-        elif direction == 'bottom':
+        if direction == 'bottom':
             cells_to_bottom = self._top_constraints['max'] - self._position['top']
-
             return self._vertical_move(cells_to_bottom)
-        elif direction == 'begin':
+        if direction == 'begin':
             cells_to_begin = self._left_constraints['min'] - self._position['left']
-
             return self._horizontal_move(cells_to_begin)
-        elif direction == 'end':
+        if direction == 'end':
             cells_to_end = self._left_constraints['max'] - self._position['left']
-
             return self._horizontal_move(cells_to_end)
+        return None
 
     @property
     def top(self):
@@ -153,7 +155,7 @@ class Viewer:
         self._selection = selection
 
         if selection:
-            selection.register_listener('changed', self.active_line_changed)
+            selection.register_listener(CHANGED, self.active_line_changed)
 
         self._screen_left = screen_left
         self._screen_top = screen_top

@@ -6,12 +6,14 @@ import subprocess
 
 taskwarrior_binary = shutil.which('task')
 
+DATA_CHANGED = 'data changed'
+
 
 class TaskwarriorWrapper:
 
     def __init__(self, task_data=None):
         # TODO Its possible to improve this with more specific events
-        self._listeners = {'data changed': []}
+        self._listeners = {DATA_CHANGED: []}
 
         if task_data:
             self._environment = os.environ.copy()
@@ -72,45 +74,38 @@ class TaskwarriorWrapper:
 
     def add(self, parameters):
         self._internal_run(['add'] + parameters)
-
-        self._notify_listeners('data changed')
+        self._notify_listeners(DATA_CHANGED)
 
     def edit(self, parameters):
         self._internal_run(parameters + ['edit'])
-        self._notify_listeners('data changed')
+        self._notify_listeners(DATA_CHANGED)
 
     def annotate(self, id, annotation):
         self._internal_run([str(id), 'annotate'] + annotation)
-
-        self._notify_listeners('data changed')
+        self._notify_listeners(DATA_CHANGED)
 
     def done(self, ids):
         self._internal_run([str(i) for i in ids] + ['done'])
-
-        self._notify_listeners('data changed')
+        self._notify_listeners(DATA_CHANGED)
 
     def view(self, ids):
         self._internal_run([str(i) for i in ids])
 
     def mod(self, ids, modifications):
         self._internal_run([str(i) for i in ids] + ['mod'] + modifications)
-
-        self._notify_listeners('data changed')
+        self._notify_listeners(DATA_CHANGED)
 
     def delete(self, ids):
         self._internal_run([str(i) for i in ids] + ['del'])
-
-        self._notify_listeners('data changed')
+        self._notify_listeners(DATA_CHANGED)
 
     def undo(self):
         self._internal_run(['undo'])
-
-        self._notify_listeners('data changed')
+        self._notify_listeners(DATA_CHANGED)
 
     def sync(self):
         self._internal_run(['sync'])
-
-        self._notify_listeners('data changed')
+        self._notify_listeners(DATA_CHANGED)
 
     def invalidate_data(self):
-        self._notify_listeners('data changed')
+        self._notify_listeners(DATA_CHANGED)

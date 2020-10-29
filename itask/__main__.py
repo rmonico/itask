@@ -11,7 +11,7 @@ from itask.dataprovider import DataProvider
 from itask.imenu import Menu, MenuItem, Navigable, BackMenuItem
 from itask.selection import Selection
 from itask.taskwarriorreportparser import TaskwarriorReportParser
-from itask.taskwarriorwrapper import TaskwarriorWrapper
+from itask.taskwarriorwrapper import TaskwarriorWrapper, DATA_CHANGED
 from itask.viewer import Viewer, Region
 from itask import console
 
@@ -24,7 +24,7 @@ class MainMenu(Navigable):
         self.filters = args.filter.split(" ") if args.filter else None
         self.context = args.context
         self._binary_wrapper = taskwarrior_wrapper
-        self._binary_wrapper.register_listener('data changed', self._data_changed)
+        self._binary_wrapper.register_listener(DATA_CHANGED, self._data_changed)
         self._data_provider = DataProvider()
         self._report_parser = TaskwarriorReportParser()
         self._first_usable_line = 1

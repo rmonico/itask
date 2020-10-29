@@ -1,5 +1,6 @@
-#!/usr/bin/env python3
 # -*- coding: utf-8 -*-
+
+CHANGED = 'changed'
 
 
 class Selection:
@@ -8,7 +9,7 @@ class Selection:
         self.active_line = active_line
         self.selected_lines = []
         self._constraints = constraints.copy()
-        self._listeners = {'changed': []}
+        self._listeners = {CHANGED: []}
 
     def register_listener(self, event, listener):
         self._listeners[event].append(listener)
@@ -37,7 +38,7 @@ class Selection:
 
             self.active_line = new_line
 
-            self._notify_listeners('changed', old_line=old_line, new_line=new_line)
+            self._notify_listeners(CHANGED, old_line=old_line, new_line=new_line)
 
             return True
 
@@ -50,7 +51,7 @@ class Selection:
             self.selected_lines.remove(self.active_line)
 
         # FIXME Generate another event for this case
-        self._notify_listeners('changed', old_line=-1, new_line=-1)
+        self._notify_listeners(CHANGED, old_line=-1, new_line=-1)
 
     def clear(self):
         self.selected_lines = []
