@@ -9,6 +9,6 @@ setup(name='iTask',
       license='GPL3',
       packages=['itask'],
       entry_points={
-          'console_scripts': ['itask=itask.itask:main'],
+          'console_scripts': ['itask=itask.__main__:main'],
       },
       zip_safe=False)
