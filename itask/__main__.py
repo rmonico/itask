@@ -40,6 +40,7 @@ class MainMenu(Navigable):
         self.main_menu = Menu(redraw=False, back=False)
 
         self.main_menu.items.append(MenuItem(title='Add', hotkey='a', action=self.task_add))
+        self.main_menu.items.append(MenuItem(title='Edit', hotkey='e', action=self.task_edit))
         self.main_menu.items.append(MenuItem(title='Annotate', hotkey='n', action=self.task_annotate))
         self.main_menu.items.append(MenuItem(title='Done', hotkey='O', action=self.task_done))
         self.main_menu.items.append(MenuItem(title='View', hotkey='v', action=self.task_view))
@@ -200,6 +201,12 @@ class MainMenu(Navigable):
         self._binary_wrapper.add(parameters.split(' '))
 
         console.wait()
+
+    def task_edit(self):
+        id_ = self._get_active_id()
+        if id_:
+            self._binary_wrapper.edit([id_])
+            console.wait()
 
     def task_annotate(self):
         id = self._get_active_id()

@@ -23,7 +23,8 @@ class TaskwarriorWrapper:
         stdout = subprocess.PIPE if redirect_stdouterr else None
         stderr = subprocess.PIPE if redirect_stdouterr else None
 
-        process = subprocess.run([taskwarrior_binary] + args, env=self._environment, stdout=stdout, stderr=stderr)
+        process = subprocess.run([taskwarrior_binary] + [str(a) for a in args],
+                                 env=self._environment, stdout=stdout, stderr=stderr)
 
         return process
 
@@ -72,6 +73,10 @@ class TaskwarriorWrapper:
     def add(self, parameters):
         self._internal_run(['add'] + parameters)
 
+        self._notify_listeners('data changed')
+
+    def edit(self, parameters):
+        self._internal_run(parameters + ['edit'])
         self._notify_listeners('data changed')
 
     def annotate(self, id, annotation):
