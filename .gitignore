@@ -263,3 +263,5 @@ pip-selfcheck.json
 
 .datamap
 
+# tmp
+*.tmp
