@@ -18,7 +18,7 @@ run() {
     cd $base_path
 
     rm -rf __pycache__
-    python -m itask.itask
+    python -m itask.itask "$@"
 
     cd "$old_pwd"
 }
