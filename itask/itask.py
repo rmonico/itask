@@ -369,8 +369,8 @@ class MainMenu(Navigable):
 
         self._selection.toggle_active_line_selected()
 
-
     def select_report(self):
+        self._binary_wrapper.reports()
         new_report = input("Enter new report name: [::cancel for cancel]: ")
 
         if new_report == '::cancel':

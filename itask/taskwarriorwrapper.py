@@ -108,5 +108,8 @@ class TaskwarriorWrapper(object):
 
         self._notify_listeners('data changed')
 
+    def reports(self):
+        self._internal_run(['reports'])
+
     def invalidate_data(self):
         self._notify_listeners('data changed')
