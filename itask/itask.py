@@ -404,6 +404,8 @@ def parse_command_line():
 
     parser.add_argument("-c", "--context", help="Initial context")
 
+    parser.add_argument("-v", "-version", "--version", action="store_true", help="Show version number")
+
     return parser.parse_args()
 
 
@@ -424,6 +426,12 @@ def recall_it_self_inside_terminal():
     subprocess.run([terminal, "-e", " ".join(arguments)])
 
 
+def show_version():
+    import pkg_resources
+    package_info = pkg_resources.require("iTask")[0]
+    print(f'Version: {package_info.version}')
+    print(f'Git commit: {package_info.get_metadata("git_commit_hash")}')
+
 def main():
     if not is_running_in_interactive_terminal():
         recall_it_self_inside_terminal()
@@ -432,9 +440,12 @@ def main():
 
     args = parse_command_line()
 
-    handler = MainMenu(TaskwarriorWrapper(args.task_data), args)
+    if args.version:
+        show_version()
+    else:
+        handler = MainMenu(TaskwarriorWrapper(args.task_data), args)
 
-    handler.run()
+        handler.run()
 
 
 if __name__ == '__main__':
