@@ -430,7 +430,6 @@ def show_version():
     import pkg_resources
     package_info = pkg_resources.require("iTask")[0]
     print(f'Version: {package_info.version}')
-    print(f'Git commit: {package_info.get_metadata("git_commit_hash")}')
 
 def main():
     if not is_running_in_interactive_terminal():
