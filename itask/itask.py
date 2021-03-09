@@ -57,6 +57,7 @@ class MainMenu(Navigable):
         self.main_menu.items.append(MenuItem(title='Sync', hotkey='S', action=self.task_sync))
         # self.main_menu.items.append(MenuItem(title='Unfilter', hotkey='x', action=self._binary_wrapper.clean_filter))
         self.main_menu.items.append(MenuItem(title='Report', hotkey='r', action=self.select_report))
+        self.main_menu.items.append(MenuItem(title='Context', hotkey='c', action=self.select_context))
 
         self.main_menu.append_quit(self._quit)
 
@@ -377,6 +378,17 @@ class MainMenu(Navigable):
             return
         else:
             self.report = new_report
+
+        self._binary_wrapper.invalidate_data()
+
+    def select_context(self):
+        self._binary_wrapper.contexts()
+        new_context = input("Enter new context: [::cancel for cancel, none to unset]: ")
+
+        if new_context == '::cancel':
+            return
+        else:
+            self._binary_wrapper.set_context(new_context)
 
         self._binary_wrapper.invalidate_data()
 

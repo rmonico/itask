@@ -38,6 +38,9 @@ class TaskwarriorWrapper(object):
         for listener in self._listeners[event]:
             listener(origin=self, *args, **kwargs)
 
+    def contexts(self):
+        self._internal_run(['context', 'list'])
+
     def set_context(self, context):
         self._internal_run(['context', context])
 
