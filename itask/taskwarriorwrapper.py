@@ -55,7 +55,7 @@ class TaskwarriorWrapper(object):
             if fields[-1] == 'yes':
                 return fields[0]
 
-            return None
+        return None
 
     def load(self, report, filters, context=None):
         params = ['rc.defaultwidth:', 'rc._forcecolor:off', 'rc.color:off']
