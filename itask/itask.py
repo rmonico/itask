@@ -387,12 +387,15 @@ class MainMenu(Navigable):
 
     def select_context(self):
         self._binary_wrapper.contexts()
-        new_context = input("Enter new context: [::cancel for cancel, none to unset]: ")
+        print()
+        print(f'Current context: {self.context}')
+        print()
+        new_context = input('Enter new context: [empty cancel, "none" to unset]: ')
 
-        if new_context == '::cancel':
+        if new_context == '':
             return
         else:
-            self._binary_wrapper.set_context(new_context)
+            self.context = new_context
 
         self._binary_wrapper.invalidate_data()
 
