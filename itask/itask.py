@@ -254,7 +254,7 @@ class MainMenu(Navigable):
         elif new_filters == '::clear':
             self.filters = None
         else:
-            self.filters = new_filters
+            self.filters = new_filters.split(' ')
 
         self._update_menu_title()
 
