@@ -261,18 +261,22 @@ class MainMenu(Navigable):
         self._binary_wrapper.invalidate_data()
 
     def _update_menu_title(self):
-        report = (self.report + '; ') if self.report else ''
+        context = f'Context: {self.context}; ' if (self.context and self.context != 'none') else ''
 
-        filters = (self.filters + '; ') if self.filters else ''
+        report = f'Report: {self.report}; ' if self.report else ''
+
+        filters = f'Filter: {" ".join(self.filters)}; ' if self.filters else ''
 
         if len(self._data_provider.lines) > 1:
             task_count = self._data_provider.lines[-2]
         else:
             task_count = 'no tasks'
 
-        console.set_terminal_title('iTask: {}{}{}'.format(report, filters, task_count))
+        title_line = f'{context}{report}{filters}{task_count}'
 
-        self.main_menu.title = '{}{}{}'.format(report, filters, task_count)
+        console.set_terminal_title(f'iTask: {title_line}')
+
+        self.main_menu.title = f'{title_line}'
 
     def task_del(self):
         menu = Menu("Are you sure you want to remove ids '{}'?".format(str(self._get_selected_ids())), redraw=False,
