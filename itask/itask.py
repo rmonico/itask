@@ -398,7 +398,7 @@ def parse_command_line():
 
     parser.add_argument("--task-data", help="Override TASKDATA environment variable")
 
-    parser.add_argument("-r", "--report", help="Initial report")
+    parser.add_argument("-r", "--report", default="next", help="Initial report")
 
     parser.add_argument("-f", "--filter", help="Initial filter")
 
