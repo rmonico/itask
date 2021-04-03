@@ -58,6 +58,8 @@ class MainMenu(Navigable):
         # self.main_menu.items.append(MenuItem(title='Unfilter', hotkey='x', action=self._binary_wrapper.clean_filter))
         self.main_menu.items.append(MenuItem(title='Report', hotkey='r', action=self.select_report))
         self.main_menu.items.append(MenuItem(title='Context', hotkey='c', action=self.select_context))
+        self.main_menu.items.append(MenuItem(title='Projects', hotkey='p', action=self.show_projects))
+        self.main_menu.items.append(MenuItem(title='Tags', hotkey='t', action=self.show_tags))
 
         self.main_menu.append_quit(self._quit)
 
@@ -399,6 +401,15 @@ class MainMenu(Navigable):
 
         self._binary_wrapper.invalidate_data()
 
+    def show_projects(self):
+        self._binary_wrapper.projects()
+
+        console.wait()
+
+    def show_tags(self):
+        self._binary_wrapper.tags()
+
+        console.wait()
 
 def parse_command_line():
     parser = argparse.ArgumentParser()

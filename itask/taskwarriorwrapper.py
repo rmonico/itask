@@ -114,5 +114,11 @@ class TaskwarriorWrapper(object):
     def reports(self):
         self._internal_run(['reports'])
 
+    def projects(self):
+        self._internal_run(['projects'])
+
+    def tags(self):
+        self._internal_run(['tags'])
+
     def invalidate_data(self):
         self._notify_listeners('data changed')
