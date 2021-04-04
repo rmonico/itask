@@ -270,7 +270,7 @@ class MainMenu(Navigable):
         self._set_filter(new_filters, append=True)
 
     def _show_filter_headers(self):
-        print('Current filter: "{}"'.format(self.filters))
+        print('Current filter: "{}"'.format(', '.join(self.filters) if self.filters else None))
         print()
         print('cancel  :  -')
         print('clear   :  empty')
@@ -281,7 +281,7 @@ class MainMenu(Navigable):
             return
         elif new_filters == '':
             self.filters = None
-        elif append:
+        elif append and self.filters:
             self.filters += new_filters.split(' ')
         else:
             self.filters = new_filters.split(' ')
