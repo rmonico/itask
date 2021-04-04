@@ -50,7 +50,7 @@ class MainMenu(Navigable):
         self.main_menu.items.append(MenuItem(title='Done', hotkey='O', action=self.task_done))
         self.main_menu.items.append(MenuItem(title='View', hotkey='v', action=self.task_view))
         self.main_menu.items.append(MenuItem(title='Mod', hotkey='m', action=self.task_mod))
-        self.main_menu.items.append(MenuItem(title='Filter', hotkey='f', action=self.task_filter))
+        self.main_menu.items.append(MenuItem(title='Filter', hotkey='f', action=self.set_filter))
         self.main_menu.items.append(MenuItem(title='Delete', hotkey='D', action=self.task_del))
         self.main_menu.items.append(MenuItem(title='Undo', hotkey='U', action=self.task_undo))
         self.main_menu.items.append(MenuItem(title='Reload', hotkey='R', action=self.task_reload))
@@ -248,7 +248,7 @@ class MainMenu(Navigable):
 
         console.wait()
 
-    def task_filter(self):
+    def set_filter(self):
         new_filters = input("Enter new filters [::clear for clear, empty for cancel]: ")
 
         if new_filters == '':
