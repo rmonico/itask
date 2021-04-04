@@ -16,7 +16,6 @@ from itask import console
 import signal
 
 
-
 class MainMenu(Navigable):
 
     def __init__(self, taskwarrior_wrapper, args):
@@ -343,6 +342,50 @@ class MainMenu(Navigable):
 
         console.wait()
 
+    def select_report(self):
+        self._binary_wrapper.reports()
+
+        print('cancel  :  - or empty')
+        print()
+        new_report = input("Enter new report name: ")
+
+        if new_report in ['', '-']:
+            return
+        else:
+            self.report = new_report
+
+        self._binary_wrapper.invalidate_data()
+
+    def select_context(self):
+        self._binary_wrapper.contexts()
+        print()
+        print(f'Current context: {self.context}')
+        print()
+        print('cancel              :  -')
+        print('use global context  :  empty')
+        print('unset               :  "none"')
+        print()
+        new_context = input('Enter new context: ')
+
+        if new_context == '-':
+            return
+        elif new_context == '':
+            self.context = None
+        else:
+            self.context = new_context
+
+        self._binary_wrapper.invalidate_data()
+
+    def show_projects(self):
+        self._binary_wrapper.projects()
+
+        console.wait()
+
+    def show_tags(self):
+        self._binary_wrapper.tags()
+
+        console.wait()
+
     # Navigation
     def activate_next(self):
         super(MainMenu, self).activate_next()
@@ -402,49 +445,6 @@ class MainMenu(Navigable):
 
         self._selection.toggle_active_line_selected()
 
-    def select_report(self):
-        self._binary_wrapper.reports()
-
-        print('cancel  :  - or empty')
-        print()
-        new_report = input("Enter new report name: ")
-
-        if new_report in ['', '-']:
-            return
-        else:
-            self.report = new_report
-
-        self._binary_wrapper.invalidate_data()
-
-    def select_context(self):
-        self._binary_wrapper.contexts()
-        print()
-        print(f'Current context: {self.context}')
-        print()
-        print('cancel          :  -')
-        print('global context  :  empty')
-        print('unset           :  "none"')
-        print()
-        new_context = input('Enter new context: ')
-
-        if new_context == '-':
-            return
-        elif new_context == '':
-            self.context = None
-        else:
-            self.context = new_context
-
-        self._binary_wrapper.invalidate_data()
-
-    def show_projects(self):
-        self._binary_wrapper.projects()
-
-        console.wait()
-
-    def show_tags(self):
-        self._binary_wrapper.tags()
-
-        console.wait()
 
 def parse_command_line():
     parser = argparse.ArgumentParser()
