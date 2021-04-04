@@ -96,8 +96,8 @@ class TaskwarriorWrapper(object):
 
         self._notify_listeners('data changed')
 
-    def delete(self, ids):
-        self._internal_run([str(i) for i in ids] + ['del'])
+    def delete(self, ids, comment):
+        self._internal_run([str(i) for i in ids] + ['del', comment])
 
         self._notify_listeners('data changed')
 
