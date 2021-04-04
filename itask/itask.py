@@ -51,6 +51,7 @@ class MainMenu(Navigable):
         self.main_menu.items.append(MenuItem(title='View', hotkey='v', action=self.task_view))
         self.main_menu.items.append(MenuItem(title='Mod', hotkey='m', action=self.task_mod))
         self.main_menu.items.append(MenuItem(title='Filter', hotkey='f', action=self.set_filter))
+        self.main_menu.items.append(MenuItem(title='Append filter', hotkey='F', action=self.append_filter))
         self.main_menu.items.append(MenuItem(title='Delete', hotkey='D', action=self.task_del))
         self.main_menu.items.append(MenuItem(title='Undo', hotkey='U', action=self.task_undo))
         self.main_menu.items.append(MenuItem(title='Reload', hotkey='R', action=self.task_reload))
@@ -201,9 +202,11 @@ class MainMenu(Navigable):
         return self._report_parser.getId(active_line)
 
     def task_add(self):
-        parameters = input("task add [empty for cancel]: ")
+        print('cancel  :  - or empty')
+        print()
+        parameters = input("task add: ")
 
-        if parameters == '':
+        if parameters in ['', '-']:
             return
 
         self._binary_wrapper.add(parameters.split(' '))
@@ -213,9 +216,11 @@ class MainMenu(Navigable):
     def task_annotate(self):
         id = self._get_active_id()
 
-        annotation = input("task {} annotate [empty for cancel]: ".format(id))
+        print('cancel  :  - or empty')
+        print()
+        annotation = input("task {} annotate: ".format(id))
 
-        if annotation == '':
+        if annotation in ['', '-']:
             return
 
         self._binary_wrapper.annotate(id, annotation.split(' '))
@@ -239,9 +244,11 @@ class MainMenu(Navigable):
     def task_mod(self):
         ids = self._get_selected_ids()
 
-        parameters = input("task {} mod [empty for cancel]: ".format(ids))
+        print('cancel  :  - or empty')
+        print()
+        parameters = input("task {} mod: ".format(ids))
 
-        if parameters == '':
+        if parameters in ['', '-']:
             return
 
         self._binary_wrapper.mod(ids, parameters.split(' '))
@@ -249,12 +256,33 @@ class MainMenu(Navigable):
         console.wait()
 
     def set_filter(self):
-        new_filters = input("Enter new filters [::clear for clear, empty for cancel]: ")
+        self._show_filter_headers()
 
-        if new_filters == '':
+        new_filters = input("Enter new filters: ")
+
+        self._set_filter(new_filters, append=False)
+
+    def append_filter(self):
+        self._show_filter_headers()
+
+        new_filters = input("Enter filters to append: ")
+
+        self._set_filter(new_filters, append=True)
+
+    def _show_filter_headers(self):
+        print('Current filter: "{}"'.format(self.filters))
+        print()
+        print('cancel  :  -')
+        print('clear   :  empty')
+        print()
+
+    def _set_filter(self, new_filters, append=False):
+        if new_filters == '-':
             return
-        elif new_filters == '::clear':
+        elif new_filters == '':
             self.filters = None
+        elif append:
+            self.filters += new_filters.split(' ')
         else:
             self.filters = new_filters.split(' ')
 
@@ -281,20 +309,18 @@ class MainMenu(Navigable):
         self.main_menu.title = f'{title_line}'
 
     def task_del(self):
-        menu = Menu("Are you sure you want to remove ids '{}'?".format(str(self._get_selected_ids())), redraw=False,
-                    back=False)
-
-        menu.items.append(BackMenuItem("y", "Yes", action=self._delete_confirmed))
-        menu.items.append(BackMenuItem("n", "No"))
-
-        menu.run()
-
-    def _delete_confirmed(self):
         ids = self._get_selected_ids()
+
+        print('cancel  :  -')
+        print()
+        comment = input("task {} delete comment: ".format(', '.join(str(id) for id in ids)))
+
+        if comment == '-':
+            return
 
         print('')
 
-        self._binary_wrapper.delete(ids)
+        self._binary_wrapper.delete(ids, comment)
 
         console.wait()
 
@@ -378,9 +404,12 @@ class MainMenu(Navigable):
 
     def select_report(self):
         self._binary_wrapper.reports()
-        new_report = input("Enter new report name: [::cancel for cancel]: ")
 
-        if new_report == '::cancel':
+        print('cancel  :  - or empty')
+        print()
+        new_report = input("Enter new report name: ")
+
+        if new_report in ['', '-']:
             return
         else:
             self.report = new_report
@@ -392,10 +421,16 @@ class MainMenu(Navigable):
         print()
         print(f'Current context: {self.context}')
         print()
-        new_context = input('Enter new context: [empty cancel, "none" to unset]: ')
+        print('cancel          :  -')
+        print('global context  :  empty')
+        print('unset           :  "none"')
+        print()
+        new_context = input('Enter new context: ')
 
-        if new_context == '':
+        if new_context == '-':
             return
+        elif new_context == '':
+            self.context = None
         else:
             self.context = new_context
 
