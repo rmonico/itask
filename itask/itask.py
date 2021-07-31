@@ -345,7 +345,7 @@ class MainMenu(Navigable):
     def select_report(self):
         reports = self._binary_wrapper.reports()
 
-        ignored_reports = self._binary_wrapper.get_config('itask.ignored_reports').split(',')
+        ignored_reports = (self._binary_wrapper.get_config('itask.ignored_reports') or '').split(',')
 
         valid_reports = dict((report, description) for report, description in reports.items() if report not in ignored_reports)
 

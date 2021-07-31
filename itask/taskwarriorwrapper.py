@@ -140,7 +140,11 @@ class TaskwarriorWrapper(object):
 
         stdout = process.stdout.decode().split('\n')
 
-        entry = [ line for line in stdout[3:] if line.startswith(config) ][0]
+        entry = [ line for line in stdout[3:] if line.startswith(config) ]
+        if len(entry) == 0:
+            return None
+        else:
+            entry = entry[0]
 
         separator_index = entry.find(' ')
 
