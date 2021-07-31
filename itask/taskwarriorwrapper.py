@@ -71,7 +71,7 @@ class TaskwarriorWrapper(object):
 
         process = self._internal_run(params, redirect_stdouterr=True)
 
-        return process.stdout.decode('utf-8')
+        return process.stdout.decode()
 
     def add(self, parameters):
         self._internal_run(['add'] + parameters)
