@@ -343,8 +343,24 @@ class MainMenu(Navigable):
         console.wait()
 
     def select_report(self):
-        self._binary_wrapper.reports()
+        reports = self._binary_wrapper.reports()
 
+        ignored_reports = self._binary_wrapper.get_config('itask.ignored_reports').split(',')
+
+        valid_reports = dict((report, description) for report, description in reports.items() if report not in ignored_reports)
+
+        largest_name = -1
+
+        for len_report in [ len(report) for report in valid_reports.keys()]:
+            if len_report > largest_name:
+                largest_name = len_report
+
+        for report, description in valid_reports.items():
+            alignment = ' ' * (largest_name - len(report))
+            print(f'{report}{alignment}  {description}')
+
+        print()
+        print()
         print('cancel  :  - or empty')
         print()
         new_report = input("Enter new report name: ")

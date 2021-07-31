@@ -112,13 +112,39 @@ class TaskwarriorWrapper(object):
         self._notify_listeners('data changed')
 
     def reports(self):
-        self._internal_run(['reports'])
+        process = self._internal_run(['reports'], redirect_stdouterr = True)
+
+        stdout = process.stdout.decode().split('\n')
+
+        stdout = stdout[2:-2]
+
+        reports = dict()
+
+        import re
+        for line in stdout:
+            matchs = re.match('^([a-z0-9_\.]+) +(.*)', line)
+            if matchs:
+                groups = matchs.groups()
+                reports[groups[0]] = groups[1]
+
+        return reports
 
     def projects(self):
         self._internal_run(['projects'])
 
     def tags(self):
         self._internal_run(['tags'])
+
+    def get_config(self, config):
+        process = self._internal_run(['show', config], redirect_stdouterr = True)
+
+        stdout = process.stdout.decode().split('\n')
+
+        entry = [ line for line in stdout[3:] if line.startswith(config) ][0]
+
+        separator_index = entry.find(' ')
+
+        return entry[separator_index + 1:]
 
     def invalidate_data(self):
         self._notify_listeners('data changed')
