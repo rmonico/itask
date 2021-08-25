@@ -2,6 +2,8 @@
 # -*- coding: utf-8 -*-
 
 import shutil
+import datetime
+import calendar as calendar_
 
 
 class CalendarViewer(object):
@@ -22,34 +24,33 @@ class CalendarViewer(object):
 
         print(s)
 
-    def _print_line(self, data):
-        s = '|'
-
-        for i in range(0, CalendarViewer._days_in_week):
-            padding = ' ' * (self._day_width - (len(data[i]) if i < len(data) else 0) - 2)
-
-            s += ' {}{} |'.format(data[i] if i < len(data) else '', padding)
-
-        print(s)
 
     def print(self):
         self._terminal_size = shutil.get_terminal_size()
 
-        print("Junho ·· 2018")
+        today = datetime.date.today()
+        print(today.strftime('%B ·· %Y'))
 
         self._day_width = (self._terminal_size.columns - (CalendarViewer._days_in_week + 1)) // CalendarViewer._days_in_week
 
         self._print_ruler()
 
-        data = []
-        for i in range(0, CalendarViewer._days_in_week):
-            data.append('{}· {}'.format(i + 1, CalendarViewer._weekday_names_abrev[i]))
+        cal = calendar_.Calendar(6)
+        for week in cal.monthdatescalendar(today.year, today.month):
+            line = '|'
+            for day in week:
+                label = f' {day.strftime("%d/%b (%a)")}'
 
-        self._print_line(data)
-        self._print_line([])
+                line += label + (' ' * (self._day_width - len(label) - 1)) + ' |'
+
+            print(line)
+
+            self._print_ruler()
+
 
 
 if __name__ == '__main__':
     viewer = CalendarViewer()
 
     viewer.print()
+
