@@ -346,6 +346,7 @@ class MainMenu(Navigable):
     def select_report(self):
         reports = self._binary_wrapper.reports()
 
+        # TODO Duplicated code
         ignored_reports = (self._binary_wrapper.get_config('itask.ignored_reports') or '').split(',')
 
         valid_reports = dict((report, description) for report, description in reports.items() if report not in ignored_reports)
@@ -374,6 +375,7 @@ class MainMenu(Navigable):
         self._binary_wrapper.invalidate_data()
 
     def select_context(self):
+        # FIXME Não vai mostrar nada em tela, será necessário imprimir manualmente isso
         self._binary_wrapper.contexts()
         print()
         print(f'Current context: {self.context}')
@@ -474,6 +476,8 @@ def parse_command_line():
 
     parser.add_argument('-c', '--context', help='Initial context')
 
+    parser.add_argument('--rofi', action='store_true', help='Open rofi selection menu')
+
     return parser.parse_args()
 
 
@@ -495,14 +499,40 @@ def recall_it_self_inside_terminal():
 
 
 def main():
+    args = parse_command_line()
+
+    taskwarrior_wrapper = TaskwarriorWrapper(args.task_data)
+
+    if args.rofi:
+        import rofi
+
+        rofi = rofi.Rofi()
+
+        contexts = taskwarrior_wrapper.contexts()
+
+        result = rofi.select(options=contexts, prompt='Context')[0]
+
+        if result != -1:
+            args.context = contexts[result]
+
+        all_reports = taskwarrior_wrapper.reports()
+
+        # TODO Duplicated code
+        ignored_reports = (taskwarrior_wrapper.get_config('itask.ignored_reports') or '').split(',')
+
+        reports = [report for report in all_reports.keys() if report not in ignored_reports]
+
+        result = rofi.select(options=reports, prompt='Report')[0]
+
+        if result != -1:
+            args.report = reports[result]
+
     if not is_running_in_interactive_terminal():
         recall_it_self_inside_terminal()
 
         return
 
-    args = parse_command_line()
-
-    handler = MainMenu(TaskwarriorWrapper(args.task_data), args)
+    handler = MainMenu(taskwarrior_wrapper, args)
 
     handler.run()
 

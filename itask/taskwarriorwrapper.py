@@ -4,6 +4,7 @@
 import os
 import shutil
 import subprocess
+import re
 
 taskwarrior_binary = shutil.which('task')
 
@@ -39,7 +40,9 @@ class TaskwarriorWrapper(object):
             listener(origin=self, *args, **kwargs)
 
     def contexts(self):
-        self._internal_run(['context', 'list'])
+        process = self._internal_run(['_context'], redirect_stdouterr = True)
+
+        return process.stdout.decode().split('\n')[:-1]
 
     def set_context(self, context):
         self._internal_run(['context', context])
@@ -120,7 +123,6 @@ class TaskwarriorWrapper(object):
 
         reports = dict()
 
-        import re
         for line in stdout:
             matchs = re.match('^([a-z0-9_\.]+) +(.*)', line)
             if matchs:
