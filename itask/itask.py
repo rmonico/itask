@@ -23,7 +23,7 @@ class MainMenu(Navigable):
 
         self.report = args.report
 
-        self.filters = args.filter.split(" ") if args.filter else None
+        self.filters = args.filter.split(' ') if args.filter else None
 
         self.context = args.context
 
@@ -204,7 +204,7 @@ class MainMenu(Navigable):
     def task_add(self):
         print('cancel  :  - or empty')
         print()
-        parameters = input("task add: ")
+        parameters = input('task add: ')
 
         if parameters in ['', '-']:
             return
@@ -218,7 +218,7 @@ class MainMenu(Navigable):
 
         print('cancel  :  - or empty')
         print()
-        annotation = input("task {} annotate: ".format(id))
+        annotation = input('task {} annotate: '.format(id))
 
         if annotation in ['', '-']:
             return
@@ -246,7 +246,7 @@ class MainMenu(Navigable):
 
         print('cancel  :  - or empty')
         print()
-        parameters = input("task {} mod: ".format(ids))
+        parameters = input('task {} mod: '.format(ids))
 
         if parameters in ['', '-']:
             return
@@ -258,14 +258,14 @@ class MainMenu(Navigable):
     def set_filter(self):
         self._show_filter_headers()
 
-        new_filters = input("Enter new filters: ")
+        new_filters = input('Enter new filters: ')
 
         self._set_filter(new_filters, append=False)
 
     def append_filter(self):
         self._show_filter_headers()
 
-        new_filters = input("Enter filters to append: ")
+        new_filters = input('Enter filters to append: ')
 
         self._set_filter(new_filters, append=True)
 
@@ -313,7 +313,7 @@ class MainMenu(Navigable):
 
         print('cancel  :  -')
         print()
-        comment = input("task {} delete comment: ".format(', '.join(str(id) for id in ids)))
+        comment = input('task {} delete comment: '.format(', '.join(str(id) for id in ids)))
 
         if comment == '-':
             return
@@ -364,7 +364,7 @@ class MainMenu(Navigable):
         print()
         print('cancel  :  - or empty')
         print()
-        new_report = input("Enter new report name: ")
+        new_report = input('Enter new report name: ')
 
         if new_report in ['', '-']:
             return
@@ -466,13 +466,13 @@ class MainMenu(Navigable):
 def parse_command_line():
     parser = argparse.ArgumentParser()
 
-    parser.add_argument("--task-data", help="Override TASKDATA environment variable")
+    parser.add_argument('--task-data', help='Override TASKDATA environment variable')
 
-    parser.add_argument("-r", "--report", default="next", help="Initial report")
+    parser.add_argument('-r', '--report', default='next', help='Initial report')
 
-    parser.add_argument("-f", "--filter", help="Initial filter")
+    parser.add_argument('-f', '--filter', help='Initial filter')
 
-    parser.add_argument("-c", "--context", help="Initial context")
+    parser.add_argument('-c', '--context', help='Initial context')
 
     return parser.parse_args()
 
@@ -485,13 +485,13 @@ def is_running_in_interactive_terminal():
 
 def recall_it_self_inside_terminal():
     import os
-    terminal = os.getenv("TERMINAL", "termite")
+    terminal = os.getenv('TERMINAL', 'termite')
 
     import sys
-    arguments = [arg.replace(" ", "\\ ") for arg in sys.argv]
+    arguments = [arg.replace(' ', '\\ ') for arg in sys.argv]
 
     import subprocess
-    subprocess.run([terminal, "-e", " ".join(arguments)])
+    subprocess.run([terminal, '-e', ' '.join(arguments)])
 
 
 def main():
