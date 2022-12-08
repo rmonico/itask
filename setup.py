@@ -1,7 +1,7 @@
 from setuptools import setup
 
 setup(name='iTask',
-      version='0.3.7',
+      version='0.3.8',
       description='A CLI frontend to easier the use of Taskwarrior',
       url='https://github.com/rmonico/itask',
       author='Rafael Monico',
