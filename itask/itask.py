@@ -46,6 +46,7 @@ class MainMenu(Navigable):
 
         self.main_menu.items.append(MenuItem(title='Add', hotkey='a', action=self.task_add))
         self.main_menu.items.append(MenuItem(title='Annotate', hotkey='n', action=self.task_annotate))
+        self.main_menu.items.append(MenuItem(title='Note', hotkey='N', action=self.task_note))
         self.main_menu.items.append(MenuItem(title='Done', hotkey='O', action=self.task_done))
         self.main_menu.items.append(MenuItem(title='View', hotkey='v', action=self.task_view))
         self.main_menu.items.append(MenuItem(title='Mod', hotkey='m', action=self.task_mod))
@@ -226,6 +227,19 @@ class MainMenu(Navigable):
         self._binary_wrapper.annotate(id, annotation.split(' '))
 
         console.wait()
+
+
+    def task_note(self):
+        id = self._get_active_id()
+
+        from subprocess import run
+
+        cmdline = f'tasknote {id} e'.split(' ')
+
+        run(cmdline)
+
+        console.wait()
+
 
     def task_done(self):
         ids = self._get_selected_ids()
