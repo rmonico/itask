@@ -108,8 +108,7 @@ class MainMenu(Navigable):
         data_vertical_constraints = {'top': self._first_usable_line + fixed_top,
                                      'bottom': self._data_provider.size.lines - footer_height - 1}
 
-        if not hasattr(self, '_selection'):
-            self._selection = Selection(self._first_usable_line + fixed_top, constraints=data_vertical_constraints)
+        self._selection = Selection(self._first_usable_line + fixed_top, constraints=data_vertical_constraints)
 
         left_region = Region(
             size={'width': fixed_left, 'height': data_height},
