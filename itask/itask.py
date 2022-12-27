@@ -73,7 +73,8 @@ class MainMenu(Navigable):
         signal.signal(signal.SIGWINCH, self._terminal_resized)
 
     def _terminal_resized(self, signal_number, stack):
-        stack[len(stack)].f_back()
+        if hasattr(stack, '__len__'):
+            stack[len(stack)].f_back()
 
         self._make_menu()
 
