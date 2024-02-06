@@ -122,8 +122,8 @@ class Menu(object):
         self.items.append(MenuItem(hotkey='k', action=navigable.activate_previous, visible=False, interactive=False))
         self.items.append(MenuItem(hotkey='J', action=navigable.viewer_down, visible=False, interactive=False))
         self.items.append(MenuItem(hotkey='K', action=navigable.viewer_up, visible=False, interactive=False))
-        self.items.append(MenuItem(hotkey='<', action=navigable.activate_first, visible=False, interactive=False))
-        self.items.append(MenuItem(hotkey='>', action=navigable.activate_last, visible=False, interactive=False))
+        self.items.append(MenuItem(hotkey='g', action=navigable.activate_first, visible=False, interactive=False))
+        self.items.append(MenuItem(hotkey='G', action=navigable.activate_last, visible=False, interactive=False))
 
         # Horizontal
         self.items.append(MenuItem(hotkey='h', action=navigable.viewer_left, visible=False, interactive=False))
