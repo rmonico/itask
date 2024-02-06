@@ -451,11 +451,13 @@ class MainMenu(Navigable):
         super(MainMenu, self).activate_first()
         self._data_viewer.region.move('top')
         self._left_viewer.region.move('top')
+        self._selection.move('first')
 
     def activate_last(self):
         super(MainMenu, self).activate_last()
         self._data_viewer.region.move('bottom')
         self._left_viewer.region.move('bottom')
+        self._selection.move('last')
 
     def viewer_left(self):
         super(MainMenu, self).viewer_left()

@@ -27,7 +27,11 @@ class Selection(object):
         return True
 
     def move(self, action, cells=1):
-        if action == 'down':
+        if action == 'first':
+            new_line = self._constraints['top']
+        elif action == 'last':
+            new_line = self._constraints['bottom'] - 1
+        elif action == 'down':
             new_line = self.active_line + cells
         elif action == 'up':
             new_line = self.active_line - cells
