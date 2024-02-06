@@ -25,7 +25,12 @@ class MainMenu(Navigable):
 
         self.report = args.report
 
-        self.filters = args.filter.split(' ') if args.filter else None
+        self._filter_stack = [ None ]
+        if args.filter:
+            self.filters = args.filter.split(' ') if args.filter else None
+            self._filter_stack.append(self.filters)
+        else:
+            self.filters = None
 
         self.context = args.context
 
@@ -64,11 +69,11 @@ class MainMenu(Navigable):
         self.main_menu.items.append(MenuItem(title='Mod', hotkey=configs.get('actions.modify'), action=self.task_mod))
         self.main_menu.items.append(MenuItem(title='Filter', hotkey=configs.get('actions.filter'), action=self.set_filter))
         self.main_menu.items.append(MenuItem(title='Append filter', hotkey=configs.get('actions.append_filter'), action=self.append_filter))
+        self.main_menu.items.append(MenuItem(title='Prev filter', hotkey=configs.get('actions.previous_filter'), action=self.previous_filter))
         self.main_menu.items.append(MenuItem(title='Delete', hotkey=configs.get('actions.delete'), action=self.task_del))
         self.main_menu.items.append(MenuItem(title='Undo', hotkey=configs.get('actions.undo'), action=self.task_undo))
         self.main_menu.items.append(MenuItem(title='Reload', hotkey=configs.get('actions.reload'), action=self.task_reload))
         self.main_menu.items.append(MenuItem(title='Sync', hotkey=configs.get('actions.sync'), action=self.task_sync))
-        # self.main_menu.items.append(MenuItem(title='Unfilter', hotkey=configs.get('actions.'), action=self._binary_wrapper.clean_filter))
         self.main_menu.items.append(MenuItem(title='Report', hotkey=configs.get('actions.select_report'), action=self.select_report))
         self.main_menu.items.append(MenuItem(title='Context', hotkey=configs.get('actions.select_context'), action=self.select_context))
         self.main_menu.items.append(MenuItem(title='Projects', hotkey=configs.get('actions.show_projects'), action=self.show_projects))
@@ -295,6 +300,17 @@ class MainMenu(Navigable):
 
         self._set_filter(new_filters, append=True)
 
+    def previous_filter(self):
+        if len(self._filter_stack) == 1:
+            return
+
+        self._filter_stack.pop()
+        self.filters = self._filter_stack[-1]
+
+        self._update_menu_title()
+
+        self._binary_wrapper.invalidate_data()
+
     def _show_filter_headers(self):
         print('Current filter: "{}"'.format(', '.join(self.filters) if self.filters else None))
         print()
@@ -311,6 +327,8 @@ class MainMenu(Navigable):
             self.filters += new_filters.split(' ')
         else:
             self.filters = new_filters.split(' ')
+
+        self._filter_stack.append(self.filters)
 
         self._update_menu_title()
 
