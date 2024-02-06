@@ -96,7 +96,9 @@ class Menu(object):
         if back:
             self.items += [MenuItem(title='Back', hotkey='b')]
 
-        self._listeners = {'render': [], 'item chosen': [], 'after action': []}
+        self._listeners = {'render': [], 'item chosen': [], 'after action': [], 'terminal resized': []}
+
+        signal.signal(signal.SIGWINCH, self._terminal_resized)
 
     def register_listener(self, event, listener):
         self._listeners[event].append(listener)
@@ -148,15 +150,13 @@ class Menu(object):
 
         self._initialize()
 
-        signal.signal(signal.SIGWINCH, self._terminal_resized)
-
         key = None
         result = None
 
         while result not in ('quit', 'back'):
             self._notify_listeners('render')
 
-            self._update_title_and_items()
+            self.render()
 
             key = console.getch()
 
@@ -172,7 +172,7 @@ class Menu(object):
 
             self._notify_listeners('after action', item=item if item_found else None)
 
-    def _update_title_and_items(self):
+    def render(self):
         terminal_size = shutil.get_terminal_size()
 
         console.move_cursor(1, terminal_size.lines - 1)
@@ -188,12 +188,9 @@ class Menu(object):
         sys.stdout.flush()
 
     def _terminal_resized(self, signal_number, stack):
-        # TODO Montar um event window_rezised (talvez nem deva ficar aqui) e refatorar o conteúdo dos métodos abaixo para se adequar ao novo evento
-        self._notify_listeners('item chosen', item=MenuItem(''))
+        if hasattr(stack, '__len__'):
+            stack[len(stack)].f_back()
 
-        self._notify_listeners('after action', item=None)
+        size = shutil.get_terminal_size()
 
-        self._notify_listeners('render')
-
-        self._update_title_and_items()
-
+        self._notify_listeners('terminal resized', columns=size.columns, lines=size.lines)

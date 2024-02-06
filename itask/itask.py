@@ -69,18 +69,23 @@ class MainMenu(Navigable):
         self.main_menu.register_listener('render', self.render)
         self.main_menu.register_listener('item chosen', self.item_chosen)
         self.main_menu.register_listener('after action', self.after_action)
+        self.main_menu.register_listener('terminal resized', self.terminal_resized)
 
-        signal.signal(signal.SIGWINCH, self._terminal_resized)
+    def terminal_resized(self, origin, columns, lines):
+        self._left_top_fixed_viewer.invalidate()
+        self._header_viewer.invalidate()
+        self._left_viewer.invalidate()
+        self._data_viewer.invalidate()
 
-    def _terminal_resized(self, signal_number, stack):
-        if hasattr(stack, '__len__'):
-            stack[len(stack)].f_back()
+        self._make_gui(columns, lines)
 
-        self._make_menu()
+        console.clear_screen()
 
-        self._do_data_update()
+        self.render(self)
 
-    def _make_gui(self):
+        self.main_menu.render()
+
+    def _make_gui(self, columns, lines):
         if self._has_data():
             fixed_left = self._report_parser.idColumnWidth()
         else:
@@ -94,9 +99,7 @@ class MainMenu(Navigable):
 
         self._left_top_fixed_viewer = Viewer(self._data_provider, left_top_fixed_region, screen_left=0, screen_top=0)
 
-        terminal_size = shutil.get_terminal_size()
-
-        data_width = terminal_size.columns - fixed_left - 1
+        data_width = columns - fixed_left - 1
         data_horizontal_constraints = {'left': fixed_left, 'right': self._data_provider.size.largest_line}
         header_region = Region(
             size={'width': data_width, 'height': fixed_top},
@@ -105,7 +108,7 @@ class MainMenu(Navigable):
 
         self._header_viewer = Viewer(self._data_provider, header_region, screen_left=fixed_left, screen_top=0)
 
-        data_height = terminal_size.lines - fixed_top - menu_height
+        data_height = lines - fixed_top - menu_height
         data_vertical_constraints = {'top': self._first_usable_line + fixed_top,
                                      'bottom': self._data_provider.size.lines - footer_height}
 
@@ -144,7 +147,9 @@ class MainMenu(Navigable):
 
         self._update_menu_title()
 
-        self._make_gui()
+        size = shutil.get_terminal_size()
+
+        self._make_gui(columns=size.columns, lines=size.lines)
 
     def _has_data(self):
         return len(self._data_provider.lines) > 1
