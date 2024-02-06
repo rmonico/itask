@@ -107,7 +107,7 @@ class MainMenu(Navigable):
 
         data_height = terminal_size.lines - fixed_top - menu_height
         data_vertical_constraints = {'top': self._first_usable_line + fixed_top,
-                                     'bottom': self._data_provider.size.lines - footer_height - 1}
+                                     'bottom': self._data_provider.size.lines - footer_height}
 
         self._selection = Selection(self._first_usable_line + fixed_top, constraints=data_vertical_constraints)
 
