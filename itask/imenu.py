@@ -1,6 +1,8 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
+from itask import configs
+
 import shutil
 import sys
 
@@ -24,8 +26,8 @@ class MenuItem(object):
 
 class QuitMenuItem(MenuItem):
 
-    def __init__(self, hotkey='q', title='Quit', action=None):
-        super(QuitMenuItem, self).__init__(title=title, hotkey=hotkey, action=action)
+    def __init__(self, hotkey=None, title='Quit', action=None):
+        super(QuitMenuItem, self).__init__(title=title, hotkey=hotkey or configs.get('actions.quit'), action=action)
 
     def run(self):
         result = super(QuitMenuItem, self).run()
@@ -91,7 +93,7 @@ class Menu(object):
         self.items = []
 
         if redraw:
-            self.items += [MenuItem(title='Redraw', hotkey='*')]
+            self.items += [MenuItem(title='Redraw', hotkey=configs.get('navigation.move.reload'))]
 
         if back:
             self.items += [MenuItem(title='Back', hotkey='b')]
@@ -118,21 +120,21 @@ class Menu(object):
 
     def append_navigation_keys(self, navigable):
         # Vertical
-        self.items.append(MenuItem(hotkey='j', action=navigable.activate_next, visible=False, interactive=False))
-        self.items.append(MenuItem(hotkey='k', action=navigable.activate_previous, visible=False, interactive=False))
-        self.items.append(MenuItem(hotkey='J', action=navigable.viewer_down, visible=False, interactive=False))
-        self.items.append(MenuItem(hotkey='K', action=navigable.viewer_up, visible=False, interactive=False))
-        self.items.append(MenuItem(hotkey='g', action=navigable.activate_first, visible=False, interactive=False))
-        self.items.append(MenuItem(hotkey='G', action=navigable.activate_last, visible=False, interactive=False))
+        self.items.append(MenuItem(configs.get('navigation.move.next'), action=navigable.activate_next, visible=False, interactive=False))
+        self.items.append(MenuItem(configs.get('navigation.move.previous'), action=navigable.activate_previous, visible=False, interactive=False))
+        self.items.append(MenuItem(configs.get('navigation.scroll.down'), action=navigable.viewer_down, visible=False, interactive=False))
+        self.items.append(MenuItem(configs.get('navigation.scroll.up'), action=navigable.viewer_up, visible=False, interactive=False))
+        self.items.append(MenuItem(configs.get('navigation.move.first'), action=navigable.activate_first, visible=False, interactive=False))
+        self.items.append(MenuItem(configs.get('navigation.move.last'), action=navigable.activate_last, visible=False, interactive=False))
 
         # Horizontal
-        self.items.append(MenuItem(hotkey='h', action=navigable.viewer_left, visible=False, interactive=False))
-        self.items.append(MenuItem(hotkey='l', action=navigable.viewer_right, visible=False, interactive=False))
-        self.items.append(MenuItem(hotkey='H', action=navigable.viewer_begin, visible=False, interactive=False))
-        self.items.append(MenuItem(hotkey='L', action=navigable.viewer_end, visible=False, interactive=False))
+        self.items.append(MenuItem(configs.get('navigation.scroll.left'), action=navigable.viewer_left, visible=False, interactive=False))
+        self.items.append(MenuItem(configs.get('navigation.scroll.right'), action=navigable.viewer_right, visible=False, interactive=False))
+        self.items.append(MenuItem(configs.get('navigation.scroll.begin'), action=navigable.viewer_begin, visible=False, interactive=False))
+        self.items.append(MenuItem(configs.get('navigation.scroll.end'), action=navigable.viewer_end, visible=False, interactive=False))
 
         # Selection
-        self.items.append(MenuItem(hotkey='x', action=navigable.toggle_selected, visible=False, interactive=False))
+        self.items.append(MenuItem(configs.get('navigation.toggle_selected'), action=navigable.toggle_selected, visible=False, interactive=False))
 
     def _initialize(self):
         visible_items = []

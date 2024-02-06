@@ -1,0 +1,36 @@
+navigation:
+  move:
+    next: j
+    previous: k
+    first: g
+    last: G
+  
+  scroll:
+    down: J
+    up: K
+    left: h
+    right: l
+    begin: H
+    end: L
+
+  toggle_selected: x
+
+actions:
+  add: a
+  annotate: n
+  task_note: N
+  done: O
+  view: v
+  modify: m
+  filter: f
+  append_filter: F
+  delete: D
+  undo: U
+  reload: R
+  sync: s
+  select_report: r
+  select_context: c
+  show_projects: p
+  show_tags: t
+  quit: q
+
