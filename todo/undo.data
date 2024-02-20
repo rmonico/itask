@@ -1,0 +1,266 @@
+time 1708450523
+new [active:"1.000000" description:"Fazer um calendário" entry:"1463442354" modified:"1685386635" project:"dev.itask" status:"pending" uuid:"a5ac9097-b277-4126-a642-537ce8727eff"]
+---
+time 1708450523
+new [annotation_1529269862:"Abrir e fechar as anotações" description:"Inventar um jeito de modificar os relatórios dinamicamente" entry:"1524698585" modified:"1605733256" project:"dev.itask" status:"pending" uuid:"ef83f670-15ea-46cc-8464-c9773bb7a32e"]
+---
+time 1708450523
+new [annotation_1529269992:"Talvez seja responsabilidade do taskwarrior fazer isso" description:"Fazer comando de search" entry:"1524698625" modified:"1605733256" project:"dev.itask" status:"pending" uuid:"b3d23923-6455-401c-842a-adeeb533400d"]
+---
+time 1708450523
+new [annotation_1527098128:"O bugwarrior suporta importação de issues do Jira" annotation_1529270835:"Seria interessante atrelar um hash de commit do git nas anotações" description:"Integração Taskwarrior <-> Jira, nos dois sentidos" entry:"1524769102" modified:"1605733256" project:"dev.itask" status:"pending" uuid:"22e0d27f-3096-4c89-a452-751aa9973faf"]
+---
+time 1708450523
+new [description:"View: usar pager para mostrar a tarefa" entry:"1524837050" modified:"1605733256" project:"dev.itask" status:"pending" uuid:"d0d42b54-2f76-4a67-adc6-9e5acfdae3d3"]
+---
+time 1708450523
+new [description:"Incluir uma nova tarefa sem sair da tela de listagem" entry:"1524871776" modified:"1685386635" project:"dev.itask" status:"pending" uuid:"727dcdb0-388a-4374-9673-4d28388b45ad"]
+---
+time 1708450523
+new [description:"Quando as tarefas estão agrupadas o itask não reconhece as linhas vazias como inválidas" entry:"1524938681" modified:"1605733257" project:"dev.itask" status:"pending" uuid:"69e8b2c8-d356-4937-8a4d-dd75fe802cfe"]
+---
+time 1708450523
+new [description:"Fazer opção de help e tirar as teclas de atalho da barra inferior" entry:"1525786738" modified:"1685386635" project:"dev.itask" status:"pending" tags:"rapido" tags_rapido:"x" uuid:"579578e2-e724-4b46-a404-365d170baba8"]
+---
+time 1708450523
+new [description:"Alterar teclas de navegação para ficar iguais às do vim" entry:"1525789129" modified:"1605733257" project:"dev.itask" status:"pending" tags:"rapido" tags_rapido:"x" uuid:"fcf4e4f3-2b95-4b16-a851-b3b43ec2ef83"]
+---
+time 1708450523
+new [annotation_1529270156:"Olhar na documentação, acho que tem parâmetro para isso" description:"Quando modificar várias tarefas não pedir confirmação" entry:"1525790568" modified:"1605733257" project:"dev.itask" status:"pending" uuid:"ecc5054d-d365-4cdd-9ea3-fb86d1c2a3a3"]
+---
+time 1708450523
+new [description:"Ao adicionar uma nova tarefa deve trazer por default o conteúdo do filtro" entry:"1525800384" modified:"1685386635" project:"dev.itask" status:"pending" uuid:"569af108-9e2b-4fed-a475-23d0c7c38d90"]
+---
+time 1708450523
+new [description:"Fazer uma ação para abrir a nota do tasknote" entry:"1525872022" modified:"1685386635" project:"dev.itask" status:"pending" uuid:"2db2fe43-c1e5-4c85-abe7-5e4d732a74d0"]
+---
+time 1708450523
+new [annotation_1535522932:"É intermitente, pois identifica a tarefa através do ID e não do UUID" description:"Problema quando a lista é modificada" entry:"1526265874" modified:"1605733257" project:"dev.itask" status:"pending" uuid:"c040b36c-0d33-401d-b128-6fc7a36690e7"]
+---
+time 1708450523
+new [description:"Confirmar fechamento do programa" entry:"1526662600" modified:"1685386635" project:"dev.itask" status:"pending" tags:"rapido" tags_rapido:"x" uuid:"39887ef0-f0ef-484d-b74f-dfb5896f0d75"]
+---
+time 1708450523
+new [description:"Quando a janela é redimensionada o programa não é atualizado" entry:"1529270083" modified:"1605733257" project:"dev.itask" status:"pending" uuid:"7bfc7dd6-ee6c-4551-aff4-8c4390ac7c3a"]
+---
+time 1708450523
+new [description:"Pensar em um Daemon para recarregar automaticamente quando algo é alterado" entry:"1529270271" modified:"1605733257" project:"dev.itask" status:"pending" uuid:"0ea395c8-244d-4322-b5e8-28cacb292ba7"]
+---
+time 1708450523
+new [description:"Fazer teclas de atalho rodarem comandos customizáveis" entry:"1529428823" modified:"1605733257" project:"dev.itask" status:"pending" uuid:"3d22e41a-b947-49e9-af98-6155ba9d0c15"]
+---
+time 1708450523
+new [description:"Fazer comando para chamar o tasksh" entry:"1529590881" modified:"1685386635" project:"dev.itask" status:"pending" tags:"rapido" tags_rapido:"x" uuid:"9ed63534-170b-4dac-a843-c5750c8ef32e"]
+---
+time 1708450523
+new [annotation_1557856401:"Em relação á data" description:"Fazer esquema semelhante à função ta" entry:"1529892688" modified:"1605733257" project:"dev.itask" status:"pending" uuid:"5dc185d2-3f84-492d-bc31-4d5673833371"]
+---
+time 1708450523
+new [annotation_1535523211:"Se possível algo que permita trazer um valor default" description:"Encontrar uma função melhor de leitura de texto" entry:"1535142751" modified:"1605733257" project:"dev.itask" status:"pending" uuid:"bf6e3608-b6c2-4a1b-9de3-e8062538f97f"]
+---
+time 1708450523
+new [annotation_1633659717:"Alteração do Shamilbi" description:"Função para 'task edit'" entry:"1535523256" modified:"1633659717" project:"dev.itask" status:"pending" uuid:"658b3947-a770-44c1-b2d5-b10de2bc3934"]
+---
+time 1708450523
+new [description:"Adicionar suporte ao tasknote" entry:"1536236057" modified:"1685386635" project:"dev.itask" status:"pending" uuid:"fae7ee7d-9ecc-46f6-8f6f-5c58b31f23ab"]
+---
+time 1708450523
+new [description:"Criar suporte à macros" entry:"1538572359" modified:"1636650781" priority:"H" project:"dev.itask" status:"pending" uuid:"2317cb18-124a-47a4-a760-ae3c966df3a7"]
+---
+time 1708450523
+new [description:"Terminar de extrair o ViewBuilder" entry:"1557943082" modified:"1685386635" project:"dev.itask" status:"pending" uuid:"c8a12e9a-9922-4805-a8bc-8c716c273859"]
+---
+time 1708450523
+new [description:"Rodar um comando arbitrário" entry:"1567709439" modified:"1605733257" project:"dev.itask" status:"pending" uuid:"03133858-d78e-494e-aaaa-4d01948d69e9"]
+---
+time 1708450523
+new [description:"Validar contexto do --context" entry:"1586889564" modified:"1685386635" project:"dev.itask.bugs" status:"pending" uuid:"244a9d3d-5fb4-4531-b09d-69579f46ff47"]
+---
+time 1708450523
+new [description:"Publicar no AUR" entry:"1596117718" modified:"1605758303" project:"dev.itask" status:"pending" uuid:"43673f69-de89-4293-99e1-0095e727e902"]
+---
+time 1708450523
+new [description:"Não excluir códigos de cores" entry:"1627363116" modified:"1685386635" project:"dev.itask" status:"pending" uuid:"dbc86ad2-dcb0-4a79-bd2d-e9e4543c6ae8"]
+---
+time 1708450523
+new [description:"Fazer navegação por projetos e tags" entry:"1627363539" modified:"1685386635" project:"dev.itask" status:"pending" uuid:"fc25b777-7bf6-4bf9-bf26-eaf0671af8bd"]
+---
+time 1708450523
+new [description:"Mudar cor quando a linha ativa está selecionada" entry:"1632860417" modified:"1685386635" project:"dev.itask" status:"pending" uuid:"c62f1265-1305-47e4-a030-bd49a62d281c"]
+---
+time 1708450523
+new [annotation_1633659812:"De acordo com o contexto e relatório ativo" description:"Parâmetros automaticos ao criar nova task" entry:"1633659794" modified:"1685386635" project:"dev.itask" status:"pending" uuid:"09860bf8-ecfa-47e6-a753-02b9f056729f"]
+---
+time 1708450523
+new [annotation_1637994338:"Posteriormente fazer uma configuração ou tentar descobrir se o comando default é um relatório (acho que não é complicado)" description:"Na seleção de relatório o padrão deve ser o next" entry:"1637994291" modified:"1637994338" project:"dev.itask" status:"pending" uuid:"200ffe5e-1cda-4078-9eb8-ad542fe7e29d"]
+---
+time 1708450523
+new [description:"Fazer comando de adicionar anotação à última tarefa criada" entry:"1638293942" modified:"1685386635" project:"dev.itask" status:"pending" uuid:"c75e5035-1fa9-4d23-ae89-1db3bbcd13f3"]
+---
+time 1708450523
+new [description:"Fazer autocomplete para o bash e zsh" entry:"1608067211" modified:"1685386635" project:"dev.itask" status:"pending" uuid:"90c7af78-20e9-4613-b67f-42a78e899736"]
+---
+time 1708450523
+new [annotation_1672161950:"Está desenhando por cima do vim quando está editando uma nota" description:"Comando de nota: rodando em paralelo?" entry:"1672161928" modified:"1672161950" project:"dev.itask.bugs" status:"pending" uuid:"cae013c1-a86c-4487-9800-c3ef7bbd9c17"]
+---
+time 1708450523
+new [description:"Comando add não está passando o contexto" entry:"1673834178" modified:"1673886222" project:"dev.itask.bugs" status:"pending" uuid:"e09e0183-ccd4-4c52-bfe8-badc2df7d416"]
+---
+time 1708450523
+new [description:"Stack de filtros: incluir mudanças no contexto e relatório" entry:"1708449684" modified:"1708449684" project:"dev.itask" status:"pending" uuid:"d7560acf-1ba4-4ff1-8ee6-9bf774293188"]
+---
+time 1708450523
+new [description:"Teclas de atalho configuradas não estão sobrepondo as teclas padrão" entry:"1708449734" modified:"1708449734" project:"dev.itask" status:"pending" uuid:"24da47a9-1f53-4191-b7ae-d4165c5db51a"]
+---
+time 1708450599
+old [description:"Validar contexto do --context" entry:"1586889564" modified:"1685386635" project:"dev.itask.bugs" status:"pending" uuid:"244a9d3d-5fb4-4531-b09d-69579f46ff47"]
+new [description:"Validar contexto do --context" entry:"1586889564" modified:"1708450599" status:"pending" tags:"bug" tags_bug:"x" uuid:"244a9d3d-5fb4-4531-b09d-69579f46ff47"]
+---
+time 1708450599
+old [annotation_1672161950:"Está desenhando por cima do vim quando está editando uma nota" description:"Comando de nota: rodando em paralelo?" entry:"1672161928" modified:"1672161950" project:"dev.itask.bugs" status:"pending" uuid:"cae013c1-a86c-4487-9800-c3ef7bbd9c17"]
+new [annotation_1672161950:"Está desenhando por cima do vim quando está editando uma nota" description:"Comando de nota: rodando em paralelo?" entry:"1672161928" modified:"1708450599" status:"pending" tags:"bug" tags_bug:"x" uuid:"cae013c1-a86c-4487-9800-c3ef7bbd9c17"]
+---
+time 1708450599
+old [description:"Comando add não está passando o contexto" entry:"1673834178" modified:"1673886222" project:"dev.itask.bugs" status:"pending" uuid:"e09e0183-ccd4-4c52-bfe8-badc2df7d416"]
+new [description:"Comando add não está passando o contexto" entry:"1673834178" modified:"1708450599" status:"pending" tags:"bug" tags_bug:"x" uuid:"e09e0183-ccd4-4c52-bfe8-badc2df7d416"]
+---
+time 1708450622
+old [active:"1.000000" description:"Fazer um calendário" entry:"1463442354" modified:"1685386635" project:"dev.itask" status:"pending" uuid:"a5ac9097-b277-4126-a642-537ce8727eff"]
+new [active:"1.000000" description:"Fazer um calendário" entry:"1463442354" modified:"1708450622" status:"pending" uuid:"a5ac9097-b277-4126-a642-537ce8727eff"]
+---
+time 1708450622
+old [annotation_1529269862:"Abrir e fechar as anotações" description:"Inventar um jeito de modificar os relatórios dinamicamente" entry:"1524698585" modified:"1605733256" project:"dev.itask" status:"pending" uuid:"ef83f670-15ea-46cc-8464-c9773bb7a32e"]
+new [annotation_1529269862:"Abrir e fechar as anotações" description:"Inventar um jeito de modificar os relatórios dinamicamente" entry:"1524698585" modified:"1708450622" status:"pending" uuid:"ef83f670-15ea-46cc-8464-c9773bb7a32e"]
+---
+time 1708450622
+old [annotation_1529269992:"Talvez seja responsabilidade do taskwarrior fazer isso" description:"Fazer comando de search" entry:"1524698625" modified:"1605733256" project:"dev.itask" status:"pending" uuid:"b3d23923-6455-401c-842a-adeeb533400d"]
+new [annotation_1529269992:"Talvez seja responsabilidade do taskwarrior fazer isso" description:"Fazer comando de search" entry:"1524698625" modified:"1708450622" status:"pending" uuid:"b3d23923-6455-401c-842a-adeeb533400d"]
+---
+time 1708450622
+old [annotation_1527098128:"O bugwarrior suporta importação de issues do Jira" annotation_1529270835:"Seria interessante atrelar um hash de commit do git nas anotações" description:"Integração Taskwarrior <-> Jira, nos dois sentidos" entry:"1524769102" modified:"1605733256" project:"dev.itask" status:"pending" uuid:"22e0d27f-3096-4c89-a452-751aa9973faf"]
+new [annotation_1527098128:"O bugwarrior suporta importação de issues do Jira" annotation_1529270835:"Seria interessante atrelar um hash de commit do git nas anotações" description:"Integração Taskwarrior <-> Jira, nos dois sentidos" entry:"1524769102" modified:"1708450622" status:"pending" uuid:"22e0d27f-3096-4c89-a452-751aa9973faf"]
+---
+time 1708450622
+old [description:"View: usar pager para mostrar a tarefa" entry:"1524837050" modified:"1605733256" project:"dev.itask" status:"pending" uuid:"d0d42b54-2f76-4a67-adc6-9e5acfdae3d3"]
+new [description:"View: usar pager para mostrar a tarefa" entry:"1524837050" modified:"1708450622" status:"pending" uuid:"d0d42b54-2f76-4a67-adc6-9e5acfdae3d3"]
+---
+time 1708450622
+old [description:"Incluir uma nova tarefa sem sair da tela de listagem" entry:"1524871776" modified:"1685386635" project:"dev.itask" status:"pending" uuid:"727dcdb0-388a-4374-9673-4d28388b45ad"]
+new [description:"Incluir uma nova tarefa sem sair da tela de listagem" entry:"1524871776" modified:"1708450622" status:"pending" uuid:"727dcdb0-388a-4374-9673-4d28388b45ad"]
+---
+time 1708450622
+old [description:"Quando as tarefas estão agrupadas o itask não reconhece as linhas vazias como inválidas" entry:"1524938681" modified:"1605733257" project:"dev.itask" status:"pending" uuid:"69e8b2c8-d356-4937-8a4d-dd75fe802cfe"]
+new [description:"Quando as tarefas estão agrupadas o itask não reconhece as linhas vazias como inválidas" entry:"1524938681" modified:"1708450622" status:"pending" uuid:"69e8b2c8-d356-4937-8a4d-dd75fe802cfe"]
+---
+time 1708450622
+old [description:"Fazer opção de help e tirar as teclas de atalho da barra inferior" entry:"1525786738" modified:"1685386635" project:"dev.itask" status:"pending" tags:"rapido" tags_rapido:"x" uuid:"579578e2-e724-4b46-a404-365d170baba8"]
+new [description:"Fazer opção de help e tirar as teclas de atalho da barra inferior" entry:"1525786738" modified:"1708450622" status:"pending" tags:"rapido" tags_rapido:"x" uuid:"579578e2-e724-4b46-a404-365d170baba8"]
+---
+time 1708450622
+old [description:"Alterar teclas de navegação para ficar iguais às do vim" entry:"1525789129" modified:"1605733257" project:"dev.itask" status:"pending" tags:"rapido" tags_rapido:"x" uuid:"fcf4e4f3-2b95-4b16-a851-b3b43ec2ef83"]
+new [description:"Alterar teclas de navegação para ficar iguais às do vim" entry:"1525789129" modified:"1708450622" status:"pending" tags:"rapido" tags_rapido:"x" uuid:"fcf4e4f3-2b95-4b16-a851-b3b43ec2ef83"]
+---
+time 1708450622
+old [annotation_1529270156:"Olhar na documentação, acho que tem parâmetro para isso" description:"Quando modificar várias tarefas não pedir confirmação" entry:"1525790568" modified:"1605733257" project:"dev.itask" status:"pending" uuid:"ecc5054d-d365-4cdd-9ea3-fb86d1c2a3a3"]
+new [annotation_1529270156:"Olhar na documentação, acho que tem parâmetro para isso" description:"Quando modificar várias tarefas não pedir confirmação" entry:"1525790568" modified:"1708450622" status:"pending" uuid:"ecc5054d-d365-4cdd-9ea3-fb86d1c2a3a3"]
+---
+time 1708450622
+old [description:"Ao adicionar uma nova tarefa deve trazer por default o conteúdo do filtro" entry:"1525800384" modified:"1685386635" project:"dev.itask" status:"pending" uuid:"569af108-9e2b-4fed-a475-23d0c7c38d90"]
+new [description:"Ao adicionar uma nova tarefa deve trazer por default o conteúdo do filtro" entry:"1525800384" modified:"1708450622" status:"pending" uuid:"569af108-9e2b-4fed-a475-23d0c7c38d90"]
+---
+time 1708450622
+old [description:"Fazer uma ação para abrir a nota do tasknote" entry:"1525872022" modified:"1685386635" project:"dev.itask" status:"pending" uuid:"2db2fe43-c1e5-4c85-abe7-5e4d732a74d0"]
+new [description:"Fazer uma ação para abrir a nota do tasknote" entry:"1525872022" modified:"1708450622" status:"pending" uuid:"2db2fe43-c1e5-4c85-abe7-5e4d732a74d0"]
+---
+time 1708450622
+old [annotation_1535522932:"É intermitente, pois identifica a tarefa através do ID e não do UUID" description:"Problema quando a lista é modificada" entry:"1526265874" modified:"1605733257" project:"dev.itask" status:"pending" uuid:"c040b36c-0d33-401d-b128-6fc7a36690e7"]
+new [annotation_1535522932:"É intermitente, pois identifica a tarefa através do ID e não do UUID" description:"Problema quando a lista é modificada" entry:"1526265874" modified:"1708450622" status:"pending" uuid:"c040b36c-0d33-401d-b128-6fc7a36690e7"]
+---
+time 1708450622
+old [description:"Confirmar fechamento do programa" entry:"1526662600" modified:"1685386635" project:"dev.itask" status:"pending" tags:"rapido" tags_rapido:"x" uuid:"39887ef0-f0ef-484d-b74f-dfb5896f0d75"]
+new [description:"Confirmar fechamento do programa" entry:"1526662600" modified:"1708450622" status:"pending" tags:"rapido" tags_rapido:"x" uuid:"39887ef0-f0ef-484d-b74f-dfb5896f0d75"]
+---
+time 1708450622
+old [description:"Quando a janela é redimensionada o programa não é atualizado" entry:"1529270083" modified:"1605733257" project:"dev.itask" status:"pending" uuid:"7bfc7dd6-ee6c-4551-aff4-8c4390ac7c3a"]
+new [description:"Quando a janela é redimensionada o programa não é atualizado" entry:"1529270083" modified:"1708450622" status:"pending" uuid:"7bfc7dd6-ee6c-4551-aff4-8c4390ac7c3a"]
+---
+time 1708450622
+old [description:"Pensar em um Daemon para recarregar automaticamente quando algo é alterado" entry:"1529270271" modified:"1605733257" project:"dev.itask" status:"pending" uuid:"0ea395c8-244d-4322-b5e8-28cacb292ba7"]
+new [description:"Pensar em um Daemon para recarregar automaticamente quando algo é alterado" entry:"1529270271" modified:"1708450622" status:"pending" uuid:"0ea395c8-244d-4322-b5e8-28cacb292ba7"]
+---
+time 1708450622
+old [description:"Fazer teclas de atalho rodarem comandos customizáveis" entry:"1529428823" modified:"1605733257" project:"dev.itask" status:"pending" uuid:"3d22e41a-b947-49e9-af98-6155ba9d0c15"]
+new [description:"Fazer teclas de atalho rodarem comandos customizáveis" entry:"1529428823" modified:"1708450622" status:"pending" uuid:"3d22e41a-b947-49e9-af98-6155ba9d0c15"]
+---
+time 1708450622
+old [description:"Fazer comando para chamar o tasksh" entry:"1529590881" modified:"1685386635" project:"dev.itask" status:"pending" tags:"rapido" tags_rapido:"x" uuid:"9ed63534-170b-4dac-a843-c5750c8ef32e"]
+new [description:"Fazer comando para chamar o tasksh" entry:"1529590881" modified:"1708450622" status:"pending" tags:"rapido" tags_rapido:"x" uuid:"9ed63534-170b-4dac-a843-c5750c8ef32e"]
+---
+time 1708450622
+old [annotation_1557856401:"Em relação á data" description:"Fazer esquema semelhante à função ta" entry:"1529892688" modified:"1605733257" project:"dev.itask" status:"pending" uuid:"5dc185d2-3f84-492d-bc31-4d5673833371"]
+new [annotation_1557856401:"Em relação á data" description:"Fazer esquema semelhante à função ta" entry:"1529892688" modified:"1708450622" status:"pending" uuid:"5dc185d2-3f84-492d-bc31-4d5673833371"]
+---
+time 1708450622
+old [annotation_1535523211:"Se possível algo que permita trazer um valor default" description:"Encontrar uma função melhor de leitura de texto" entry:"1535142751" modified:"1605733257" project:"dev.itask" status:"pending" uuid:"bf6e3608-b6c2-4a1b-9de3-e8062538f97f"]
+new [annotation_1535523211:"Se possível algo que permita trazer um valor default" description:"Encontrar uma função melhor de leitura de texto" entry:"1535142751" modified:"1708450622" status:"pending" uuid:"bf6e3608-b6c2-4a1b-9de3-e8062538f97f"]
+---
+time 1708450622
+old [annotation_1633659717:"Alteração do Shamilbi" description:"Função para 'task edit'" entry:"1535523256" modified:"1633659717" project:"dev.itask" status:"pending" uuid:"658b3947-a770-44c1-b2d5-b10de2bc3934"]
+new [annotation_1633659717:"Alteração do Shamilbi" description:"Função para 'task edit'" entry:"1535523256" modified:"1708450622" status:"pending" uuid:"658b3947-a770-44c1-b2d5-b10de2bc3934"]
+---
+time 1708450622
+old [description:"Adicionar suporte ao tasknote" entry:"1536236057" modified:"1685386635" project:"dev.itask" status:"pending" uuid:"fae7ee7d-9ecc-46f6-8f6f-5c58b31f23ab"]
+new [description:"Adicionar suporte ao tasknote" entry:"1536236057" modified:"1708450622" status:"pending" uuid:"fae7ee7d-9ecc-46f6-8f6f-5c58b31f23ab"]
+---
+time 1708450622
+old [description:"Criar suporte à macros" entry:"1538572359" modified:"1636650781" priority:"H" project:"dev.itask" status:"pending" uuid:"2317cb18-124a-47a4-a760-ae3c966df3a7"]
+new [description:"Criar suporte à macros" entry:"1538572359" modified:"1708450622" priority:"H" status:"pending" uuid:"2317cb18-124a-47a4-a760-ae3c966df3a7"]
+---
+time 1708450622
+old [description:"Terminar de extrair o ViewBuilder" entry:"1557943082" modified:"1685386635" project:"dev.itask" status:"pending" uuid:"c8a12e9a-9922-4805-a8bc-8c716c273859"]
+new [description:"Terminar de extrair o ViewBuilder" entry:"1557943082" modified:"1708450622" status:"pending" uuid:"c8a12e9a-9922-4805-a8bc-8c716c273859"]
+---
+time 1708450622
+old [description:"Rodar um comando arbitrário" entry:"1567709439" modified:"1605733257" project:"dev.itask" status:"pending" uuid:"03133858-d78e-494e-aaaa-4d01948d69e9"]
+new [description:"Rodar um comando arbitrário" entry:"1567709439" modified:"1708450622" status:"pending" uuid:"03133858-d78e-494e-aaaa-4d01948d69e9"]
+---
+time 1708450622
+old [description:"Publicar no AUR" entry:"1596117718" modified:"1605758303" project:"dev.itask" status:"pending" uuid:"43673f69-de89-4293-99e1-0095e727e902"]
+new [description:"Publicar no AUR" entry:"1596117718" modified:"1708450622" status:"pending" uuid:"43673f69-de89-4293-99e1-0095e727e902"]
+---
+time 1708450622
+old [description:"Não excluir códigos de cores" entry:"1627363116" modified:"1685386635" project:"dev.itask" status:"pending" uuid:"dbc86ad2-dcb0-4a79-bd2d-e9e4543c6ae8"]
+new [description:"Não excluir códigos de cores" entry:"1627363116" modified:"1708450622" status:"pending" uuid:"dbc86ad2-dcb0-4a79-bd2d-e9e4543c6ae8"]
+---
+time 1708450622
+old [description:"Fazer navegação por projetos e tags" entry:"1627363539" modified:"1685386635" project:"dev.itask" status:"pending" uuid:"fc25b777-7bf6-4bf9-bf26-eaf0671af8bd"]
+new [description:"Fazer navegação por projetos e tags" entry:"1627363539" modified:"1708450622" status:"pending" uuid:"fc25b777-7bf6-4bf9-bf26-eaf0671af8bd"]
+---
+time 1708450622
+old [description:"Mudar cor quando a linha ativa está selecionada" entry:"1632860417" modified:"1685386635" project:"dev.itask" status:"pending" uuid:"c62f1265-1305-47e4-a030-bd49a62d281c"]
+new [description:"Mudar cor quando a linha ativa está selecionada" entry:"1632860417" modified:"1708450622" status:"pending" uuid:"c62f1265-1305-47e4-a030-bd49a62d281c"]
+---
+time 1708450622
+old [annotation_1633659812:"De acordo com o contexto e relatório ativo" description:"Parâmetros automaticos ao criar nova task" entry:"1633659794" modified:"1685386635" project:"dev.itask" status:"pending" uuid:"09860bf8-ecfa-47e6-a753-02b9f056729f"]
+new [annotation_1633659812:"De acordo com o contexto e relatório ativo" description:"Parâmetros automaticos ao criar nova task" entry:"1633659794" modified:"1708450622" status:"pending" uuid:"09860bf8-ecfa-47e6-a753-02b9f056729f"]
+---
+time 1708450622
+old [annotation_1637994338:"Posteriormente fazer uma configuração ou tentar descobrir se o comando default é um relatório (acho que não é complicado)" description:"Na seleção de relatório o padrão deve ser o next" entry:"1637994291" modified:"1637994338" project:"dev.itask" status:"pending" uuid:"200ffe5e-1cda-4078-9eb8-ad542fe7e29d"]
+new [annotation_1637994338:"Posteriormente fazer uma configuração ou tentar descobrir se o comando default é um relatório (acho que não é complicado)" description:"Na seleção de relatório o padrão deve ser o next" entry:"1637994291" modified:"1708450622" status:"pending" uuid:"200ffe5e-1cda-4078-9eb8-ad542fe7e29d"]
+---
+time 1708450622
+old [description:"Fazer comando de adicionar anotação à última tarefa criada" entry:"1638293942" modified:"1685386635" project:"dev.itask" status:"pending" uuid:"c75e5035-1fa9-4d23-ae89-1db3bbcd13f3"]
+new [description:"Fazer comando de adicionar anotação à última tarefa criada" entry:"1638293942" modified:"1708450622" status:"pending" uuid:"c75e5035-1fa9-4d23-ae89-1db3bbcd13f3"]
+---
+time 1708450622
+old [description:"Fazer autocomplete para o bash e zsh" entry:"1608067211" modified:"1685386635" project:"dev.itask" status:"pending" uuid:"90c7af78-20e9-4613-b67f-42a78e899736"]
+new [description:"Fazer autocomplete para o bash e zsh" entry:"1608067211" modified:"1708450622" status:"pending" uuid:"90c7af78-20e9-4613-b67f-42a78e899736"]
+---
+time 1708450622
+old [description:"Stack de filtros: incluir mudanças no contexto e relatório" entry:"1708449684" modified:"1708449684" project:"dev.itask" status:"pending" uuid:"d7560acf-1ba4-4ff1-8ee6-9bf774293188"]
+new [description:"Stack de filtros: incluir mudanças no contexto e relatório" entry:"1708449684" modified:"1708450622" status:"pending" uuid:"d7560acf-1ba4-4ff1-8ee6-9bf774293188"]
+---
+time 1708450622
+old [description:"Teclas de atalho configuradas não estão sobrepondo as teclas padrão" entry:"1708449734" modified:"1708449734" project:"dev.itask" status:"pending" uuid:"24da47a9-1f53-4191-b7ae-d4165c5db51a"]
+new [description:"Teclas de atalho configuradas não estão sobrepondo as teclas padrão" entry:"1708449734" modified:"1708450622" status:"pending" uuid:"24da47a9-1f53-4191-b7ae-d4165c5db51a"]
+---
