@@ -291,3 +291,29 @@ time 1708459707
 old [description:"Replace rofi.py with python-rofi dependency" entry:"1708459679" modified:"1708459679" status:"pending" tags:"rapido" tags_rapido:"x" uuid:"b8dfc48b-b646-4016-b44b-696fce24f1d9"]
 new [description:"Replace rofi.py with python-rofi dependency" entry:"1708459679" modified:"1708459707" status:"pending" tags:"quick" tags_quick:"x" uuid:"b8dfc48b-b646-4016-b44b-696fce24f1d9"]
 ---
+time 1708462697
+new [description:"Problem on filter stack" entry:"1708462697" modified:"1708462697" status:"pending" tags:"bug" tags_bug:"x" uuid:"e15ef04a-0b53-45e8-b37c-0dec484d8f81"]
+---
+time 1708463307
+new [description:"Page up\/down key" entry:"1708463307" modified:"1708463307" status:"pending" uuid:"f5528a0f-f9a7-4282-ad77-e1b46a69f969"]
+---
+time 1708463655
+new [description:"Support extended keys on shortcuts" entry:"1708463655" modified:"1708463655" status:"pending" uuid:"8e3e1d3c-c273-490e-acad-bb2c42655bf7"]
+---
+time 1708463840
+new [description:"Command to show a config entry" entry:"1708463840" modified:"1708463840" status:"pending" uuid:"cf77a790-134e-49fa-83ff-32cef28a94d4"]
+---
+time 1708463870
+old [description:"Command to show a config entry" entry:"1708463840" modified:"1708463840" status:"pending" uuid:"cf77a790-134e-49fa-83ff-32cef28a94d4"]
+new [annotation_1708463870:"Or at least show a report filter" description:"Command to show a config entry" entry:"1708463840" modified:"1708463870" status:"pending" uuid:"cf77a790-134e-49fa-83ff-32cef28a94d4"]
+---
+time 1708463888
+old [annotation_1708463870:"Or at least show a report filter" description:"Command to show a config entry" entry:"1708463840" modified:"1708463870" status:"pending" uuid:"cf77a790-134e-49fa-83ff-32cef28a94d4"]
+new [annotation_1708463870:"Or at least show a report filter" annotation_1708463888:"Run a custom command would be perfect" description:"Command to show a config entry" entry:"1708463840" modified:"1708463888" status:"pending" uuid:"cf77a790-134e-49fa-83ff-32cef28a94d4"]
+---
+time 1708464504
+new [description:"Report command: when nothing informed shoud use default command" entry:"1708464504" modified:"1708464504" status:"pending" uuid:"d1870471-ebb5-4517-a31a-b124fba1b494"]
+---
+time 1708540354
+new [description:"Às vezes não está abrindo" entry:"1708540354" modified:"1708540354" status:"pending" tags:"bug" tags_bug:"x" uuid:"dd587a6e-3da4-453b-b413-348c651a1c85"]
+---
