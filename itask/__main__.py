@@ -549,7 +549,7 @@ def main():
     taskwarrior_wrapper = TaskwarriorWrapper(args.task_data)
 
     if args.rofi:
-        import rofi
+        from . import rofi
 
         rofi = rofi.Rofi()
 
