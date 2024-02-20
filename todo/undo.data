@@ -264,3 +264,11 @@ time 1708450622
 old [description:"Teclas de atalho configuradas não estão sobrepondo as teclas padrão" entry:"1708449734" modified:"1708449734" project:"dev.itask" status:"pending" uuid:"24da47a9-1f53-4191-b7ae-d4165c5db51a"]
 new [description:"Teclas de atalho configuradas não estão sobrepondo as teclas padrão" entry:"1708449734" modified:"1708450622" status:"pending" uuid:"24da47a9-1f53-4191-b7ae-d4165c5db51a"]
 ---
+time 1708450887
+old [description:"Adicionar suporte ao tasknote" entry:"1536236057" modified:"1708450622" status:"pending" uuid:"fae7ee7d-9ecc-46f6-8f6f-5c58b31f23ab"]
+new [description:"Adicionar suporte ao tasknote" end:"1708450887" entry:"1536236057" modified:"1708450887" status:"completed" uuid:"fae7ee7d-9ecc-46f6-8f6f-5c58b31f23ab"]
+---
+time 1708450890
+old [description:"Alterar teclas de navegação para ficar iguais às do vim" entry:"1525789129" modified:"1708450622" status:"pending" tags:"rapido" tags_rapido:"x" uuid:"fcf4e4f3-2b95-4b16-a851-b3b43ec2ef83"]
+new [description:"Alterar teclas de navegação para ficar iguais às do vim" end:"1708450890" entry:"1525789129" modified:"1708450890" status:"completed" tags:"rapido" tags_rapido:"x" uuid:"fcf4e4f3-2b95-4b16-a851-b3b43ec2ef83"]
+---

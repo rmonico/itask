@@ -74,3 +74,5 @@
 {"description":"Fazer autocomplete para o bash e zsh","entry":"20201215T212011Z","modified":"20240220T173702Z","status":"pending","uuid":"90c7af78-20e9-4613-b67f-42a78e899736"}
 {"description":"Stack de filtros: incluir mudanças no contexto e relatório","entry":"20240220T172124Z","modified":"20240220T173702Z","status":"pending","uuid":"d7560acf-1ba4-4ff1-8ee6-9bf774293188"}
 {"description":"Teclas de atalho configuradas não estão sobrepondo as teclas padrão","entry":"20240220T172214Z","modified":"20240220T173702Z","status":"pending","uuid":"24da47a9-1f53-4191-b7ae-d4165c5db51a"}
+{"description":"Adicionar suporte ao tasknote","end":"20240220T174127Z","entry":"20180906T121417Z","modified":"20240220T174127Z","status":"completed","uuid":"fae7ee7d-9ecc-46f6-8f6f-5c58b31f23ab"}
+{"description":"Alterar teclas de navegação para ficar iguais às do vim","end":"20240220T174130Z","entry":"20180508T141849Z","modified":"20240220T174130Z","status":"completed","uuid":"fcf4e4f3-2b95-4b16-a851-b3b43ec2ef83","tags":["rapido"]}
