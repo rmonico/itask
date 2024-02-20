@@ -43,5 +43,3 @@ def get(key):
         entry = entry[subkey]
 
     return entry
-
-

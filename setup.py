@@ -1,7 +1,10 @@
 from setuptools import setup
+from itask import get_version
+
+version = get_version()
 
 setup(name='iTask',
-      version='0.3.11',
+      version=version,
       description='A CLI frontend to easier the use of Taskwarrior',
       url='https://github.com/rmonico/itask',
       author='Rafael Monico',
@@ -10,6 +13,6 @@ setup(name='iTask',
       packages=['itask'],
       include_package_data=True,
       entry_points={
-          'console_scripts': ['itask=itask.itask:main'],
+          'console_scripts': ['itask=itask.__main__:main'],
       },
       zip_safe=False)

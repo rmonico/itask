@@ -1,1 +1,2 @@
 include itask/default_keys.yaml
+include itask/__version__

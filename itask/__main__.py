@@ -1,21 +1,17 @@
-#!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
 import argparse
 import shutil
 from itask import configs
 from itask.dataprovider import DataProvider
-from itask.imenu import Menu, MenuItem, Navigable, BackMenuItem
+from itask.imenu import Menu, MenuItem, Navigable
 from itask.selection import Selection
 from itask.taskwarriorreportparser import TaskwarriorReportParser
 from itask.taskwarriorwrapper import TaskwarriorWrapper
 from itask.viewer import Viewer, Region
+from itask import get_version
 
 from itask import console
-
-import signal
-
-import yaml
 
 
 class MainMenu(Navigable):
@@ -512,7 +508,7 @@ class MainMenu(Navigable):
 
 
 def parse_command_line():
-    parser = argparse.ArgumentParser()
+    parser = argparse.ArgumentParser(prog='iTask')
 
     parser.add_argument('--task-data', help='Override TASKDATA environment variable')
 
@@ -523,6 +519,9 @@ def parse_command_line():
     parser.add_argument('-c', '--context', help='Initial context')
 
     parser.add_argument('--rofi', action='store_true', help='Open rofi selection menu')
+
+    version = get_version()
+    parser.add_argument('--version', action='version', version=f'%(prog)s {version}')
 
     return parser.parse_args()
 
