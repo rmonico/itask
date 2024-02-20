@@ -28,7 +28,7 @@ actions:
   delete: D
   undo: U
   reload: R
-  sync: s
+  sync: S
   select_report: r
   select_context: c
   show_projects: p
