@@ -3,16 +3,18 @@ import yaml
 
 
 def load():
+    global _configs
+    _configs = _get_config_defaults()
+
     config_file = _get_config_file()
 
-    global _configs
     if not os.path.exists(config_file):
-        _configs = {}
-    else:
-        with open(config_file) as file:
-            _configs = yaml.safe_load(file) or {}
+        return
 
-    _add_config_defaults()
+    with open(config_file) as file:
+        user_configs = yaml.safe_load(file) or {}
+
+    _configs.update(user_configs)
 
 
 def _get_config_file():
@@ -26,14 +28,11 @@ def _get_config_folder():
     return os.environ.get('XDG_CONFIG_FOLDER', os.path.join(os.environ['HOME'], '.config', 'itask'))
 
 
-def _add_config_defaults():
+def _get_config_defaults():
     from importlib import resources
     file = resources.files('itask').joinpath('default_keys.yaml').read_text()
 
-    defaults = yaml.safe_load(file)
-
-    global _configs
-    _configs.update(defaults)
+    return yaml.safe_load(file)
 
 
 def get(key):
