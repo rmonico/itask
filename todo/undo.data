@@ -272,3 +272,22 @@ time 1708450890
 old [description:"Alterar teclas de navegação para ficar iguais às do vim" entry:"1525789129" modified:"1708450622" status:"pending" tags:"rapido" tags_rapido:"x" uuid:"fcf4e4f3-2b95-4b16-a851-b3b43ec2ef83"]
 new [description:"Alterar teclas de navegação para ficar iguais às do vim" end:"1708450890" entry:"1525789129" modified:"1708450890" status:"completed" tags:"rapido" tags_rapido:"x" uuid:"fcf4e4f3-2b95-4b16-a851-b3b43ec2ef83"]
 ---
+time 1708459679
+new [description:"Replace rofi.py with python-rofi dependency" entry:"1708459679" modified:"1708459679" status:"pending" tags:"rapido" tags_rapido:"x" uuid:"b8dfc48b-b646-4016-b44b-696fce24f1d9"]
+---
+time 1708459707
+old [description:"Fazer opção de help e tirar as teclas de atalho da barra inferior" entry:"1525786738" modified:"1708450622" status:"pending" tags:"rapido" tags_rapido:"x" uuid:"579578e2-e724-4b46-a404-365d170baba8"]
+new [description:"Fazer opção de help e tirar as teclas de atalho da barra inferior" entry:"1525786738" modified:"1708459707" status:"pending" tags:"quick" tags_quick:"x" uuid:"579578e2-e724-4b46-a404-365d170baba8"]
+---
+time 1708459707
+old [description:"Confirmar fechamento do programa" entry:"1526662600" modified:"1708450622" status:"pending" tags:"rapido" tags_rapido:"x" uuid:"39887ef0-f0ef-484d-b74f-dfb5896f0d75"]
+new [description:"Confirmar fechamento do programa" entry:"1526662600" modified:"1708459707" status:"pending" tags:"quick" tags_quick:"x" uuid:"39887ef0-f0ef-484d-b74f-dfb5896f0d75"]
+---
+time 1708459707
+old [description:"Fazer comando para chamar o tasksh" entry:"1529590881" modified:"1708450622" status:"pending" tags:"rapido" tags_rapido:"x" uuid:"9ed63534-170b-4dac-a843-c5750c8ef32e"]
+new [description:"Fazer comando para chamar o tasksh" entry:"1529590881" modified:"1708459707" status:"pending" tags:"quick" tags_quick:"x" uuid:"9ed63534-170b-4dac-a843-c5750c8ef32e"]
+---
+time 1708459707
+old [description:"Replace rofi.py with python-rofi dependency" entry:"1708459679" modified:"1708459679" status:"pending" tags:"rapido" tags_rapido:"x" uuid:"b8dfc48b-b646-4016-b44b-696fce24f1d9"]
+new [description:"Replace rofi.py with python-rofi dependency" entry:"1708459679" modified:"1708459707" status:"pending" tags:"quick" tags_quick:"x" uuid:"b8dfc48b-b646-4016-b44b-696fce24f1d9"]
+---

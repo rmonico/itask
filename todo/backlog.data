@@ -76,3 +76,8 @@
 {"description":"Teclas de atalho configuradas não estão sobrepondo as teclas padrão","entry":"20240220T172214Z","modified":"20240220T173702Z","status":"pending","uuid":"24da47a9-1f53-4191-b7ae-d4165c5db51a"}
 {"description":"Adicionar suporte ao tasknote","end":"20240220T174127Z","entry":"20180906T121417Z","modified":"20240220T174127Z","status":"completed","uuid":"fae7ee7d-9ecc-46f6-8f6f-5c58b31f23ab"}
 {"description":"Alterar teclas de navegação para ficar iguais às do vim","end":"20240220T174130Z","entry":"20180508T141849Z","modified":"20240220T174130Z","status":"completed","uuid":"fcf4e4f3-2b95-4b16-a851-b3b43ec2ef83","tags":["rapido"]}
+{"description":"Replace rofi.py with python-rofi dependency","entry":"20240220T200759Z","modified":"20240220T200759Z","status":"pending","uuid":"b8dfc48b-b646-4016-b44b-696fce24f1d9","tags":["rapido"]}
+{"description":"Fazer opção de help e tirar as teclas de atalho da barra inferior","entry":"20180508T133858Z","modified":"20240220T200827Z","status":"pending","uuid":"579578e2-e724-4b46-a404-365d170baba8","tags":["quick"]}
+{"description":"Confirmar fechamento do programa","entry":"20180518T165640Z","modified":"20240220T200827Z","status":"pending","uuid":"39887ef0-f0ef-484d-b74f-dfb5896f0d75","tags":["quick"]}
+{"description":"Fazer comando para chamar o tasksh","entry":"20180621T142121Z","modified":"20240220T200827Z","status":"pending","uuid":"9ed63534-170b-4dac-a843-c5750c8ef32e","tags":["quick"]}
+{"description":"Replace rofi.py with python-rofi dependency","entry":"20240220T200759Z","modified":"20240220T200827Z","status":"pending","uuid":"b8dfc48b-b646-4016-b44b-696fce24f1d9","tags":["quick"]}
