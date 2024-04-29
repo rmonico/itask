@@ -41,3 +41,4 @@
 [annotation_1708463870:"Or at least show a report filter" annotation_1708463888:"Run a custom command would be perfect" description:"Command to show a config entry" entry:"1708463840" modified:"1708463888" status:"pending" uuid:"cf77a790-134e-49fa-83ff-32cef28a94d4"]
 [description:"Report command: when nothing informed shoud use default command" entry:"1708464504" modified:"1708464504" status:"pending" uuid:"d1870471-ebb5-4517-a31a-b124fba1b494"]
 [description:"Às vezes não está abrindo" entry:"1708540354" modified:"1708540354" status:"pending" tags:"bug" tags_bug:"x" uuid:"dd587a6e-3da4-453b-b413-348c651a1c85"]
+[description:"Implementar comandos zt\/zz\/zb" entry:"1714408746" modified:"1714408746" status:"pending" uuid:"e2d41d0d-adef-49e4-9380-cb23d5ede58d"]

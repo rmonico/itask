@@ -89,3 +89,4 @@
 {"description":"Command to show a config entry","entry":"20240220T211720Z","modified":"20240220T211808Z","status":"pending","uuid":"cf77a790-134e-49fa-83ff-32cef28a94d4","annotations":[{"entry":"20240220T211750Z","description":"Or at least show a report filter"},{"entry":"20240220T211808Z","description":"Run a custom command would be perfect"}]}
 {"description":"Report command: when nothing informed shoud use default command","entry":"20240220T212824Z","modified":"20240220T212824Z","status":"pending","uuid":"d1870471-ebb5-4517-a31a-b124fba1b494"}
 {"description":"Às vezes não está abrindo","entry":"20240221T183234Z","modified":"20240221T183234Z","status":"pending","uuid":"dd587a6e-3da4-453b-b413-348c651a1c85","tags":["bug"]}
+{"description":"Implementar comandos zt\/zz\/zb","entry":"20240429T163906Z","modified":"20240429T163906Z","status":"pending","uuid":"e2d41d0d-adef-49e4-9380-cb23d5ede58d"}
