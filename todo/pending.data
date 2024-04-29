@@ -42,3 +42,4 @@
 [description:"Report command: when nothing informed shoud use default command" entry:"1708464504" modified:"1708464504" status:"pending" uuid:"d1870471-ebb5-4517-a31a-b124fba1b494"]
 [description:"Às vezes não está abrindo" entry:"1708540354" modified:"1708540354" status:"pending" tags:"bug" tags_bug:"x" uuid:"dd587a6e-3da4-453b-b413-348c651a1c85"]
 [description:"Implementar comandos zt\/zz\/zb" entry:"1714408746" modified:"1714408746" status:"pending" uuid:"e2d41d0d-adef-49e4-9380-cb23d5ede58d"]
+[description:"Context command: list existing contexts" entry:"1714409063" modified:"1714409063" status:"pending" uuid:"629c8254-83f9-44d7-87fb-2dfe1dbbde2b"]

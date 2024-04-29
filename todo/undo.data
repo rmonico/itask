@@ -320,3 +320,6 @@ new [description:"Às vezes não está abrindo" entry:"1708540354" modified:"170
 time 1714408746
 new [description:"Implementar comandos zt\/zz\/zb" entry:"1714408746" modified:"1714408746" status:"pending" uuid:"e2d41d0d-adef-49e4-9380-cb23d5ede58d"]
 ---
+time 1714409063
+new [description:"Context command: list existing contexts" entry:"1714409063" modified:"1714409063" status:"pending" uuid:"629c8254-83f9-44d7-87fb-2dfe1dbbde2b"]
+---
