@@ -35,7 +35,7 @@
 [description:"Stack de filtros: incluir mudanças no contexto e relatório" entry:"1708449684" modified:"1708450622" status:"pending" uuid:"d7560acf-1ba4-4ff1-8ee6-9bf774293188"]
 [description:"Teclas de atalho configuradas não estão sobrepondo as teclas padrão" entry:"1708449734" modified:"1708450622" status:"pending" uuid:"24da47a9-1f53-4191-b7ae-d4165c5db51a"]
 [description:"Replace rofi.py with python-rofi dependency" entry:"1708459679" modified:"1708459707" status:"pending" tags:"quick" tags_quick:"x" uuid:"b8dfc48b-b646-4016-b44b-696fce24f1d9"]
-[description:"Problem on filter stack" entry:"1708462697" modified:"1708462697" status:"pending" tags:"bug" tags_bug:"x" uuid:"e15ef04a-0b53-45e8-b37c-0dec484d8f81"]
+[description:"Filter stack: when change report should include it on filter" entry:"1708462697" modified:"1715361762" status:"pending" tags:"bug" tags_bug:"x" uuid:"e15ef04a-0b53-45e8-b37c-0dec484d8f81"]
 [description:"Page up\/down key" entry:"1708463307" modified:"1708463307" status:"pending" uuid:"f5528a0f-f9a7-4282-ad77-e1b46a69f969"]
 [description:"Support extended keys on shortcuts" entry:"1708463655" modified:"1708463655" status:"pending" uuid:"8e3e1d3c-c273-490e-acad-bb2c42655bf7"]
 [annotation_1708463870:"Or at least show a report filter" annotation_1708463888:"Run a custom command would be perfect" description:"Command to show a config entry" entry:"1708463840" modified:"1708463888" status:"pending" uuid:"cf77a790-134e-49fa-83ff-32cef28a94d4"]
