@@ -92,3 +92,4 @@
 {"description":"Implementar comandos zt\/zz\/zb","entry":"20240429T163906Z","modified":"20240429T163906Z","status":"pending","uuid":"e2d41d0d-adef-49e4-9380-cb23d5ede58d"}
 {"description":"Context command: list existing contexts","entry":"20240429T164423Z","modified":"20240429T164423Z","status":"pending","uuid":"629c8254-83f9-44d7-87fb-2dfe1dbbde2b"}
 {"description":"Filter stack: when change report should include it on filter","entry":"20240220T205817Z","modified":"20240510T172242Z","status":"pending","uuid":"e15ef04a-0b53-45e8-b37c-0dec484d8f81","tags":["bug"]}
+{"description":"Adicionar suporte ao comando calendar","entry":"20240603T150820Z","modified":"20240603T150820Z","status":"pending","uuid":"bb3ef97b-d3b4-4424-96da-2e4e45a71249"}

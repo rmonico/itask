@@ -327,3 +327,6 @@ time 1715361762
 old [description:"Problem on filter stack" entry:"1708462697" modified:"1708462697" status:"pending" tags:"bug" tags_bug:"x" uuid:"e15ef04a-0b53-45e8-b37c-0dec484d8f81"]
 new [description:"Filter stack: when change report should include it on filter" entry:"1708462697" modified:"1715361762" status:"pending" tags:"bug" tags_bug:"x" uuid:"e15ef04a-0b53-45e8-b37c-0dec484d8f81"]
 ---
+time 1717427300
+new [description:"Adicionar suporte ao comando calendar" entry:"1717427300" modified:"1717427300" status:"pending" uuid:"bb3ef97b-d3b4-4424-96da-2e4e45a71249"]
+---
