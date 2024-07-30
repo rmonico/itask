@@ -330,3 +330,6 @@ new [description:"Filter stack: when change report should include it on filter" 
 time 1717427300
 new [description:"Adicionar suporte ao comando calendar" entry:"1717427300" modified:"1717427300" status:"pending" uuid:"bb3ef97b-d3b4-4424-96da-2e4e45a71249"]
 ---
+time 1722360654
+new [description:"After edit dont ask to press a key to continue" entry:"1722360654" modified:"1722360654" status:"pending" tags:"bug" tags_bug:"x" uuid:"4f9beeb0-402b-4a40-a5c7-183f207a3243"]
+---

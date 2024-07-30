@@ -44,3 +44,4 @@
 [description:"Implementar comandos zt\/zz\/zb" entry:"1714408746" modified:"1714408746" status:"pending" uuid:"e2d41d0d-adef-49e4-9380-cb23d5ede58d"]
 [description:"Context command: list existing contexts" entry:"1714409063" modified:"1714409063" status:"pending" uuid:"629c8254-83f9-44d7-87fb-2dfe1dbbde2b"]
 [description:"Adicionar suporte ao comando calendar" entry:"1717427300" modified:"1717427300" status:"pending" uuid:"bb3ef97b-d3b4-4424-96da-2e4e45a71249"]
+[description:"After edit dont ask to press a key to continue" entry:"1722360654" modified:"1722360654" status:"pending" tags:"bug" tags_bug:"x" uuid:"4f9beeb0-402b-4a40-a5c7-183f207a3243"]
