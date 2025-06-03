@@ -247,7 +247,7 @@ class MainMenu(Navigable):
 
         from subprocess import run
 
-        cmdline = f'tasknote {id} e'.split(' ')
+        cmdline = f'tasknote edit-or-create {id}'.split(' ')
 
         run(cmdline)
 
