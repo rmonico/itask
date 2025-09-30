@@ -15,4 +15,5 @@ setup(name='iTask',
       entry_points={
           'console_scripts': ['itask=itask.__main__:main'],
       },
-      zip_safe=False)
+      zip_safe=False,
+      install_requires=['PyYaml==6.0.3'])
