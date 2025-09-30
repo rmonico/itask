@@ -16,4 +16,4 @@ setup(name='iTask',
           'console_scripts': ['itask=itask.__main__:main'],
       },
       zip_safe=False,
-      install_requires=['PyYaml==6.0.3'])
+      install_requires=['PyYaml==6.0.3', 'rmonico.tabular==0.0.1'])
