@@ -51,7 +51,7 @@ class TaskwarriorWrapper(object):
         items = dict()
 
         for line in stdout:
-            matchs = re.match('^([a-z0-9_\.]+) +(.*)', line)
+            matchs = re.match(r'^([a-z0-9_\.]+) +(.*)', line)
             if matchs:
                 groups = matchs.groups()
                 key = groups[0]
@@ -176,7 +176,7 @@ class TaskwarriorWrapper(object):
         reports = dict()
 
         for line in stdout:
-            matchs = re.match('^([a-z0-9_\.]+) +(.*)', line)
+            matchs = re.match(r'^([a-z0-9_\.]+) +(.*)', line)
             if matchs:
                 groups = matchs.groups()
                 reports[groups[0]] = groups[1]
@@ -189,7 +189,7 @@ class TaskwarriorWrapper(object):
     def tags(self):
         self._internal_run(['tags'])
 
-    def get_config(self, config):
+    def get_config(self, config, default=None):
         # TODO Usar o _parse_table
         process = self._internal_run(['show', config], redirect_stdouterr=True)
 
@@ -197,13 +197,13 @@ class TaskwarriorWrapper(object):
 
         entry = [line for line in stdout[3:] if line.startswith(config)]
         if len(entry) == 0:
-            return None
+            return default
         else:
             entry = entry[0]
 
         separator_index = entry.find(' ')
 
-        return entry[separator_index + 1:]
+        return entry[separator_index + 1:] or default
 
     def invalidate_data(self):
         self._notify_listeners('data changed')

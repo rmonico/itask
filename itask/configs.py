@@ -25,7 +25,8 @@ def _get_config_file():
 
 
 def _get_config_folder():
-    return os.environ.get('XDG_CONFIG_FOLDER', os.path.join(os.environ['HOME'], '.config', 'itask'))
+    return os.environ.get('XDG_CONFIG_FOLDER',
+                          os.path.join(os.environ['HOME'], '.config', 'itask'))
 
 
 def _get_config_defaults():

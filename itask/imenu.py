@@ -12,7 +12,8 @@ import signal
 
 class MenuItem(object):
 
-    def __init__(self, hotkey, title='', action=None, visible=True, interactive=True):
+    def __init__(self, hotkey, title='', action=None, visible=True,
+                 interactive=True):
         self.hotkey = hotkey
         self.title = title
         self.action = action
@@ -27,7 +28,9 @@ class MenuItem(object):
 class QuitMenuItem(MenuItem):
 
     def __init__(self, hotkey=None, title='Quit', action=None):
-        super(QuitMenuItem, self).__init__(title=title, hotkey=hotkey or configs.get('actions.quit'), action=action)
+        hotkey = hotkey or configs.get('actions.quit')
+        super(QuitMenuItem, self).__init__(title=title, hotkey=hotkey,
+                                           action=action)
 
     def run(self):
         result = super(QuitMenuItem, self).run()
@@ -38,7 +41,8 @@ class QuitMenuItem(MenuItem):
 class BackMenuItem(MenuItem):
 
     def __init__(self, hotkey='b', title='Back', action=lambda: 'back'):
-        super(BackMenuItem, self).__init__(title=title, hotkey=hotkey, action=action)
+        super(BackMenuItem, self).__init__(title=title, hotkey=hotkey,
+                                           action=action)
 
     def run(self):
         result = super(BackMenuItem, self).run()
@@ -93,12 +97,20 @@ class Menu(object):
         self.items = []
 
         if redraw:
-            self.items += [MenuItem(title='Redraw', hotkey=configs.get('navigation.move.reload'))]
+            redraw_menuitem = MenuItem(
+                    title='Redraw',
+                    hotkey=configs.get('navigation.move.reload'))
+            self.items.append(redraw_menuitem)
 
         if back:
             self.items += [MenuItem(title='Back', hotkey='b')]
 
-        self._listeners = {'render': [], 'item chosen': [], 'after action': [], 'terminal resized': []}
+        self._listeners = {
+                'render': [],
+                'item chosen': [],
+                'after action': [],
+                'terminal resized': []
+                }
 
         signal.signal(signal.SIGWINCH, self._terminal_resized)
 
@@ -120,21 +132,76 @@ class Menu(object):
 
     def append_navigation_keys(self, navigable):
         # Vertical
-        self.items.append(MenuItem(configs.get('navigation.move.next'), action=navigable.activate_next, visible=False, interactive=False))
-        self.items.append(MenuItem(configs.get('navigation.move.previous'), action=navigable.activate_previous, visible=False, interactive=False))
-        self.items.append(MenuItem(configs.get('navigation.scroll.down'), action=navigable.viewer_down, visible=False, interactive=False))
-        self.items.append(MenuItem(configs.get('navigation.scroll.up'), action=navigable.viewer_up, visible=False, interactive=False))
-        self.items.append(MenuItem(configs.get('navigation.move.first'), action=navigable.activate_first, visible=False, interactive=False))
-        self.items.append(MenuItem(configs.get('navigation.move.last'), action=navigable.activate_last, visible=False, interactive=False))
+        self.items.append(
+                MenuItem(
+                    configs.get('navigation.move.next'),
+                    action=navigable.activate_next,
+                    visible=False,
+                    interactive=False))
+        self.items.append(
+                MenuItem(
+                    configs.get('navigation.move.previous'),
+                    action=navigable.activate_previous,
+                    visible=False,
+                    interactive=False))
+        self.items.append(
+                MenuItem(
+                    configs.get('navigation.scroll.down'),
+                    action=navigable.viewer_down,
+                    visible=False,
+                    interactive=False))
+        self.items.append(
+                MenuItem(
+                    configs.get('navigation.scroll.up'),
+                    action=navigable.viewer_up,
+                    visible=False,
+                    interactive=False))
+        self.items.append(
+                MenuItem(
+                    configs.get('navigation.move.first'),
+                    action=navigable.activate_first,
+                    visible=False,
+                    interactive=False))
+        self.items.append(
+                MenuItem(
+                    configs.get('navigation.move.last'),
+                    action=navigable.activate_last,
+                    visible=False,
+                    interactive=False))
 
         # Horizontal
-        self.items.append(MenuItem(configs.get('navigation.scroll.left'), action=navigable.viewer_left, visible=False, interactive=False))
-        self.items.append(MenuItem(configs.get('navigation.scroll.right'), action=navigable.viewer_right, visible=False, interactive=False))
-        self.items.append(MenuItem(configs.get('navigation.scroll.begin'), action=navigable.viewer_begin, visible=False, interactive=False))
-        self.items.append(MenuItem(configs.get('navigation.scroll.end'), action=navigable.viewer_end, visible=False, interactive=False))
+        self.items.append(
+                MenuItem(
+                    configs.get('navigation.scroll.left'),
+                    action=navigable.viewer_left,
+                    visible=False,
+                    interactive=False))
+        self.items.append(
+                MenuItem(
+                    configs.get('navigation.scroll.right'),
+                    action=navigable.viewer_right,
+                    visible=False,
+                    interactive=False))
+        self.items.append(
+                MenuItem(
+                    configs.get('navigation.scroll.begin'),
+                    action=navigable.viewer_begin,
+                    visible=False,
+                    interactive=False))
+        self.items.append(
+                MenuItem(
+                    configs.get('navigation.scroll.end'),
+                    action=navigable.viewer_end,
+                    visible=False,
+                    interactive=False))
 
         # Selection
-        self.items.append(MenuItem(configs.get('navigation.toggle_selected'), action=navigable.toggle_selected, visible=False, interactive=False))
+        self.items.append(
+                MenuItem(
+                    configs.get('navigation.toggle_selected'),
+                    action=navigable.toggle_selected,
+                    visible=False,
+                    interactive=False))
 
     def _initialize(self):
         visible_items = []
@@ -172,7 +239,8 @@ class Menu(object):
 
                     break
 
-            self._notify_listeners('after action', item=item if item_found else None)
+            item = item if item_found else None
+            self._notify_listeners('after action', item=item)
 
     def render(self):
         terminal_size = shutil.get_terminal_size()
@@ -184,7 +252,8 @@ class Menu(object):
         sys.stdout.flush()
 
         console.move_cursor(1, terminal_size.lines)
-        itens_string = '{}'.format(self._itens_string)[:terminal_size.columns - 1]
+        last_column = terminal_size.columns - 1
+        itens_string = '{}'.format(self._itens_string)[:last_column]
         sys.stdout.write(itens_string)
 
         sys.stdout.flush()
@@ -195,4 +264,5 @@ class Menu(object):
 
         size = shutil.get_terminal_size()
 
-        self._notify_listeners('terminal resized', columns=size.columns, lines=size.lines)
+        self._notify_listeners('terminal resized', columns=size.columns,
+                               lines=size.lines)

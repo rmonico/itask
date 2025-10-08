@@ -1,3 +1,6 @@
+import signal
+
+
 class TerminalResizeListener(object):
 
     _instance = None
@@ -25,4 +28,3 @@ class TerminalResizeListener(object):
 
     def unregister_listener(self, handler):
         self._listeners.remove(handler)
-

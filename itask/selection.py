@@ -22,7 +22,8 @@ class Selection(object):
 
     def _is_new_active_line_valid(self, new_line):
         if self._constraints['top'] and self._constraints['bottom']:
-            return new_line in range(self._constraints['top'], self._constraints['bottom'])
+            return new_line in range(self._constraints['top'],
+                                     self._constraints['bottom'])
 
         return True
 
@@ -41,7 +42,8 @@ class Selection(object):
 
             self.active_line = new_line
 
-            self._notify_listeners('changed', old_line=old_line, new_line=new_line)
+            self._notify_listeners('changed', old_line=old_line,
+                                   new_line=new_line)
 
             return True
 

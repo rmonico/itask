@@ -14,18 +14,23 @@ viewer_height_default = 'terminal_lines'
 
 class Region(object):
 
-    def __init__(self, size, position={'left': 0, 'top': 0}, horizontal_constraints={'left': 0, 'right': 'width'},
+    def __init__(self, size, position={'left': 0, 'top': 0},
+                 horizontal_constraints={'left': 0, 'right': 'width'},
                  vertical_constraints={'top': 0, 'bottom': 'height'}):
         """
             size: A dictionary with "width" and "height" entries.
             position: A dictionary with "left" and "top" entries.
-            horizontal_constraints: A dictionary with "top" and "bottom" entries.
+            horizontal_constraints: A dictionary with "top" and "bottom"
+                entries.
             vertical_constraints: A dictionary with "left" and "right" entries.
         """
         self._size = size
         self._position = position.copy()
 
-        self._left_constraints = {'min': horizontal_constraints['left'], 'max': 0}
+        self._left_constraints = {
+                'min': horizontal_constraints['left'],
+                'max': 0
+                }
         if horizontal_constraints['right'] == 'width':
             self._left_constraints['max'] = self._size['width']
         else:
@@ -54,12 +59,14 @@ class Region(object):
     def _horizontal_move(self, cells):
         new_left = self._position['left'] + cells
 
-        if new_left in range(self._left_constraints['min'], self._left_constraints['max'] + 1):
+        if new_left in range(self._left_constraints['min'],
+                             self._left_constraints['max'] + 1):
             old_left = self._position['left']
 
             self._position['left'] = new_left
 
-            self._notify_listeners('horizontal move', old_left=old_left, new_left=new_left)
+            self._notify_listeners('horizontal move', old_left=old_left,
+                                   new_left=new_left)
 
             return True
 
@@ -68,12 +75,14 @@ class Region(object):
     def _vertical_move(self, cells):
         new_top = self._position['top'] + cells
 
-        if new_top in range(self._top_constraints['min'], self._top_constraints['max'] + 1):
+        if new_top in range(self._top_constraints['min'],
+                            self._top_constraints['max'] + 1):
             old_top = self._position['top']
 
             self._position['top'] = new_top
 
-            self._notify_listeners('vertical move', old_top=old_top, new_top=new_top)
+            self._notify_listeners('vertical move', old_top=old_top,
+                                   new_top=new_top)
 
             return True
 
@@ -101,15 +110,18 @@ class Region(object):
 
             return self._vertical_move(cells_to_top)
         elif direction == 'bottom':
-            cells_to_bottom = self._top_constraints['max'] - self._position['top']
+            top = self._position['top']
+            cells_to_bottom = self._top_constraints['max'] - top
 
             return self._vertical_move(cells_to_bottom)
         elif direction == 'begin':
-            cells_to_begin = self._left_constraints['min'] - self._position['left']
+            left = self._position['left']
+            cells_to_begin = self._left_constraints['min'] - left
 
             return self._horizontal_move(cells_to_begin)
         elif direction == 'end':
-            cells_to_end = self._left_constraints['max'] - self._position['left']
+            left = self._position['left']
+            cells_to_end = self._left_constraints['max'] - left
 
             return self._horizontal_move(cells_to_end)
 
@@ -136,11 +148,13 @@ class Region(object):
 
 class Viewer(object):
     """
-        For method move('top'/'bottom') work fine vertical_constraints must be set! (idem to move('begin'/'end'))
+        For method move('top'/'bottom') work fine vertical_constraints must be
+        set! (idem to move('begin'/'end'))
     """
 
     # Refatorar para colocar o screen_left e top em um dicionário
-    def __init__(self, data_provider, region, selection=None, screen_left=0, screen_top=0):
+    def __init__(self, data_provider, region, selection=None, screen_left=0,
+                 screen_top=0):
         """
             region: Region on file being visualized by this Viewer
         """
@@ -148,7 +162,8 @@ class Viewer(object):
 
         self.region = region
         region.register_listener('vertical move', self.region_vertically_moved)
-        region.register_listener('horizontal move', self.region_horizontally_moved)
+        region.register_listener('horizontal move',
+                                 self.region_horizontally_moved)
 
         self._selection = selection
 
@@ -212,12 +227,15 @@ class Viewer(object):
             if self._selection:
                 if self._selection.active_line == read_lines:
                     if read_lines in self._selection.selected_lines:
-                        line_itens += [console.SEQUENCE_ESCAPES['cyan background']]
+                        cyan_bg = console.SEQUENCE_ESCAPES['cyan background']
+                        line_itens += [cyan_bg]
                     else:
-                        line_itens += [console.SEQUENCE_ESCAPES['blue background']]
+                        blue_bg = console.SEQUENCE_ESCAPES['blue background']
+                        line_itens += [blue_bg]
                     colored_line = True
                 elif read_lines in self._selection.selected_lines:
-                    line_itens += [console.SEQUENCE_ESCAPES['white background']]
+                    white_bg = console.SEQUENCE_ESCAPES['white background']
+                    line_itens += [white_bg]
                     colored_line = True
 
             line_itens += [bytes(line, sys.stdout.encoding)]
@@ -285,16 +303,21 @@ def parse_command_line():
     parser.add_argument("--verbose", action="store_true")
     parser.add_argument("-vs", "--viewer-size", type=_size,
                         default=viewer_width_default + 'x' +
-                                viewer_height_default,
+                        viewer_height_default,
                         help="Viewer's size. Format: <width>x<height>. \"" +
                              viewer_width_default + "\" and \"" +
                              viewer_height_default + "\" can be used too.")
-    parser.add_argument("-fp", "--file-position", type=_position, default='0x0',
-                        help="Position of data to be clipped, 0 indexed. Format: <left>x<top>. Default: \"0x0\"")
-    parser.add_argument("-sp", "--screen-position", type=_position, default='0x0',
-                        help="Position of screen to paste data, 0 indexed. Format: <left>x<top>. Default: \"0x0\"")
-    parser.add_argument("-f", "--file", type=argparse.FileType("rt"), default=sys.stdin,
-                        help="File to be viewed. Defaults to stdin")
+    parser.add_argument("-fp", "--file-position", type=_position,
+                        default='0x0', help="Position of data to be " +
+                        "clipped, 0 indexed. Format: <left>x<top>. " +
+                        "Default: \"0x0\"")
+    parser.add_argument("-sp", "--screen-position", type=_position,
+                        default='0x0', help="Position of screen to paste " +
+                        "data, 0 indexed. Format: <left>x<top>. " +
+                        "Default: \"0x0\"")
+    parser.add_argument("-f", "--file", type=argparse.FileType("rt"),
+                        default=sys.stdin, help="File to be viewed. " +
+                        "Defaults to stdin")
 
     args = parser.parse_args()
 
@@ -313,9 +336,14 @@ def parse_command_line():
 def main():
     args = parse_command_line()
 
-    viewer = Viewer(args.file, data_ruler(args.file), args.viewer_size.width, args.viewer_size.height,
+    viewer = Viewer(args.file,
+                    data_ruler(args.file),
+                    args.viewer_size.width,
+                    args.viewer_size.height,
                     args.file_position.left,
-                    args.file_position.top, args.screen_position.left, args.screen_position.top)
+                    args.file_position.top,
+                    args.screen_position.left,
+                    args.screen_position.top)
 
     viewer.update()
 

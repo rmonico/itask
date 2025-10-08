@@ -59,26 +59,95 @@ class MainMenu(Navigable):
         self.main_menu.register_listener('render', self.render)
         self.main_menu.register_listener('item chosen', self.item_chosen)
         self.main_menu.register_listener('after action', self.after_action)
-        self.main_menu.register_listener('terminal resized', self.terminal_resized)
+        self.main_menu.register_listener('terminal resized',
+                                         self.terminal_resized)
 
     def _load_keys(self):
-        self.main_menu.items.append(MenuItem(title='Add', hotkey=configs.get('actions.add'), action=self.task_add))
-        self.main_menu.items.append(MenuItem(title='Annotate', hotkey=configs.get('actions.annotate'), action=self.task_annotate))
-        self.main_menu.items.append(MenuItem(title='Note', hotkey=configs.get('actions.task_note'), action=self.task_note))
-        self.main_menu.items.append(MenuItem(title='Done', hotkey=configs.get('actions.done'), action=self.task_done))
-        self.main_menu.items.append(MenuItem(title='View', hotkey=configs.get('actions.view'), action=self.task_view))
-        self.main_menu.items.append(MenuItem(title='Mod', hotkey=configs.get('actions.modify'), action=self.task_mod))
-        self.main_menu.items.append(MenuItem(title='Filter', hotkey=configs.get('actions.filter'), action=self.set_filter))
-        self.main_menu.items.append(MenuItem(title='Append filter', hotkey=configs.get('actions.append_filter'), action=self.append_filter))
-        self.main_menu.items.append(MenuItem(title='Prev filter', hotkey=configs.get('actions.previous_filter'), action=self.previous_filter))
-        self.main_menu.items.append(MenuItem(title='Delete', hotkey=configs.get('actions.delete'), action=self.task_del))
-        self.main_menu.items.append(MenuItem(title='Undo', hotkey=configs.get('actions.undo'), action=self.task_undo))
-        self.main_menu.items.append(MenuItem(title='Reload', hotkey=configs.get('actions.reload'), action=self.task_reload))
-        self.main_menu.items.append(MenuItem(title='Sync', hotkey=configs.get('actions.sync'), action=self.task_sync))
-        self.main_menu.items.append(MenuItem(title='Report', hotkey=configs.get('actions.select_report'), action=self.select_report))
-        self.main_menu.items.append(MenuItem(title='Context', hotkey=configs.get('actions.select_context'), action=self.select_context))
-        self.main_menu.items.append(MenuItem(title='Projects', hotkey=configs.get('actions.show_projects'), action=self.show_projects))
-        self.main_menu.items.append(MenuItem(title='Tags', hotkey=configs.get('actions.show_tags'), action=self.show_tags))
+        self.main_menu.items.append(
+                MenuItem(
+                    title='Add',
+                    hotkey=configs.get('actions.add'),
+                    action=self.task_add))
+        self.main_menu.items.append(
+                MenuItem(
+                    title='Annotate',
+                    hotkey=configs.get('actions.annotate'),
+                    action=self.task_annotate))
+        self.main_menu.items.append(
+                MenuItem(
+                    title='Note',
+                    hotkey=configs.get('actions.task_note'),
+                    action=self.task_note))
+        self.main_menu.items.append(
+                MenuItem(
+                    title='Done',
+                    hotkey=configs.get('actions.done'),
+                    action=self.task_done))
+        self.main_menu.items.append(
+                MenuItem(
+                    title='View',
+                    hotkey=configs.get('actions.view'),
+                    action=self.task_view))
+        self.main_menu.items.append(
+                MenuItem(
+                    title='Mod',
+                    hotkey=configs.get('actions.modify'),
+                    action=self.task_mod))
+        self.main_menu.items.append(
+                MenuItem(
+                    title='Filter',
+                    hotkey=configs.get('actions.filter'),
+                    action=self.set_filter))
+        self.main_menu.items.append(
+                MenuItem(
+                    title='Append filter',
+                    hotkey=configs.get('actions.append_filter'),
+                    action=self.append_filter))
+        self.main_menu.items.append(
+                MenuItem(
+                    title='Prev filter',
+                    hotkey=configs.get('actions.previous_filter'),
+                    action=self.previous_filter))
+        self.main_menu.items.append(
+                MenuItem(
+                    title='Delete',
+                    hotkey=configs.get('actions.delete'),
+                    action=self.task_del))
+        self.main_menu.items.append(
+                MenuItem(
+                    title='Undo',
+                    hotkey=configs.get('actions.undo'),
+                    action=self.task_undo))
+        self.main_menu.items.append(
+                MenuItem(
+                    title='Reload',
+                    hotkey=configs.get('actions.reload'),
+                    action=self.task_reload))
+        self.main_menu.items.append(
+                MenuItem(
+                    title='Sync',
+                    hotkey=configs.get('actions.sync'),
+                    action=self.task_sync))
+        self.main_menu.items.append(
+                MenuItem(
+                    title='Report',
+                    hotkey=configs.get('actions.select_report'),
+                    action=self.select_report))
+        self.main_menu.items.append(
+                MenuItem(
+                    title='Context',
+                    hotkey=configs.get('actions.select_context'),
+                    action=self.select_context))
+        self.main_menu.items.append(
+                MenuItem(
+                    title='Projects',
+                    hotkey=configs.get('actions.show_projects'),
+                    action=self.show_projects))
+        self.main_menu.items.append(
+                MenuItem(
+                    title='Tags',
+                    hotkey=configs.get('actions.show_tags'),
+                    action=self.show_tags))
 
         self.main_menu.append_quit(self._quit)
 
@@ -107,32 +176,55 @@ class MainMenu(Navigable):
         menu_height = 2
         footer_height = 2
 
-        left_top_fixed_region = Region(size={'width': fixed_left, 'height': fixed_top},
-                                       position={'left': 0, 'top': self._first_usable_line})
+        left_top_fixed_region = Region(
+                size={
+                    'width': fixed_left,
+                    'height': fixed_top},
+                position={
+                    'left': 0,
+                    'top': self._first_usable_line})
 
-        self._left_top_fixed_viewer = Viewer(self._data_provider, left_top_fixed_region, screen_left=0, screen_top=0)
+        self._left_top_fixed_viewer = Viewer(
+                self._data_provider,
+                left_top_fixed_region,
+                screen_left=0,
+                screen_top=0)
 
         data_width = columns - fixed_left - 1
-        data_horizontal_constraints = {'left': fixed_left, 'right': self._data_provider.size.largest_line}
+        data_horizontal_constraints = {
+                'left': fixed_left,
+                'right': self._data_provider.size.largest_line}
         header_region = Region(
             size={'width': data_width, 'height': fixed_top},
             position={'left': fixed_left, 'top': self._first_usable_line},
             horizontal_constraints=data_horizontal_constraints)
 
-        self._header_viewer = Viewer(self._data_provider, header_region, screen_left=fixed_left, screen_top=0)
+        self._header_viewer = Viewer(
+                self._data_provider,
+                header_region,
+                screen_left=fixed_left,
+                screen_top=0)
 
         data_height = lines - fixed_top - menu_height
-        data_vertical_constraints = {'top': self._first_usable_line + fixed_top,
-                                     'bottom': self._data_provider.size.lines - footer_height}
+        data_vertical_constraints = {
+                'top': self._first_usable_line + fixed_top,
+                'bottom': self._data_provider.size.lines - footer_height}
 
-        self._selection = Selection(self._first_usable_line + fixed_top, constraints=data_vertical_constraints)
+        self._selection = Selection(
+                self._first_usable_line + fixed_top,
+                constraints=data_vertical_constraints)
 
         left_region = Region(
             size={'width': fixed_left, 'height': data_height},
             position={'left': 0, 'top': self._first_usable_line + fixed_top},
             vertical_constraints=data_vertical_constraints)
 
-        self._left_viewer = Viewer(self._data_provider, left_region, self._selection, screen_left=0, screen_top=2)
+        self._left_viewer = Viewer(
+                self._data_provider,
+                left_region,
+                self._selection,
+                screen_left=0,
+                screen_top=2)
 
         data_region = Region(
             size={'width': data_width, 'height': data_height},
@@ -156,7 +248,8 @@ class MainMenu(Navigable):
         self._data_provider.update(stream)
 
         if self._has_data():
-            self._report_parser.set_header_line(self._data_provider.lines[self._first_usable_line])
+            header_line = self._data_provider.lines[self._first_usable_line]
+            self._report_parser.set_header_line(header_line)
 
         self._update_menu_title()
 
@@ -204,14 +297,16 @@ class MainMenu(Navigable):
 
     def _get_selected_ids(self):
         if len(self._selection.selected_lines) == 0:
-            active_line = self._data_provider.lines[self._selection.active_line]
+            active_line_idx = self._selection.active_line
+            active_line = self._data_provider.lines[active_line_idx]
 
             return [self._report_parser.getId(active_line)]
 
         ids = []
 
         for line in self._selection.selected_lines:
-            ids.append(self._report_parser.getId(self._data_provider.lines[line]))
+            id = self._report_parser.getId(self._data_provider.lines[line])
+            ids.append(id)
 
         return ids
 
@@ -311,7 +406,8 @@ class MainMenu(Navigable):
         self._binary_wrapper.invalidate_data()
 
     def _show_filter_headers(self):
-        print('Current filter: "{}"'.format(', '.join(self.filters) if self.filters else None))
+        filter = ', '.join(self.filters) if self.filters else None
+        print('Current filter: "{}"'.format(filter))
         print()
         print('cancel  :  -')
         print('clear   :  empty')
@@ -356,7 +452,8 @@ class MainMenu(Navigable):
 
         print('cancel  :  -')
         print()
-        comment = input('task {} delete comment: '.format(', '.join(str(id) for id in ids)))
+        id_list = ', '.join(str(id) for id in ids)
+        comment = input('task {} delete comment: '.format(id_list))
 
         if comment == '-':
             return
@@ -390,9 +487,15 @@ class MainMenu(Navigable):
         reports = self._binary_wrapper.reports()
 
         # TODO Duplicated code
-        ignored_reports = (self._binary_wrapper.get_config('itask.ignored_reports') or '').split(',')
+        ignored_reports = self._binary_wrapper \
+            .get_config('itask.ignored_reports', '')
+        ignored_reports = ignored_reports.split(',')
 
-        valid_reports = dict((report, description) for report, description in reports.items() if report not in ignored_reports)
+        valid_reports = dict()
+
+        for report, description in reports.items():
+            if report not in ignored_reports:
+                valid_reports[report] = description
 
         largest_name = -1
 
@@ -556,18 +659,22 @@ class MainMenu(Navigable):
 def parse_command_line():
     parser = argparse.ArgumentParser(prog='iTask')
 
-    parser.add_argument('--task-data', help='Override TASKDATA environment variable')
+    parser.add_argument('--task-data', help='Override TASKDATA ' +
+                        'environment variable')
 
-    parser.add_argument('-r', '--report', default='next', help='Initial report')
+    parser.add_argument('-r', '--report', default='next',
+                        help='Initial report')
 
     parser.add_argument('-f', '--filter', help='Initial filter')
 
     parser.add_argument('-c', '--context', help='Initial context')
 
-    parser.add_argument('--rofi', action='store_true', help='Open rofi selection menu')
+    parser.add_argument('--rofi', action='store_true',
+                        help='Open rofi selection menu')
 
     version = get_version()
-    parser.add_argument('--version', action='version', version=f'%(prog)s {version}')
+    parser.add_argument('--version', action='version',
+                        version=f'%(prog)s {version}')
 
     return parser.parse_args()
 
@@ -609,9 +716,15 @@ def main():
         all_reports = taskwarrior_wrapper.reports()
 
         # TODO Duplicated code
-        ignored_reports = (taskwarrior_wrapper.get_config('itask.ignored_reports') or '').split(',')
+        ignored_reports = taskwarrior_wrapper \
+            .get_config('itask.ignored_reports', '')
+        ignored_reports = ignored_reports.split(',')
 
-        reports = [report for report in all_reports.keys() if report not in ignored_reports]
+        reports = dict()
+
+        for report in all_reports.keys():
+            if report not in ignored_reports:
+                reports.append(report)
 
         result = rofi.select(options=reports, prompt='Report')[0]
 
