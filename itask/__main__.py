@@ -13,6 +13,12 @@ from itask import get_version
 
 from itask import console
 
+from tabular.factory import TableFactory
+from tabular.formatters import BoolFormatter
+from tabular.theme import DefaultTheme
+
+import sys
+
 
 class MainMenu(Navigable):
 
@@ -21,18 +27,17 @@ class MainMenu(Navigable):
 
         self.report = args.report
 
-        self._filter_stack = [ None ]
+        self._filter_stack = [None]
         if args.filter:
             self.filters = args.filter.split(' ') if args.filter else None
             self._filter_stack.append(self.filters)
         else:
             self.filters = None
 
-        self.context = args.context
-
         self._binary_wrapper = taskwarrior_wrapper
 
-        self._binary_wrapper.register_listener('data changed', self._data_changed)
+        self._binary_wrapper.register_listener('data changed',
+                                               self._data_changed)
 
         self._data_provider = DataProvider()
 
@@ -146,7 +151,7 @@ class MainMenu(Navigable):
         self.main_menu.run()
 
     def _do_data_update(self):
-        stream = self._binary_wrapper.load(self.report, self.filters, self.context)
+        stream = self._binary_wrapper.load(self.report, self.filters)
 
         self._data_provider.update(stream)
 
@@ -331,7 +336,7 @@ class MainMenu(Navigable):
         self._binary_wrapper.invalidate_data()
 
     def _update_menu_title(self):
-        context = f'Context: {self.context}; ' if (self.context and self.context != 'none') else ''
+        context = f'Context: {self._get_context() or "<none>"};'
 
         report = f'Report: {self.report}; ' if self.report else ''
 
@@ -415,25 +420,68 @@ class MainMenu(Navigable):
         self._binary_wrapper.invalidate_data()
 
     def select_context(self):
-        # FIXME Não vai mostrar nada em tela, será necessário imprimir manualmente isso
-        self._binary_wrapper.contexts()
+        print('Contexts:')
         print()
-        print(f'Current context: {self.context}')
+
+        factory = TableFactory() \
+            .theme(DefaultTheme(column_separator=' ')) \
+            \
+            .column(bool) \
+            .title('On') \
+            .getter(lambda args: args['active']) \
+            .formatter(BoolFormatter(true='*', false='')) \
+            .create() \
+            \
+            .column(str) \
+            .title('Name') \
+            .getter(lambda args: args['name']) \
+            .create() \
+            \
+            .column(str) \
+            .title('Read') \
+            .getter(lambda args: args['read']) \
+            .create() \
+            \
+            .column(str) \
+            .title('Write') \
+            .getter(lambda args: args['write']) \
+            .none_value('') \
+            .create() \
+            \
+            .column(str) \
+            .title('Description') \
+            .getter(lambda args: args.get('description', None)) \
+            .none_value('') \
+            .create()
+
+        table = factory.create()
+
+        contexts = self._binary_wrapper.contexts()
+
+        table.print(sys.stdout, contexts)
+
         print()
         print('cancel              :  -')
         print('use global context  :  empty')
         print('unset               :  "none"')
+        print()
         print()
         new_context = input('Enter new context: ')
 
         if new_context == '-':
             return
         elif new_context == '':
-            self.context = None
+            self._set_context(None)
         else:
-            self.context = new_context
+            self._set_context(new_context)
 
         self._binary_wrapper.invalidate_data()
+
+    def _set_context(self, context):
+        self._binary_wrapper.set_context(context)
+
+    def _get_context(self):
+        return self._binary_wrapper.get_context()
 
     def show_projects(self):
         self._binary_wrapper.projects()
@@ -546,7 +594,7 @@ def recall_it_self_inside_terminal():
 def main():
     args = parse_command_line()
 
-    taskwarrior_wrapper = TaskwarriorWrapper(args.task_data)
+    taskwarrior_wrapper = TaskwarriorWrapper(args.task_data, args.context)
 
     if args.rofi:
         from . import rofi

@@ -11,7 +11,7 @@ taskwarrior_binary = shutil.which('task')
 
 class TaskwarriorWrapper(object):
 
-    def __init__(self, task_data=None):
+    def __init__(self, task_data=None, context=None):
         # TODO Its possible to improve this with more specific events
         self._listeners = {'data changed': []}
 
@@ -21,13 +21,44 @@ class TaskwarriorWrapper(object):
         else:
             self._environment = None
 
+        self._context = context
+
+        if self._context is None:
+            self._context = self.get_external_context()
+
+    def _auto_args(self):
+        if self._context is not None:
+            return [f'rc.context={self._context}']
+        else:
+            return []
+
     def _internal_run(self, args, redirect_stdouterr=False):
         stdout = subprocess.PIPE if redirect_stdouterr else None
         stderr = subprocess.PIPE if redirect_stdouterr else None
 
-        process = subprocess.run([taskwarrior_binary] + args, env=self._environment, stdout=stdout, stderr=stderr)
+        process_args = [taskwarrior_binary] + self._auto_args() + args
+
+        process = subprocess.run(process_args, env=self._environment,
+                                 stdout=stdout, stderr=stderr)
 
         return process
+
+    def _parse_table(self, raw_stdout):
+        stdout = raw_stdout.decode().split('\n')
+
+        stdout = stdout[2:-2]
+
+        items = dict()
+
+        for line in stdout:
+            matchs = re.match('^([a-z0-9_\.]+) +(.*)', line)
+            if matchs:
+                groups = matchs.groups()
+                key = groups[0]
+                value = groups[1]
+                items[key] = value
+
+        return items
 
     def register_listener(self, event, listener):
         self._listeners[event].append(listener)
@@ -39,35 +70,55 @@ class TaskwarriorWrapper(object):
         for listener in self._listeners[event]:
             listener(origin=self, *args, **kwargs)
 
-    def contexts(self):
-        process = self._internal_run(['_context'], redirect_stdouterr = True)
-
-        return process.stdout.decode().split('\n')[:-1]
-
-    def set_context(self, context):
-        self._internal_run(['context', context])
-
-    def get_context(self):
-        process = self._internal_run(['context', 'list'], redirect_stdouterr = True)
+    def get_external_context(self):
+        process = self._internal_run(['context', 'show'],
+                                     redirect_stdouterr=True)
 
         stdout = process.stdout.decode().split('\n')
 
-        for line in stdout:
-            fields = line.split(' ')
+        first_line = stdout[0]
 
-            if fields[-1] == 'yes':
-                return fields[0]
+        match = re.match(r'Context \'(.*)\' with', first_line)
 
-        return None
+        if not match:
+            return None
 
-    def load(self, report, filters, context=None):
+        return match.groups()[0]
+
+    def get_context(self):
+        return self._context
+
+    def set_context(self, context):
+        self._context = context
+
+    def contexts(self):
+        process = self._internal_run(['show', 'context.'],
+                                     redirect_stdouterr=True)
+
+        raw = self._parse_table(process.stdout)
+
+        contexts_ = dict()
+
+        for key, value in raw.items():
+            tokens = key.split('.')
+            name = tokens[1]
+
+            active = self._context == name
+
+            context = contexts_.setdefault(name, {'name': name,
+                                                  'active': active})
+
+            prop = tokens[2]
+
+            context[prop] = value
+
+        return contexts_.values()
+
+    def load(self, report, filters):
         params = ['rc.defaultwidth:', 'rc._forcecolor:off', 'rc.color:off']
 
-        if context:
-            params += ['rc.context:{}'.format(context)]
-
         if report:
-            params += [ report ]
+            params += [report]
 
         if filters:
             params += filters
@@ -115,6 +166,7 @@ class TaskwarriorWrapper(object):
         self._notify_listeners('data changed')
 
     def reports(self):
+        # TODO Usar o _parse_table
         process = self._internal_run(['reports'], redirect_stdouterr = True)
 
         stdout = process.stdout.decode().split('\n')
@@ -138,6 +190,7 @@ class TaskwarriorWrapper(object):
         self._internal_run(['tags'])
 
     def get_config(self, config):
+        # TODO Usar o _parse_table
         process = self._internal_run(['show', config], redirect_stdouterr = True)
 
         stdout = process.stdout.decode().split('\n')
