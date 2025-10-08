@@ -167,7 +167,7 @@ class TaskwarriorWrapper(object):
 
     def reports(self):
         # TODO Usar o _parse_table
-        process = self._internal_run(['reports'], redirect_stdouterr = True)
+        process = self._internal_run(['reports'], redirect_stdouterr=True)
 
         stdout = process.stdout.decode().split('\n')
 
@@ -191,11 +191,11 @@ class TaskwarriorWrapper(object):
 
     def get_config(self, config):
         # TODO Usar o _parse_table
-        process = self._internal_run(['show', config], redirect_stdouterr = True)
+        process = self._internal_run(['show', config], redirect_stdouterr=True)
 
         stdout = process.stdout.decode().split('\n')
 
-        entry = [ line for line in stdout[3:] if line.startswith(config) ]
+        entry = [line for line in stdout[3:] if line.startswith(config)]
         if len(entry) == 0:
             return None
         else:

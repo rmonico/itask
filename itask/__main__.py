@@ -246,7 +246,6 @@ class MainMenu(Navigable):
 
         console.wait()
 
-
     def task_note(self):
         id = self._get_active_id()
 
@@ -257,7 +256,6 @@ class MainMenu(Navigable):
         run(cmdline)
 
         console.wait()
-
 
     def task_done(self):
         ids = self._get_selected_ids()
@@ -398,7 +396,7 @@ class MainMenu(Navigable):
 
         largest_name = -1
 
-        for len_report in [ len(report) for report in valid_reports.keys()]:
+        for len_report in [len(report) for report in valid_reports.keys()]:
             if len_report > largest_name:
                 largest_name = len_report
 
